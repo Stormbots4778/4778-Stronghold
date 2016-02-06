@@ -7,30 +7,42 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TankDrive extends Command {
+public class TurnToAngle extends Command {
 
-	public TankDrive() {
+	private boolean finished = false;
+	private double angle;
+
+	public TurnToAngle(double ang) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drive);
+		angle = ang;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.drive.resetGyro();
+		Robot.drive.setSpeed(0);
+		Robot.drive.setSetpoint(angle);
+		Robot.drive.getPIDController().setPID(0.2, 0, 0);
+		Robot.drive.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drive.TankDrive(Robot.oi.LeftJoystick, Robot.oi.RightJoystick);
+		if (Robot.drive.onTarget()) {
+			finished = true;
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return finished;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.drive.disable();
 		Robot.drive.Stop();
 	}
 
