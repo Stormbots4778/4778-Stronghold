@@ -24,7 +24,7 @@ public class Auto extends CommandGroup {
 		// e.g. if Command1 requires chassis, and Command2 requires arm,
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
-		addSequential(new Breach(true));
-		addSequential(new TurnToAngle(90));
+		addSequential(new Breach(true), 3000);
+		addSequential(new TurnToAngle(90), 3000);
 	}
 }

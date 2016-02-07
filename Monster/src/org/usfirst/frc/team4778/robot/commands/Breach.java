@@ -10,8 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Breach extends Command {
 	private boolean finished = false;
-	private double endtime = 0;
-	private double time = 0;
+	/*
+	 * private double endtime = 0; private double time = 0;
+	 */
 	private boolean direction = true;
 
 	public Breach(boolean dir) {
@@ -32,15 +33,17 @@ public class Breach extends Command {
 		Robot.drive.setSetpoint(0);
 		Robot.drive.getPIDController().setPID(1, 0, 0);
 		Robot.drive.enable();
-		endtime = Timer.getFPGATimestamp() + 3;
+		// endtime = Timer.getFPGATimestamp() + 3;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		time = Timer.getFPGATimestamp();
-		if (time > endtime) {
-			finished = true;
-		}
+		/*
+		 * time = Timer.getFPGATimestamp(); if (time > endtime) { finished =
+		 * true; }
+		 */
+		Timer.delay(3000);
+		finished = true;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
