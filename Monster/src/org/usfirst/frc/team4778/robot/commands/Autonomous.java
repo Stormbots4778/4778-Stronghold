@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auto extends CommandGroup {
+public class Autonomous extends CommandGroup {
 
-	public Auto() {
+	public Autonomous() {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
@@ -24,7 +24,9 @@ public class Auto extends CommandGroup {
 		// e.g. if Command1 requires chassis, and Command2 requires arm,
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
-		addSequential(new Breach(true), 3000);
+		System.out.println("-start auto");
+		addSequential(new Breach(true, 3), 3000);
 		addSequential(new TurnToAngle(90), 3000);
+		System.out.println("-end auto");
 	}
 }

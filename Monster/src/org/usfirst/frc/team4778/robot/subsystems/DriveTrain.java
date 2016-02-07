@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
+import org.usfirst.frc.team4778.robot.commands.TankDrive;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -22,6 +24,8 @@ public class DriveTrain extends PIDSubsystem {
 	public static RobotDrive Drive = new RobotDrive(left2, left1, right2, right1);
 	private AnalogGyro gyro = new AnalogGyro(0);
 	private double speed = 0;
+	double endtime = 0;
+	double time = 0;
 
 	public DriveTrain() {
 		super(0.0, 0.0, 0.0);
@@ -34,69 +38,60 @@ public class DriveTrain extends PIDSubsystem {
 		Drive.setInvertedMotor(MotorType.kRearLeft, true);
 		Drive.setInvertedMotor(MotorType.kFrontRight, true);
 		Drive.setInvertedMotor(MotorType.kRearRight, true);
-
-	}
-
-	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 
 	public void resetGyro() {
 		gyro.reset();
 	}
 
-	public void TankDrive(Joystick left, Joystick right) {
-		Drive.tankDrive(left, right);
-	}
-
 	public void setSpeed(double in) {
 		speed = in;
 	}
 
-	public void Stop() {
-		if (left1.getSpeed() > 0) {
-			left1.set(-0.5);
-		}
-		if (left1.getSpeed() < 0) {
-			left1.set(0.5);
-		}
-		if (left2.getSpeed() > 0) {
-			left2.set(-0.5);
-		}
-		if (left2.getSpeed() < 0) {
-			left2.set(0.5);
-		}
-		if (right1.getSpeed() > 0) {
-			right1.set(-0.5);
-		}
-		if (right1.getSpeed() < 0) {
-			right1.set(0.5);
-		}
-		if (right2.getSpeed() > 0) {
-			right2.set(-0.5);
-		}
-		if (right2.getSpeed() < 0) {
-			right2.set(0.5);
-		}
-		Timer.delay(1000);
-		speed = 0;
-		Drive.tankDrive(0.0, 0.0);
-	}
-
 	@Override
 	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
 		return gyro.getAngle();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-		if (speed == 0) {
-			Drive.tankDrive(output, -output);
-		} else {
+		if (speed != 0) {
 			Drive.arcadeDrive(speed, output);
+		} else {
+			Drive.tankDrive(-output, output);
 		}
+
+	}
+
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new TankDrive());
+	}
+
+	public void tankDrive(Joystick joy1, Joystick joy2) {
+		Drive.tankDrive(joy1, joy2);
+	}
+
+	public void tankDrive(double left, double right) {
+		Drive.tankDrive(left, right);
+	}
+
+	public void arcadeDrive(Joystick stick) {
+		Drive.arcadeDrive(stick);
+	}
+
+	public void arcadeDrive(double f, double s) {
+		Drive.arcadeDrive(f, s);
+	}
+
+	public void stop(double stopingPower) {
+		System.out.println("-stop");
+		Drive.tankDrive(stopingPower, stopingPower);
+		endtime = Timer.getFPGATimestamp()+2;
+		while(time<endtime){
+			time = Timer.getFPGATimestamp();
+		}
+		Drive.tankDrive(0, 0);
 	}
 }

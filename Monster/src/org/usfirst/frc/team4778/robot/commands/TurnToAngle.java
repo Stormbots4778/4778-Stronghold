@@ -15,22 +15,26 @@ public class TurnToAngle extends Command {
 	public TurnToAngle(double ang) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.drive);
+		requires(Robot.drivetrain);
 		angle = ang;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.drive.resetGyro();
-		Robot.drive.setSpeed(0);
-		Robot.drive.setSetpoint(angle);
-		Robot.drive.getPIDController().setPID(1, 0, 0);
-		Robot.drive.enable();
+		System.out.println("-turn-init");
+		Robot.drivetrain.resetGyro();
+		Robot.drivetrain.setSpeed(0);
+		Robot.drivetrain.setSetpoint(angle);
+		Robot.drivetrain.getPIDController().setPID(0.05, 0, 0);
+		Robot.drivetrain.setOutputRange(-0.5, 0.5);
+		Robot.drivetrain.setAbsoluteTolerance(0.9);
+		Robot.drivetrain.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.drive.onTarget()) {
+		System.out.println("-turn-exe");
+		if (Robot.drivetrain.onTarget()) {
 			finished = true;
 		}
 	}
@@ -42,8 +46,9 @@ public class TurnToAngle extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.drive.disable();
-		Robot.drive.Stop();
+		System.out.println("-turn-end");
+		Robot.drivetrain.disable();
+		;
 	}
 
 	// Called when another command which requires one or more of the same
