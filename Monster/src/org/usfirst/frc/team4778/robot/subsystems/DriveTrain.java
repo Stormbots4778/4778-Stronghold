@@ -1,8 +1,8 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
+import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
@@ -22,14 +22,13 @@ public class DriveTrain extends PIDSubsystem {
 	private static Victor right1 = new Victor(2);
 	private static Victor right2 = new Victor(3);
 	public static RobotDrive Drive = new RobotDrive(left2, left1, right2, right1);
-	private AnalogGyro gyro = new AnalogGyro(0);
 	private double speed = 0;
 	double endtime = 0;
 	double time = 0;
 
 	public DriveTrain() {
 		super(0.0, 0.0, 0.0);
-		gyro.reset();
+		RobotMap.gyro.reset();
 		getPIDController().setSetpoint(0.0);
 		getPIDController().setOutputRange(-1, 1);
 		getPIDController().setAbsoluteTolerance(1);
@@ -41,7 +40,7 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void resetGyro() {
-		gyro.reset();
+		RobotMap.gyro.reset();
 	}
 
 	public void setSpeed(double in) {
@@ -50,7 +49,7 @@ public class DriveTrain extends PIDSubsystem {
 
 	@Override
 	protected double returnPIDInput() {
-		return gyro.getAngle();
+		return RobotMap.gyro.getAngle();
 	}
 
 	@Override

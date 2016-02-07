@@ -5,7 +5,6 @@ import org.usfirst.frc.team4778.robot.commands.Autonomous;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
@@ -92,7 +91,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		System.out.println("auto");
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro:", new AnalogGyro(0).getAngle());
+		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
 		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
 		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
@@ -114,7 +113,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		System.out.println("teleop");
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro:", new AnalogGyro(0).getAngle());
+		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
 		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
 		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
