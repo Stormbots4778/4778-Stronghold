@@ -30,7 +30,7 @@ public class Breach extends Command {
 			Robot.drive.setSpeed(0.85);
 		}
 		Robot.drive.setSetpoint(0);
-		Robot.drive.getPIDController().setPID(0.2, 0, 0);
+		Robot.drive.getPIDController().setPID(1, 0, 0);
 		Robot.drive.enable();
 		endtime = Timer.getFPGATimestamp() + 3;
 	}

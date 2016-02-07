@@ -24,7 +24,7 @@ public class TurnToAngle extends Command {
 		Robot.drive.resetGyro();
 		Robot.drive.setSpeed(0);
 		Robot.drive.setSetpoint(angle);
-		Robot.drive.getPIDController().setPID(0.2, 0, 0);
+		Robot.drive.getPIDController().setPID(1, 0, 0);
 		Robot.drive.enable();
 	}
 
