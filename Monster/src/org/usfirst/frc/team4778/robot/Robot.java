@@ -5,11 +5,14 @@ import org.usfirst.frc.team4778.robot.commands.Autonomous;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.hal.AccelerometerJNI;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -89,6 +92,10 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		System.out.println("auto");
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Gyro:", new AnalogGyro(0).getAngle());
+		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
+		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
+		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 	}
 
 	public void teleopInit() {
@@ -107,6 +114,10 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		System.out.println("teleop");
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Gyro:", new AnalogGyro(0).getAngle());
+		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
+		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
+		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 	}
 
 	/**

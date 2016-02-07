@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.hal.AccelerometerJNI;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -57,10 +55,6 @@ public class DriveTrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		SmartDashboard.putNumber("Gyro:", gyro.getAngle());
-		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
-		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
-		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 		if (speed != 0) {
 			Drive.arcadeDrive(speed, output);
 		} else {
