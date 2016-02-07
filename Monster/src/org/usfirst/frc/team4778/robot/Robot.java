@@ -43,7 +43,6 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
-		tele.cancel();
 		auto.start();
 	}
 
