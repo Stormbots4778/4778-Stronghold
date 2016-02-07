@@ -6,6 +6,7 @@ import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -23,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 
 	Command autonomousCommand;
+	Sendable gyrodata;
 	// SendableChooser chooser;
 
 	/**

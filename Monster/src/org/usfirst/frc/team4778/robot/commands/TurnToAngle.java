@@ -26,7 +26,7 @@ public class TurnToAngle extends Command {
 		Robot.drivetrain.setSpeed(0);
 		Robot.drivetrain.setSetpoint(angle);
 		Robot.drivetrain.getPIDController().setPID(0.05, 0, 0);
-		Robot.drivetrain.setOutputRange(-0.5, 0.5);
+		Robot.drivetrain.setOutputRange(-1, 1);
 		Robot.drivetrain.setAbsoluteTolerance(0.9);
 		Robot.drivetrain.enable();
 	}
