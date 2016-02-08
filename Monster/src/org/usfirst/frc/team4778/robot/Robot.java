@@ -38,6 +38,10 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		drivetrain = new DriveTrain();
 		tankdrive = new TankDrive();
+		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
+		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
+		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
+		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 		// chooser = new SendableChooser();
 		// chooser.addDefault("autonomous", new Move(1));
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -56,6 +60,10 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		System.out.println("disabled");
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
+		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
+		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
+		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 	}
 
 	/**
@@ -125,5 +133,9 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		System.out.println("test");
 		LiveWindow.run();
+		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
+		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
+		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
+		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 	}
 }
