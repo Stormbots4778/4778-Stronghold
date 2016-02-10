@@ -25,8 +25,8 @@ public class Autonomous extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 		System.out.println("-start auto");
-		addSequential(new Breach(true, 3), 3000);
-		addSequential(new TurnToAngle(90), 3000);
+		addSequential(new Breach(true, 3));
+		addSequential(new TurnToAngle(90));
 		System.out.println("-end auto");
 	}
 }

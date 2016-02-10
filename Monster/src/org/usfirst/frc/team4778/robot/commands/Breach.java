@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
+import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,6 +13,7 @@ public class Breach extends Command {
 	boolean finished = false;
 	double endtime = 0;
 	double time = 0;
+	double flat = 0;
 	boolean direction = true;
 
 	public Breach(boolean dir, double tim) {
@@ -19,16 +21,12 @@ public class Breach extends Command {
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
 		time = tim;
-		if (time < 0) {
-			direction = false;
-			Math.abs(time);
-		} else {
-			direction = true;
-		}
+		direction = dir;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		flat = RobotMap.acc.getZ();
 		System.out.println("-breach-init");
 		Robot.drivetrain.resetGyro();
 		if (direction) {
@@ -39,7 +37,7 @@ public class Breach extends Command {
 			Robot.drivetrain.setOutputRange(0, 1);
 		}
 		Robot.drivetrain.setSetpoint(0);
-		Robot.drivetrain.getPIDController().setPID(0.2, 0, 0);
+		Robot.drivetrain.getPIDController().setPID(0.05, 0.01, 0.2);
 		Robot.drivetrain.enable();
 		endtime = Timer.getFPGATimestamp() + time;
 	}
@@ -63,9 +61,9 @@ public class Breach extends Command {
 		System.out.println("-breach-end");
 		Robot.drivetrain.disable();
 		if (direction) {
-			Robot.drivetrain.stop(0.5);
+			Robot.drivetrain.stop(0.3);
 		} else {
-			Robot.drivetrain.stop(-0.5);
+			Robot.drivetrain.stop(-0.3);
 		}
 
 	}

@@ -87,7 +87,7 @@ public class DriveTrain extends PIDSubsystem {
 	public void stop(double stopingPower) {
 		System.out.println("-stop");
 		Drive.tankDrive(stopingPower, stopingPower);
-		endtime = Timer.getFPGATimestamp() + 2;
+		endtime = Timer.getFPGATimestamp() + 1;
 		while (time < endtime) {
 			time = Timer.getFPGATimestamp();
 		}

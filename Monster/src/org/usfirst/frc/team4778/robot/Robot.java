@@ -6,12 +6,9 @@ import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.hal.AccelerometerJNI;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,7 +23,6 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 
 	Command autonomousCommand;
-	Sendable gyrodata;
 	// SendableChooser chooser;
 
 	/**
@@ -35,17 +31,14 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		System.out.println("init");
-		oi = new OI();
 		drivetrain = new DriveTrain();
+		oi = new OI();
 		tankdrive = new TankDrive();
-		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
-		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
-		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
-		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 		// chooser = new SendableChooser();
 		// chooser.addDefault("autonomous", new Move(1));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		// SmartDashboard.putData("Auto mode", chooser);
+		RobotMap.camserver.startAutomaticCapture("cam0");
 	}
 
 	/**
@@ -60,10 +53,6 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		System.out.println("disabled");
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
-		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
-		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
-		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 	}
 
 	/**
@@ -99,14 +88,11 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		System.out.println("auto");
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
-		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
-		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
-		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 	}
 
 	public void teleopInit() {
 		System.out.println("teleopInit");
+		// Robot.drivetrain.resetGyro();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -121,10 +107,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		System.out.println("teleop");
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
-		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
-		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
-		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 	}
 
 	/**
@@ -133,9 +115,5 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		System.out.println("test");
 		LiveWindow.run();
-		SmartDashboard.putNumber("Gyro:", RobotMap.gyro.getAngle());
-		SmartDashboard.putNumber("AccelerometerZ:", AccelerometerJNI.getAccelerometerZ());
-		SmartDashboard.putNumber("AccelerometerY:", AccelerometerJNI.getAccelerometerY());
-		SmartDashboard.putNumber("AccelerometerX:", AccelerometerJNI.getAccelerometerX());
 	}
 }

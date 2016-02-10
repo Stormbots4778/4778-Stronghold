@@ -1,6 +1,9 @@
 package org.usfirst.frc.team4778.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -11,6 +14,9 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 public class RobotMap {
 
 	public static AnalogGyro gyro = new AnalogGyro(0);
+	public static Accelerometer acc = new BuiltInAccelerometer();
+	// public static USBCamera cam = new USBCamera();
+	public static CameraServer camserver = CameraServer.getInstance();
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

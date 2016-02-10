@@ -1,6 +1,10 @@
 package org.usfirst.frc.team4778.robot;
 
+import org.usfirst.frc.team4778.robot.commands.Disrupt;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -36,4 +40,11 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public static Joystick joyleft = new Joystick(0);
 	public static Joystick joyright = new Joystick(1);
+	public static Button pid = new JoystickButton(joyright, 3);
+	public static Button calibrate = new JoystickButton(joyright, 2);
+
+	public OI() {
+		pid.whileHeld(new Disrupt(true, 0));
+		calibrate.whileHeld(new Disrupt(false, 0));
+	}
 }
