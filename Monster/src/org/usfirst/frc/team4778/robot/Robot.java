@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addDefault("autonomous", new Move(1));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		// SmartDashboard.putData("Auto mode", chooser);
-		RobotMap.camserver.startAutomaticCapture("cam0");
+		//RobotMap.camserver.startAutomaticCapture("cam0");
 	}
 
 	/**
