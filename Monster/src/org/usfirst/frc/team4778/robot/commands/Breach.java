@@ -31,13 +31,13 @@ public class Breach extends Command {
 		Robot.drivetrain.resetGyro();
 		if (direction) {
 			Robot.drivetrain.setSpeed(-0.85);
-			Robot.drivetrain.setOutputRange(-1, 0);
+			Robot.drivetrain.setOutputRange(-1, 1);
 		} else {
 			Robot.drivetrain.setSpeed(0.85);
-			Robot.drivetrain.setOutputRange(0, 1);
+			Robot.drivetrain.setOutputRange(-1, 1);
 		}
 		Robot.drivetrain.setSetpoint(0);
-		Robot.drivetrain.getPIDController().setPID(0.05, 0.01, 0.2);
+		Robot.drivetrain.getPIDController().setPID(0.05, 0.03, 0.2);
 		Robot.drivetrain.enable();
 		endtime = Timer.getFPGATimestamp() + time;
 	}
@@ -60,10 +60,11 @@ public class Breach extends Command {
 	protected void end() {
 		System.out.println("-breach-end");
 		Robot.drivetrain.disable();
+		RobotMap.error = RobotMap.gyro.getAngle()-Robot.drivetrain.getSetpoint();
 		if (direction) {
-			Robot.drivetrain.stop(0.3);
+			Robot.drivetrain.stop(0.6);
 		} else {
-			Robot.drivetrain.stop(-0.3);
+			Robot.drivetrain.stop(-0.6);
 		}
 
 	}

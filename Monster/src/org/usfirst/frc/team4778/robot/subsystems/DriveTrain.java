@@ -42,6 +42,10 @@ public class DriveTrain extends PIDSubsystem {
 	public void resetGyro() {
 		RobotMap.gyro.reset();
 	}
+	
+	public double getGyro(){
+		return RobotMap.gyro.getAngle();
+	}
 
 	public void setSpeed(double in) {
 		speed = in;
