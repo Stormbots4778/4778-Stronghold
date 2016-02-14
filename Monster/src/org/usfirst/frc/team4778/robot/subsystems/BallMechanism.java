@@ -11,8 +11,12 @@ public class BallMechanism extends Subsystem {
     	
     }
     
-    public void spinRoller() {
-    	roller.set(0.3);
+    public void spinRoller(int direction) {
+    	roller.set(direction * 0.3);
+    }
+    
+    public void moveArm() {
+    	
     }
     
 	public void stop(double stoppingPower) {
