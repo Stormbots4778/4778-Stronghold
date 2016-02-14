@@ -3,10 +3,7 @@ package org.usfirst.frc.team4778.robot;
 import org.usfirst.frc.team4778.robot.commands.Disrupt;
 import org.usfirst.frc.team4778.robot.commands.GimMove;
 import org.usfirst.frc.team4778.robot.commands.Shift;
-<<<<<<< HEAD
 import org.usfirst.frc.team4778.robot.commands.SpinRoller;
-=======
->>>>>>> 91377bf12b22e30c5f2350f1a1df21e2161457f9
 import org.usfirst.frc.team4778.robot.commands.VisionTrack;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -56,13 +53,10 @@ public class OI {
 	public static Button t = new JoystickButton(joyright, 10);
 	public static Button shiftIn = new JoystickButton(joyright, 4);
 	public static Button shiftOut = new JoystickButton(joyright, 5);
-<<<<<<< HEAD
 	public static Button leftTrigger = new JoystickButton(joyleft, 1);
 	public static Button rightTrigger = new JoystickButton(joyright, 1);
 	public static Button rightUp = new JoystickButton(joyright, 3);
 	public static Button rightDown = new JoystickButton(joyright, 2);
-=======
->>>>>>> 91377bf12b22e30c5f2350f1a1df21e2161457f9
 
 	public OI() {
 		pid.whileHeld(new Disrupt(true, 0));
@@ -74,10 +68,7 @@ public class OI {
 		t.whileHeld(new VisionTrack());
 		shiftIn.whileHeld(new Shift(true));
 		shiftOut.whileHeld(new Shift(false));
-<<<<<<< HEAD
 		rightUp.whileHeld(new SpinRoller(1));
 		rightDown.whileHeld(new SpinRoller(-1));
-=======
->>>>>>> 91377bf12b22e30c5f2350f1a1df21e2161457f9
 	}
 }
