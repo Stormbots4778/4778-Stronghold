@@ -5,6 +5,7 @@ import org.usfirst.frc.team4778.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -37,6 +38,8 @@ public class DriveTrain extends PIDSubsystem {
 		getPIDController().setOutputRange(-1, 1);
 		getPIDController().setAbsoluteTolerance(1);
 		getPIDController().disable();
+		Drive1.setInvertedMotor(MotorType.kFrontLeft, true);
+		Drive1.setInvertedMotor(MotorType.kFrontRight, true);
 	}
 
 	public void resetGyro() {
