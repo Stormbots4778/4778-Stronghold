@@ -5,9 +5,8 @@ import org.usfirst.frc.team4778.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
@@ -17,11 +16,15 @@ public class DriveTrain extends PIDSubsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private static Victor left1 = new Victor(0);
-	private static Victor left2 = new Victor(1);
-	private static Victor right1 = new Victor(2);
-	private static Victor right2 = new Victor(3);
-	public static RobotDrive Drive = new RobotDrive(left2, left1, right2, right1);
+	private static VictorSP left1 = new VictorSP(0);
+	private static VictorSP left2 = new VictorSP(1);
+	private static VictorSP left3 = new VictorSP(1);
+	private static VictorSP right1 = new VictorSP(2);
+	private static VictorSP right2 = new VictorSP(3);
+	private static VictorSP right3 = new VictorSP(0);
+	public static RobotDrive Drive1 = new RobotDrive(left1, right1);
+	public static RobotDrive Drive2 = new RobotDrive(left2, right2);
+	public static RobotDrive Drive3 = new RobotDrive(left3, right3);
 	private double speed = 0;
 	double endtime = 0;
 	double time = 0;
@@ -34,10 +37,6 @@ public class DriveTrain extends PIDSubsystem {
 		getPIDController().setOutputRange(-1, 1);
 		getPIDController().setAbsoluteTolerance(1);
 		getPIDController().disable();
-		Drive.setInvertedMotor(MotorType.kFrontLeft, true);
-		Drive.setInvertedMotor(MotorType.kRearLeft, true);
-		Drive.setInvertedMotor(MotorType.kFrontRight, true);
-		Drive.setInvertedMotor(MotorType.kRearRight, true);
 	}
 
 	public void resetGyro() {
@@ -64,9 +63,13 @@ public class DriveTrain extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		if (speed != 0) {
-			Drive.arcadeDrive(speed, output);
+			Drive1.arcadeDrive(speed, output);
+			Drive2.arcadeDrive(speed, output);
+			Drive3.arcadeDrive(speed, output);
 		} else {
-			Drive.tankDrive(-output, output);
+			Drive1.tankDrive(-output, output);
+			Drive2.tankDrive(-output, output);
+			Drive3.tankDrive(-output, output);
 		}
 
 	}
@@ -78,28 +81,40 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void tankDrive(Joystick joy1, Joystick joy2) {
-		Drive.tankDrive(joy1, joy2);
+		Drive1.tankDrive(joy1, joy2);
+		Drive2.tankDrive(joy1, joy2);
+		Drive3.tankDrive(joy1, joy2);
 	}
 
 	public void tankDrive(double left, double right) {
-		Drive.tankDrive(left, right);
+		Drive1.tankDrive(left, right);
+		Drive2.tankDrive(left, right);
+		Drive3.tankDrive(left, right);
 	}
 
 	public void arcadeDrive(Joystick stick) {
-		Drive.arcadeDrive(stick);
+		Drive1.arcadeDrive(stick);
+		Drive2.arcadeDrive(stick);
+		Drive3.arcadeDrive(stick);
 	}
 
 	public void arcadeDrive(double f, double s) {
-		Drive.arcadeDrive(f, s);
+		Drive1.arcadeDrive(f, s);
+		Drive2.arcadeDrive(f, s);
+		Drive3.arcadeDrive(f, s);
 	}
 
 	public void stop(double stopingPower) {
 		System.out.println("-stop");
-		Drive.tankDrive(stopingPower, stopingPower);
+		Drive1.tankDrive(stopingPower, stopingPower);
+		Drive2.tankDrive(stopingPower, stopingPower);
+		Drive3.tankDrive(stopingPower, stopingPower);
 		endtime = Timer.getFPGATimestamp() + 1;
 		while (time < endtime) {
 			time = Timer.getFPGATimestamp();
 		}
-		Drive.tankDrive(0, 0);
+		Drive1.tankDrive(0, 0);
+		Drive2.tankDrive(0, 0);
+		Drive3.tankDrive(0, 0);
 	}
 }
