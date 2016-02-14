@@ -2,6 +2,7 @@ package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.Disrupt;
 import org.usfirst.frc.team4778.robot.commands.GimMove;
+import org.usfirst.frc.team4778.robot.commands.VisionTrack;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -41,12 +42,13 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public static Joystick joyleft = new Joystick(0);
 	public static Joystick joyright = new Joystick(1);
-	public static Button pid = new JoystickButton(joyright, 3);
-	public static Button calibrate = new JoystickButton(joyright, 2);
+	public static Button pid = new JoystickButton(joyleft, 6);
+	public static Button calibrate = new JoystickButton(joyleft, 7);
 	public static Button l = new JoystickButton(joyleft, 4);
 	public static Button r = new JoystickButton(joyleft, 5);
 	public static Button d = new JoystickButton(joyleft, 2);
 	public static Button u = new JoystickButton(joyleft, 3);
+	public static Button t = new JoystickButton(joyright, 10);
 
 	public OI() {
 		pid.whileHeld(new Disrupt(true, 0));
@@ -55,5 +57,6 @@ public class OI {
 		r.whenPressed(new GimMove(0, 10));
 		u.whenPressed(new GimMove(-10, 0));
 		d.whenPressed(new GimMove(10, 0));
+		t.whileHeld(new VisionTrack());
 	}
 }
