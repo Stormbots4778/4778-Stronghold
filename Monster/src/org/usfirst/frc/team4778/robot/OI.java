@@ -2,6 +2,7 @@ package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.Disrupt;
 import org.usfirst.frc.team4778.robot.commands.GimMove;
+import org.usfirst.frc.team4778.robot.commands.Shift;
 import org.usfirst.frc.team4778.robot.commands.VisionTrack;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -49,6 +50,8 @@ public class OI {
 	public static Button d = new JoystickButton(joyleft, 2);
 	public static Button u = new JoystickButton(joyleft, 3);
 	public static Button t = new JoystickButton(joyright, 10);
+	public static Button shiftIn = new JoystickButton(joyright, 4);
+	public static Button shiftOut = new JoystickButton(joyright, 5);
 
 	public OI() {
 		pid.whileHeld(new Disrupt(true, 0));
@@ -58,5 +61,7 @@ public class OI {
 		u.whenPressed(new GimMove(-10, 0));
 		d.whenPressed(new GimMove(10, 0));
 		t.whileHeld(new VisionTrack());
+		shiftIn.whileHeld(new Shift(true));
+		shiftOut.whileHeld(new Shift(false));
 	}
 }

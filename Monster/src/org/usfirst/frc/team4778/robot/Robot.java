@@ -5,6 +5,7 @@ import org.usfirst.frc.team4778.robot.commands.Autonomous;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Gimbal;
+import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static TankDrive tankdrive;
 	public static DriveTrain drivetrain;
 	public static Gimbal gimbal;
+	public static Shifters shift;
 	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
 	Command autonomousCommand;
@@ -39,6 +41,7 @@ public class Robot extends IterativeRobot {
 		gimbal = new Gimbal();
 		oi = new OI();
 		tankdrive = new TankDrive();
+		shift = new Shifters();
 		RobotMap.camserver.startAutomaticCapture("cam1");
 		// RobotMap.cam.setFPS(1000);
 		// open the camera at the IP address assigned. This is the IP address
