@@ -57,8 +57,6 @@ public class OI {
 	public static Button rightTrigger = new JoystickButton(joyright, 1);
 	public static Button rightUp = new JoystickButton(joyright, 3);
 	public static Button rightDown = new JoystickButton(joyright, 2);
-
-	//test
 	
 	public OI() {
 		pid.whileHeld(new Disrupt(true, 0));
