@@ -4,12 +4,12 @@ package org.usfirst.frc.team4778.robot;
 import org.usfirst.frc.team4778.robot.commands.Autonomous;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4778.robot.subsystems.Gimbal;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,6 +22,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static TankDrive tankdrive;
 	public static DriveTrain drivetrain;
+	public static Gimbal gimbal;
+	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
 	Command autonomousCommand;
 	// SendableChooser chooser;
@@ -31,16 +33,22 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		RobotMap.table = NetworkTable.getTable("control");
+		// RobotMap.table = NetworkTable.getTable("control");
 		System.out.println("init");
 		drivetrain = new DriveTrain();
+		gimbal = new Gimbal();
 		oi = new OI();
 		tankdrive = new TankDrive();
+		RobotMap.camserver.startAutomaticCapture("cam1");
+		// RobotMap.cam.setFPS(1000);
+		// open the camera at the IP address assigned. This is the IP address
+		// that the camera
+		// can be accessed through the web interface.
 		// chooser = new SendableChooser();
 		// chooser.addDefault("autonomous", new Move(1));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		// SmartDashboard.putData("Auto mode", chooser);
-		//RobotMap.camserver.startAutomaticCapture("cam0");
+		// RobotMap.camserver.startAutomaticCapture("cam0");
 	}
 
 	/**
@@ -90,6 +98,9 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		System.out.println("auto");
 		Scheduler.getInstance().run();
+		// RobotMap.camera.getImage(RobotMap.frame);
+		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
+		// RobotMap.camserver.setImage(RobotMap.frame);
 	}
 
 	public void teleopInit() {
@@ -109,6 +120,9 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		System.out.println("teleop");
 		Scheduler.getInstance().run();
+		// RobotMap.camera.getImage(RobotMap.frame);
+		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
+		// RobotMap.camserver.setImage(RobotMap.frame);
 	}
 
 	/**
@@ -117,5 +131,8 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		System.out.println("test");
 		LiveWindow.run();
+		// RobotMap.camera.getImage(RobotMap.frame);
+		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
+		// RobotMap.camserver.setImage(RobotMap.frame);
 	}
 }

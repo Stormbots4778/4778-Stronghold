@@ -25,6 +25,7 @@ public class DriveTrain extends PIDSubsystem {
 	private double speed = 0;
 	double endtime = 0;
 	double time = 0;
+	double input = 0;
 
 	public DriveTrain() {
 		super(0.0, 0.0, 0.0);
@@ -42,8 +43,8 @@ public class DriveTrain extends PIDSubsystem {
 	public void resetGyro() {
 		RobotMap.gyro.reset();
 	}
-	
-	public double getGyro(){
+
+	public double getGyro() {
 		return RobotMap.gyro.getAngle();
 	}
 
@@ -51,9 +52,13 @@ public class DriveTrain extends PIDSubsystem {
 		speed = in;
 	}
 
+	public void setInput(double value) {
+		input = value;
+	}
+
 	@Override
 	protected double returnPIDInput() {
-		return RobotMap.gyro.getAngle();
+		return input;
 	}
 
 	@Override

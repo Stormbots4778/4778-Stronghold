@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
+import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -33,6 +34,7 @@ public class TurnToAngle extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Robot.drivetrain.setInput(RobotMap.gyro.getAngle());
 		System.out.println("-turn-exe");
 		if (Robot.drivetrain.onTarget()) {
 			finished = true;

@@ -44,6 +44,7 @@ public class Breach extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Robot.drivetrain.setInput(RobotMap.gyro.getAngle());
 		System.out.println("-breach-exe");
 		time = Timer.getFPGATimestamp();
 		if (time > endtime) {
@@ -60,7 +61,7 @@ public class Breach extends Command {
 	protected void end() {
 		System.out.println("-breach-end");
 		Robot.drivetrain.disable();
-		RobotMap.error = RobotMap.gyro.getAngle()-Robot.drivetrain.getSetpoint();
+		RobotMap.error = RobotMap.gyro.getAngle() - Robot.drivetrain.getSetpoint();
 		if (direction) {
 			Robot.drivetrain.stop(0.6);
 		} else {
