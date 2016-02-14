@@ -18,10 +18,10 @@ public class DriveTrain extends PIDSubsystem {
 	// here. Call these from Commands.
 	private static VictorSP left1 = new VictorSP(0);
 	private static VictorSP left2 = new VictorSP(1);
-	private static VictorSP left3 = new VictorSP(1);
-	private static VictorSP right1 = new VictorSP(2);
-	private static VictorSP right2 = new VictorSP(3);
-	private static VictorSP right3 = new VictorSP(0);
+	private static VictorSP left3 = new VictorSP(2);
+	private static VictorSP right1 = new VictorSP(3);
+	private static VictorSP right2 = new VictorSP(4);
+	private static VictorSP right3 = new VictorSP(5);
 	public static RobotDrive Drive1 = new RobotDrive(left1, right1);
 	public static RobotDrive Drive2 = new RobotDrive(left2, right2);
 	public static RobotDrive Drive3 = new RobotDrive(left3, right3);
