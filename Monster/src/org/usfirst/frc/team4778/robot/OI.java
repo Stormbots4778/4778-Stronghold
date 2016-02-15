@@ -1,9 +1,9 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.Disrupt;
-import org.usfirst.frc.team4778.robot.commands.GimMove;
+import org.usfirst.frc.team4778.robot.commands.ReleaseBall;
 import org.usfirst.frc.team4778.robot.commands.Shift;
-import org.usfirst.frc.team4778.robot.commands.SpinRoller;
+import org.usfirst.frc.team4778.robot.commands.TestPID;
+import org.usfirst.frc.team4778.robot.commands.TrapBall;
 import org.usfirst.frc.team4778.robot.commands.VisionTrack;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -44,31 +44,30 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public static Joystick joyleft = new Joystick(0);
 	public static Joystick joyright = new Joystick(1);
-	public static Button pid = new JoystickButton(joyleft, 6);
-	public static Button calibrate = new JoystickButton(joyleft, 7);
+	public static Button testpid = new JoystickButton(joyleft, 6);
+	public static Button calibrategyro = new JoystickButton(joyleft, 7);
 	public static Button l = new JoystickButton(joyleft, 4);
 	public static Button r = new JoystickButton(joyleft, 5);
 	public static Button d = new JoystickButton(joyleft, 2);
 	public static Button u = new JoystickButton(joyleft, 3);
-	public static Button t = new JoystickButton(joyright, 10);
+	public static Button testvision = new JoystickButton(joyright, 10);
 	public static Button shiftIn = new JoystickButton(joyright, 4);
 	public static Button shiftOut = new JoystickButton(joyright, 5);
 	public static Button leftTrigger = new JoystickButton(joyleft, 1);
-	public static Button rightTrigger = new JoystickButton(joyright, 1);
-	public static Button rightUp = new JoystickButton(joyright, 3);
-	public static Button rightDown = new JoystickButton(joyright, 2);
-	
+	public static Button release = new JoystickButton(joyright, 1);
+	public static Button trap = new JoystickButton(joyright, 2);
+
 	public OI() {
-		pid.whileHeld(new Disrupt(true, 0));
-		calibrate.whileHeld(new Disrupt(false, 0));
-		l.whenPressed(new GimMove(0, -10));
-		r.whenPressed(new GimMove(0, 10));
-		u.whenPressed(new GimMove(-10, 0));
-		d.whenPressed(new GimMove(10, 0));
-		t.whileHeld(new VisionTrack());
+		testpid.whileHeld(new TestPID(true));
+		calibrategyro.whileHeld(new TestPID(false));
+		// l.whenPressed(new GimMove(0, -10));
+		// r.whenPressed(new GimMove(0, 10));
+		// u.whenPressed(new GimMove(-10, 0));
+		// d.whenPressed(new GimMove(10, 0));
+		testvision.whileHeld(new VisionTrack());
 		shiftIn.whileHeld(new Shift(true));
 		shiftOut.whileHeld(new Shift(false));
-		rightUp.whileHeld(new SpinRoller(1));
-		rightDown.whileHeld(new SpinRoller(-1));
+		release.whileHeld(new ReleaseBall());
+		trap.whileHeld(new TrapBall());
 	}
 }

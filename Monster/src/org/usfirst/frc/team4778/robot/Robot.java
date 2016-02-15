@@ -3,7 +3,7 @@ package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.Autonomous;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
-import org.usfirst.frc.team4778.robot.subsystems.BallMechanism;
+import org.usfirst.frc.team4778.robot.subsystems.BallControl;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Gimbal;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Gimbal gimbal;
 	public static Shifters shift;
-	public static BallMechanism ballMech;
+	public static BallControl ball;
 	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
 	Command autonomousCommand;
@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		tankdrive = new TankDrive();
 		shift = new Shifters();
-		ballMech = new BallMechanism();
+		ball = new BallControl();
 		RobotMap.camserver.startAutomaticCapture("cam1");
 		// RobotMap.cam.setFPS(1000);
 		// open the camera at the IP address assigned. This is the IP address
