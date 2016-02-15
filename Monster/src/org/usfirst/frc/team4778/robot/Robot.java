@@ -6,6 +6,7 @@ import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.BallControl;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Gimbal;
+import org.usfirst.frc.team4778.robot.subsystems.Lifter;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Gimbal gimbal;
 	public static Shifters shift;
 	public static BallControl ball;
+	public static Lifter lift;
 	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
 	Command autonomousCommand;
@@ -43,6 +45,7 @@ public class Robot extends IterativeRobot {
 		gimbal = new Gimbal();
 		shift = new Shifters();
 		ball = new BallControl();
+		lift = new Lifter();
 		oi = new OI();
 		RobotMap.camserver.startAutomaticCapture("cam1");
 		// RobotMap.cam.setFPS(1000);

@@ -6,24 +6,24 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Shifters extends Subsystem {
+public class Lifter extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	public static Solenoid left = new Solenoid(0);
-	public static Solenoid right = new Solenoid(1);
+	private static Solenoid p1 = new Solenoid(3);
+	private static Solenoid p2 = new Solenoid(4);
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
-	public void shift(boolean on) {
-		left.set(on);
-		right.set(on);
+	public void moveArm(boolean on) {
+		p1.set(on);
+		p2.set(on);
 	}
 
-	public boolean getShift() {
-		return right.get();
+	public boolean getarm() {
+		return p1.get();
 	}
 }

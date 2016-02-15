@@ -27,7 +27,7 @@ public class VisionTrack extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		table = NetworkTable.getTable("GRIP/contours");
-		pid = new PIDController(0.0, 0.0, 0.0, 320); // image w640 h480
+		pid = new PIDController(0.05, 0.03, 0.2, 320); // image w640 h480
 		// pixels
 		pid.setOnTargetOffset(1);
 		pid.setOutputLimits(-1, 1);

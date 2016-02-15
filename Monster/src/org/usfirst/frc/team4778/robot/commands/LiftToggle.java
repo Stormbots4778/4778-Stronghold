@@ -7,16 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Shift extends Command {
+public class LiftToggle extends Command {
 
-	boolean finished = false;
-	boolean shift = true;
+	private boolean finished = false;
 
-	public Shift(boolean on) {
-		shift = on;
+	public LiftToggle() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.shift);
+		requires(Robot.lift);
 	}
 
 	// Called just before this Command runs the first time
@@ -25,7 +23,11 @@ public class Shift extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shift.shift(shift);
+		if (Robot.lift.getarm()) {
+			Robot.lift.moveArm(false);
+		} else {
+			Robot.lift.moveArm(true);
+		}
 		finished = true;
 	}
 

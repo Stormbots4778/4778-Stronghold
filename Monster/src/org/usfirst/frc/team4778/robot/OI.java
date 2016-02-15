@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4778.robot;
 
+import org.usfirst.frc.team4778.robot.commands.BallToggle;
+import org.usfirst.frc.team4778.robot.commands.LiftToggle;
 import org.usfirst.frc.team4778.robot.commands.ReleaseBall;
-import org.usfirst.frc.team4778.robot.commands.Shift;
+import org.usfirst.frc.team4778.robot.commands.ShiftToggle;
 import org.usfirst.frc.team4778.robot.commands.TestPID;
 import org.usfirst.frc.team4778.robot.commands.TrapBall;
 import org.usfirst.frc.team4778.robot.commands.VisionTrack;
@@ -51,11 +53,11 @@ public class OI {
 	public static Button d = new JoystickButton(joyleft, 2);
 	public static Button u = new JoystickButton(joyleft, 3);
 	public static Button testvision = new JoystickButton(joyright, 10);
-	public static Button shiftIn = new JoystickButton(joyright, 4);
-	public static Button shiftOut = new JoystickButton(joyright, 5);
-	public static Button leftTrigger = new JoystickButton(joyleft, 1);
+	public static Button shift = new JoystickButton(joyright, 4);
 	public static Button release = new JoystickButton(joyright, 1);
-	public static Button trap = new JoystickButton(joyright, 2);
+	public static Button trap = new JoystickButton(joyleft, 1);
+	public static Button ballarm = new JoystickButton(joyright, 2);
+	public static Button arm = new JoystickButton(joyright, 3);
 
 	public OI() {
 		testpid.whileHeld(new TestPID(true));
@@ -65,9 +67,10 @@ public class OI {
 		// u.whenPressed(new GimMove(-10, 0));
 		// d.whenPressed(new GimMove(10, 0));
 		testvision.whileHeld(new VisionTrack());
-		shiftIn.whileHeld(new Shift(true));
-		shiftOut.whileHeld(new Shift(false));
 		release.whileHeld(new ReleaseBall());
 		trap.whileHeld(new TrapBall());
+		shift.whileHeld(new ShiftToggle());
+		arm.whileHeld(new LiftToggle());
+		ballarm.whileHeld(new BallToggle());
 	}
 }
