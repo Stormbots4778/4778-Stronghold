@@ -4,9 +4,7 @@ import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 
@@ -19,7 +17,7 @@ import edu.wpi.first.wpilibj.vision.AxisCamera;
 public class RobotMap {
 
 	public static AnalogGyro gyro = new AnalogGyro(0);
-	public static Accelerometer acc = new BuiltInAccelerometer();
+	// public static Accelerometer acc = new BuiltInAccelerometer();
 	public static CameraServer camserver = CameraServer.getInstance();
 	public static double error = 0;
 	public static NetworkTable table;

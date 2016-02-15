@@ -41,10 +41,9 @@ public class Robot extends IterativeRobot {
 		System.out.println("init");
 		drivetrain = new DriveTrain();
 		gimbal = new Gimbal();
-		oi = new OI();
-		tankdrive = new TankDrive();
 		shift = new Shifters();
 		ball = new BallControl();
+		oi = new OI();
 		RobotMap.camserver.startAutomaticCapture("cam1");
 		// RobotMap.cam.setFPS(1000);
 		// open the camera at the IP address assigned. This is the IP address

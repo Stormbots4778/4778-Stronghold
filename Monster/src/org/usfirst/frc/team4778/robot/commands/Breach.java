@@ -26,7 +26,6 @@ public class Breach extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		flat = RobotMap.acc.getZ();
 		System.out.println("-breach-init");
 		Robot.drivetrain.resetGyro();
 		if (direction) {
