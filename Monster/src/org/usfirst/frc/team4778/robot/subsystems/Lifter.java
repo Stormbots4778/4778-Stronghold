@@ -19,6 +19,7 @@ public class Lifter extends Subsystem {
 	}
 
 	public void moveArm(boolean on) {
+		System.out.println("#lift-movearm");
 		p1.set(on);
 		p2.set(on);
 	}

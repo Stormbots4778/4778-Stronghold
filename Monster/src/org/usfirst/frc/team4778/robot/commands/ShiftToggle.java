@@ -19,10 +19,12 @@ public class ShiftToggle extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		System.out.println("-shift-init");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		System.out.println("-shift-exe");
 		if (Robot.shift.getShift()) {
 			Robot.shift.shift(false);
 		} else {
@@ -38,6 +40,7 @@ public class ShiftToggle extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		System.out.println("-shift-end");
 	}
 
 	// Called when another command which requires one or more of the same

@@ -14,10 +14,12 @@ public class BallControl extends Subsystem {
 	}
 
 	public void setInOutSpeed(double power) {
+		System.out.println("#ball-setspeed");
 		roller.set(power);
 	}
 
 	public void moveArm(boolean on) {
+		System.out.println("#ball-movearm");
 		arm.set(on);
 	}
 

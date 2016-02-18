@@ -14,9 +14,11 @@ public class ReleaseBall extends Command {
 	}
 
 	protected void initialize() {
+		System.out.println("-rball-init");
 	}
 
 	protected void execute() {
+		System.out.println("-rball-exe");
 		Robot.ball.setInOutSpeed(-0.3);
 	}
 
@@ -25,6 +27,7 @@ public class ReleaseBall extends Command {
 	}
 
 	protected void end() {
+		System.out.println("-rball-end");
 
 	}
 

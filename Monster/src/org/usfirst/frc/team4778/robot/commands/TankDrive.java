@@ -18,12 +18,14 @@ public class TankDrive extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		System.out.println("-td-init");
 		// RobotMap.table = NetworkTable.getTable("control");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	// @SuppressWarnings("deprecation")
 	protected void execute() {
+		System.out.println("-td-exe");
 		// if (RobotMap.table.isConnected()) {
 		// Robot.drivetrain.tankDrive(RobotMap.table.getNumber("leftY"),
 		// RobotMap.table.getNumber("rightY"));
@@ -39,6 +41,7 @@ public class TankDrive extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		System.out.println("-td-end");
 	}
 
 	// Called when another command which requires one or more of the same

@@ -19,6 +19,7 @@ public class Shifters extends Subsystem {
 	}
 
 	public void shift(boolean on) {
+		System.out.println("#shifters-shift");
 		left.set(on);
 		right.set(on);
 	}

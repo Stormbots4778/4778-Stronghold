@@ -21,6 +21,7 @@ public class Gimbal extends Subsystem {
 	}
 
 	public void change(int upi, int rotatei) {
+		System.out.println("#gim-change");
 		u += upi;
 		r += rotatei;
 		up.setAngle(u);

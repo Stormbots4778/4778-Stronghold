@@ -19,10 +19,12 @@ public class LiftToggle extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		System.out.println("-lift-init");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		System.out.println("-lift-exe");
 		if (Robot.lift.getarm()) {
 			Robot.lift.moveArm(false);
 		} else {
@@ -38,6 +40,7 @@ public class LiftToggle extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		System.out.println("-lift-end");
 	}
 
 	// Called when another command which requires one or more of the same

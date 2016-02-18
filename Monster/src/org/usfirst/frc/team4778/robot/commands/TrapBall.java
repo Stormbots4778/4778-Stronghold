@@ -14,9 +14,11 @@ public class TrapBall extends Command {
 	}
 
 	protected void initialize() {
+		System.out.println("-tball-init");
 	}
 
 	protected void execute() {
+		System.out.println("-tball-exe");
 		Robot.ball.setInOutSpeed(0.3);
 	}
 
@@ -25,6 +27,7 @@ public class TrapBall extends Command {
 	}
 
 	protected void end() {
+		System.out.println("-tball-end");
 
 	}
 

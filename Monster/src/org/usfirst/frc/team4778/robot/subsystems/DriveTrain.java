@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
-import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 
@@ -38,18 +37,14 @@ public class DriveTrain extends PIDSubsystem {
 		getPIDController().setOutputRange(-1, 1);
 		getPIDController().setAbsoluteTolerance(1);
 		getPIDController().disable();
-		// left1.setInverted(true);
-		// right1.setInverted(true);
-		left2.setInverted(true);
-		right2.setInverted(true);
-		left3.setInverted(true);
-		right3.setInverted(true);
+		dir();
 	}
 
 	private boolean dir() {
-		if (Robot.dir) {
-			// left1.setInverted(true);
-			// right1.setInverted(true);
+		System.out.println("#drive-dir");
+		if (RobotMap.dir) {
+			left1.setInverted(false);
+			right1.setInverted(false);
 			left2.setInverted(true);
 			right2.setInverted(true);
 			left3.setInverted(true);
@@ -57,12 +52,12 @@ public class DriveTrain extends PIDSubsystem {
 		} else {
 			left1.setInverted(true);
 			right1.setInverted(true);
-			// left2.setInverted(true);
-			// right2.setInverted(true);
-			// left3.setInverted(true);
-			// right3.setInverted(true);
+			left2.setInverted(false);
+			right2.setInverted(false);
+			left3.setInverted(false);
+			right3.setInverted(false);
 		}
-		return Robot.dir;
+		return RobotMap.dir;
 	}
 
 	public void resetGyro() {
@@ -107,6 +102,7 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void tankDrive(Joystick joy1, Joystick joy2) {
+		System.out.println("#drive-td");
 		boolean d = dir();
 		if (d) {
 			Drive1.tankDrive(joy1, joy2);
@@ -120,12 +116,14 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void tankDrive(double left, double right) {
+		System.out.println("#drive-td");
 		Drive1.tankDrive(left, right);
 		Drive2.tankDrive(left, right);
 		Drive3.tankDrive(left, right);
 	}
 
 	public void arcadeDrive(Joystick stick) {
+		System.out.println("#drive-ad");
 		dir();
 		Drive1.arcadeDrive(stick);
 		Drive2.arcadeDrive(stick);
@@ -133,12 +131,14 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void arcadeDrive(double f, double s) {
+		System.out.println("#drive-ad");
 		Drive1.arcadeDrive(f, s);
 		Drive2.arcadeDrive(f, s);
 		Drive3.arcadeDrive(f, s);
 	}
 
 	public void stop(double stopingPower) {
+		System.out.println("#drive-stop");
 		System.out.println("-stop");
 		Drive1.tankDrive(stopingPower, stopingPower);
 		Drive2.tankDrive(stopingPower, stopingPower);

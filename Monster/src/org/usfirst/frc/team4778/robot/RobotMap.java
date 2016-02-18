@@ -20,6 +20,7 @@ public class RobotMap {
 	// public static Accelerometer acc = new BuiltInAccelerometer();
 	public static CameraServer camserver = CameraServer.getInstance();
 	public static double error = 0;
+	public static boolean dir = true;
 	public static NetworkTable table;
 	public static Image camimage = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 	public static AxisCamera camera = new AxisCamera("10.47.78.11");
