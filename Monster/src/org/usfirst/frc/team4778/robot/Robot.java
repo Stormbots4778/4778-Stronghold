@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.Autonomous;
@@ -8,6 +7,7 @@ import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Gimbal;
 import org.usfirst.frc.team4778.robot.subsystems.Lifter;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
+import org.usfirst.frc.team4778.robot.subsystems.SonarPan;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,6 +29,8 @@ public class Robot extends IterativeRobot {
 	public static Shifters shift;
 	public static BallControl ball;
 	public static Lifter lift;
+	public static SonarPan pan;
+	public static boolean dir = true;
 	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
 	Command autonomousCommand;
@@ -41,6 +43,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// RobotMap.table = NetworkTable.getTable("control");
 		System.out.println("init");
+		pan = new SonarPan();
 		drivetrain = new DriveTrain();
 		gimbal = new Gimbal();
 		shift = new Shifters();

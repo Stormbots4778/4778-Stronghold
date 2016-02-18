@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
+import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 
@@ -37,10 +38,31 @@ public class DriveTrain extends PIDSubsystem {
 		getPIDController().setOutputRange(-1, 1);
 		getPIDController().setAbsoluteTolerance(1);
 		getPIDController().disable();
+		// left1.setInverted(true);
+		// right1.setInverted(true);
 		left2.setInverted(true);
 		right2.setInverted(true);
 		left3.setInverted(true);
 		right3.setInverted(true);
+	}
+
+	private boolean dir() {
+		if (Robot.dir) {
+			// left1.setInverted(true);
+			// right1.setInverted(true);
+			left2.setInverted(true);
+			right2.setInverted(true);
+			left3.setInverted(true);
+			right3.setInverted(true);
+		} else {
+			left1.setInverted(true);
+			right1.setInverted(true);
+			// left2.setInverted(true);
+			// right2.setInverted(true);
+			// left3.setInverted(true);
+			// right3.setInverted(true);
+		}
+		return Robot.dir;
 	}
 
 	public void resetGyro() {
@@ -85,9 +107,16 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void tankDrive(Joystick joy1, Joystick joy2) {
-		Drive1.tankDrive(joy1, joy2);
-		Drive2.tankDrive(joy1, joy2);
-		Drive3.tankDrive(joy1, joy2);
+		boolean d = dir();
+		if (d) {
+			Drive1.tankDrive(joy1, joy2);
+			Drive2.tankDrive(joy1, joy2);
+			Drive3.tankDrive(joy1, joy2);
+		} else {
+			Drive1.tankDrive(joy2, joy1);
+			Drive2.tankDrive(joy2, joy1);
+			Drive3.tankDrive(joy2, joy1);
+		}
 	}
 
 	public void tankDrive(double left, double right) {
@@ -97,6 +126,7 @@ public class DriveTrain extends PIDSubsystem {
 	}
 
 	public void arcadeDrive(Joystick stick) {
+		dir();
 		Drive1.arcadeDrive(stick);
 		Drive2.arcadeDrive(stick);
 		Drive3.arcadeDrive(stick);
