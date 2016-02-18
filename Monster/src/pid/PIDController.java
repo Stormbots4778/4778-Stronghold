@@ -15,6 +15,7 @@ public class PIDController {
 	private double outMin = 0;
 	private double Iop = 0;
 	private double offset = 0;
+	private double count = 0;
 
 	public PIDController(double p, double i, double d, double setpoint) {
 		kp = p;
@@ -42,9 +43,12 @@ public class PIDController {
 	}
 
 	public boolean onTarget() {
-		if (setpoint + offset > output) {
-			return true;
-		} else if (setpoint - offset < output) {
+		if (setpoint + offset > output || setpoint - offset < output) {
+			count++;
+		} else {
+			count = 0;
+		}
+		if (count > 5) {
 			return true;
 		} else {
 			return false;

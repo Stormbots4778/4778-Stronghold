@@ -1,9 +1,11 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
+import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import pid.PIDController;
 
 /**
  *
@@ -13,37 +15,39 @@ public class Move extends Command {
 	boolean finished = false;
 	double time = 0;
 	double endTime = 0;
-	boolean f = true;
+	boolean d = true;
 
-	public Move(double t) {
+	private PIDController pid;
+
+	public Move(double t, boolean dir) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
 		time = t;
-		if (time < 0) {
-			Math.abs(time);
-			f = false;
-		}
-
+		d = dir;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		System.out.println("-move-Int");
 		endTime = Timer.getFPGATimestamp() + time;
+		pid = new PIDController(0.05, 0.03, 0.2, 0);
+		pid.setOnTargetOffset(1);
+		pid.setOutputLimits(-1, 1);
+		RobotMap.gyro.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		System.out.println("-move-exe");
 		time = Timer.getFPGATimestamp();
-		if (f) {
-			Robot.drivetrain.arcadeDrive(-0.85, 0);
+		double out = pid.computePID(RobotMap.gyro.getAngle());
+		if (d) {
+			Robot.drivetrain.arcadeDrive(-0.85, out);
 		} else {
-			Robot.drivetrain.arcadeDrive(0.85, 0);
+			Robot.drivetrain.arcadeDrive(0.85, out);
 		}
 		if (endTime < time) {
-			System.out.println("-move-done");
 			finished = true;
 		}
 
@@ -57,10 +61,10 @@ public class Move extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-move-end");
-		if (f) {
-			Robot.drivetrain.stop(-0.5);
+		if (d) {
+			Robot.drivetrain.stop(-0.2);
 		} else {
-			Robot.drivetrain.stop(0.5);
+			Robot.drivetrain.stop(0.2);
 		}
 
 	}
