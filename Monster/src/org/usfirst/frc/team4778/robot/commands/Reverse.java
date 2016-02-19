@@ -29,6 +29,7 @@ public class Reverse extends Command {
 		} else {
 			RobotMap.dir = true;
 		}
+		finished = true;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

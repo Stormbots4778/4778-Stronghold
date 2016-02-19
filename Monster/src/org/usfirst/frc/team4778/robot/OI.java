@@ -7,7 +7,6 @@ import org.usfirst.frc.team4778.robot.commands.Reverse;
 import org.usfirst.frc.team4778.robot.commands.ShiftToggle;
 import org.usfirst.frc.team4778.robot.commands.TestPID;
 import org.usfirst.frc.team4778.robot.commands.TrapBall;
-import org.usfirst.frc.team4778.robot.commands.VisionTrack;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -53,7 +52,6 @@ public class OI {
 	public static Button r = new JoystickButton(joyleft, 5);
 	public static Button d = new JoystickButton(joyleft, 2);
 	public static Button u = new JoystickButton(joyleft, 3);
-	public static Button testvision = new JoystickButton(joyright, 10);
 	public static Button shift = new JoystickButton(joyright, 4);
 	public static Button release = new JoystickButton(joyright, 1);
 	public static Button trap = new JoystickButton(joyleft, 1);
@@ -63,14 +61,13 @@ public class OI {
 
 	public OI() {
 		System.out.println("OI");
-		testpid.whileHeld(new TestPID(true));
-		calibrategyro.whileHeld(new TestPID(false));
+		testpid.whileHeld(new TestPID(false));
+		calibrategyro.whileHeld(new TestPID(true));
 		swich.whenPressed(new Reverse());
 		// l.whenPressed(new GimMove(0, -10));
 		// r.whenPressed(new GimMove(0, 10));
 		// u.whenPressed(new GimMove(-10, 0));
 		// d.whenPressed(new GimMove(10, 0));
-		testvision.whileHeld(new VisionTrack());
 		release.whileHeld(new ReleaseBall());
 		trap.whileHeld(new TrapBall());
 		shift.whileHeld(new ShiftToggle());

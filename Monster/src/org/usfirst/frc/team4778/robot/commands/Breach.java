@@ -5,6 +5,7 @@ import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import pid.PIDController;
 
 /**
  *
@@ -15,6 +16,7 @@ public class Breach extends Command {
 	double time = 0;
 	double flat = 0;
 	boolean direction = true;
+	private PIDController pid;
 
 	public Breach(boolean dir, double tim) {
 		// Use requires() here to declare subsystem dependencies
@@ -27,27 +29,31 @@ public class Breach extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		System.out.println("-breach-init");
-		Robot.drivetrain.resetGyro();
-		if (direction) {
-			Robot.drivetrain.setSpeed(-0.85);
-			Robot.drivetrain.setOutputRange(-1, 1);
-		} else {
-			Robot.drivetrain.setSpeed(0.85);
-			Robot.drivetrain.setOutputRange(-1, 1);
-		}
-		Robot.drivetrain.setSetpoint(0);
-		Robot.drivetrain.getPIDController().setPID(0.05, 0.03, 0.2);
-		Robot.drivetrain.enable();
+		RobotMap.dir = true;
+		RobotMap.gyro.reset();
+		pid = new PIDController(0.05, 0.03, 0.2, 0);
+		pid.setOutputLimits(-1, 1);
+		pid.setOnTargetOffset(5);
 		endtime = Timer.getFPGATimestamp() + time;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.setInput(RobotMap.gyro.getAngle());
 		System.out.println("-breach-exe");
+		double output = pid.computePID(RobotMap.gyro.getAngle());
 		time = Timer.getFPGATimestamp();
 		if (time > endtime) {
-			finished = true;
+			if (pid.onTarget()) {
+				finished = true;
+			} else {
+				Robot.drivetrain.tankDrive(-output, output);
+			}
+		} else {
+			if (direction) {
+				Robot.drivetrain.arcadeDrive(-0.85, output);
+			} else {
+				Robot.drivetrain.arcadeDrive(0.85, output);
+			}
 		}
 	}
 
@@ -59,12 +65,10 @@ public class Breach extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-breach-end");
-		Robot.drivetrain.disable();
-		RobotMap.error = RobotMap.gyro.getAngle() - Robot.drivetrain.getSetpoint();
 		if (direction) {
-			Robot.drivetrain.stop(0.6);
+			Robot.drivetrain.stop(0.2);
 		} else {
-			Robot.drivetrain.stop(-0.6);
+			Robot.drivetrain.stop(-0.2);
 		}
 
 	}

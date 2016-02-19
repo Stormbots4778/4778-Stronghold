@@ -26,6 +26,7 @@ public class TurnToAngle extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		System.out.println("-turn-init");
+		RobotMap.dir = true;
 		// Robot.drivetrain.resetGyro();
 		// Robot.drivetrain.setSpeed(0);
 		// Robot.drivetrain.setSetpoint(angle);

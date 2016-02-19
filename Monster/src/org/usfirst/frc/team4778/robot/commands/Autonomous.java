@@ -1,7 +1,5 @@
 package org.usfirst.frc.team4778.robot.commands;
 
-import org.usfirst.frc.team4778.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -27,9 +25,8 @@ public class Autonomous extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 		System.out.println("-start auto");
-		addSequential(new Breach(true, 2.5));
-		addSequential(new TurnToAngle(180 + RobotMap.error), 3);
-		addSequential(new Breach(true, 2.5));
+		addSequential(new Breach(true, 3));
+		addSequential(new TurnToAngle(90));
 		System.out.println("-end auto");
 	}
 }
