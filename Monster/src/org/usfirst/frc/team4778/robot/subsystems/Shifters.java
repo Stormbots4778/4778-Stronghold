@@ -27,7 +27,7 @@ public class Shifters extends Subsystem {
 		state = on;
 	}
 
-	public boolean getShift() {
+	public boolean getstate() {
 		return state;
 	}
 }

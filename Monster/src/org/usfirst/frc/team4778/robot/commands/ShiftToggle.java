@@ -25,7 +25,7 @@ public class ShiftToggle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		System.out.println("-shift-exe");
-		if (Robot.shift.getShift()) {
+		if (Robot.shift.getstate()) {
 			Robot.shift.shift(false);
 		} else {
 			Robot.shift.shift(true);
