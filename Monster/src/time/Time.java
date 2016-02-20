@@ -2,7 +2,7 @@ package time;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class Delay {
+public class Time {
 
 	private static double time = 0;
 	private static double endtime = 0;
