@@ -25,10 +25,10 @@ public class BallToggle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		System.out.println("-ball-exe");
-		if (Robot.ball.getArm()) {
-			Robot.ball.moveArm(false);
+		if (Robot.ball.getstate()) {
+			Robot.ball.move(false);
 		} else {
-			Robot.ball.moveArm(true);
+			Robot.ball.move(true);
 		}
 		finished = true;
 	}

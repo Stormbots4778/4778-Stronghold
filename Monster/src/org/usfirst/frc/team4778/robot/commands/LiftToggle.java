@@ -25,10 +25,10 @@ public class LiftToggle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		System.out.println("-lift-exe");
-		if (Robot.lift.getarm()) {
-			Robot.lift.moveArm(false);
+		if (Robot.lift.getstate()) {
+			Robot.lift.move(false);
 		} else {
-			Robot.lift.moveArm(true);
+			Robot.lift.move(true);
 		}
 		finished = true;
 	}

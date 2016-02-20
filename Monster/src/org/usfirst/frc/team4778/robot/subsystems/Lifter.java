@@ -19,13 +19,13 @@ public class Lifter extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
-	public void moveArm(boolean on) {
+	public void move(boolean on) {
 		System.out.println("#lift-movearm");
 		p.set(on);
 		state = on;
 	}
 
-	public boolean getarm() {
+	public boolean getstate() {
 		return state;
 	}
 }

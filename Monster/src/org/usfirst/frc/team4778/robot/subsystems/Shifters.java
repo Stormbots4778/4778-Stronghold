@@ -10,8 +10,10 @@ public class Shifters extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	public static Solenoid left = new Solenoid(0);
-	public static Solenoid right = new Solenoid(1);
+	private static Solenoid left = new Solenoid(0);
+	private static Solenoid right = new Solenoid(1);
+
+	private boolean state;
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -22,9 +24,10 @@ public class Shifters extends Subsystem {
 		System.out.println("#shifters-shift");
 		left.set(on);
 		right.set(on);
+		state = on;
 	}
 
 	public boolean getShift() {
-		return right.get();
+		return state;
 	}
 }
