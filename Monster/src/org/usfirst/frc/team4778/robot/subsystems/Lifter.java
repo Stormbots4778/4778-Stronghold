@@ -10,8 +10,9 @@ public class Lifter extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private static Solenoid p1 = new Solenoid(3);
-	private static Solenoid p2 = new Solenoid(4);
+	private static Solenoid p = new Solenoid(2);
+
+	private boolean state;
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -20,11 +21,11 @@ public class Lifter extends Subsystem {
 
 	public void moveArm(boolean on) {
 		System.out.println("#lift-movearm");
-		p1.set(on);
-		p2.set(on);
+		p.set(on);
+		state = on;
 	}
 
 	public boolean getarm() {
-		return p1.get();
+		return state;
 	}
 }

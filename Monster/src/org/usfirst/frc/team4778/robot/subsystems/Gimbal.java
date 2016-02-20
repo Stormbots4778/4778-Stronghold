@@ -11,7 +11,7 @@ public class Gimbal extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	private Servo rotate = new Servo(8);
-	private Servo up = new Servo(9);
+	private Servo up = new Servo(7);
 	int u = 90;
 	int r = 90;
 

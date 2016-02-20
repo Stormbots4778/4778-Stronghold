@@ -7,7 +7,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BallControl extends Subsystem {
 
 	private static VictorSP roller = new VictorSP(6);
-	private static Solenoid arm = new Solenoid(5);
+	private static Solenoid arm1 = new Solenoid(3);
+	private static Solenoid arm2 = new Solenoid(4);
+
+	private boolean state;
 
 	public void initDefaultCommand() {
 
@@ -20,10 +23,12 @@ public class BallControl extends Subsystem {
 
 	public void moveArm(boolean on) {
 		System.out.println("#ball-movearm");
-		arm.set(on);
+		arm1.set(on);
+		arm2.set(on);
+		state = on;
 	}
 
 	public boolean getArm() {
-		return arm.get();
+		return state;
 	}
 }
