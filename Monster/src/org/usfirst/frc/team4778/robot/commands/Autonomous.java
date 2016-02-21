@@ -26,7 +26,7 @@ public class Autonomous extends CommandGroup {
 		// arm.
 		System.out.println("-start auto");
 		addSequential(new Breach(true, 3));
-		addSequential(new TurnToAngle(90));
+		addSequential(new TurnToAngle(60));
 		System.out.println("-end auto");
 	}
 }
