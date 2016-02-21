@@ -3,7 +3,6 @@ package org.usfirst.frc.team4778.robot.commands;
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import pid.PIDController;
 
@@ -13,41 +12,40 @@ import pid.PIDController;
 public class Move extends Command {
 
 	boolean finished = false;
-	double time = 0;
+	double dist = 0;
 	double endTime = 0;
-	boolean d = true;
 
-	private PIDController pid;
+	private PIDController tpid;
+	private PIDController dpid;
 
-	public Move(double t, boolean dir) {
+	public Move(double dis) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
-		time = t;
-		d = dir;
+		dist = dis;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		System.out.println("-move-Int");
-		endTime = Timer.getFPGATimestamp() + time;
-		pid = new PIDController(0.05, 0.03, 0.2, 0);
-		pid.setOnTargetOffset(1);
-		pid.setOutputLimits(-1, 1);
+		tpid = new PIDController(0.05, 0.03, 0.2, 0);
+		tpid.setOnTargetOffset(1);
+		tpid.setOutputLimits(-1, 1);
+		dpid = new PIDController(0.05, 0.03, 0.2, dist);
+		dpid.setOnTargetOffset(1);
+		dpid.setOutputLimits(-1, 1);
 		RobotMap.gyro.reset();
+		RobotMap.leftdrive.reset();
+		RobotMap.rightdrive.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		System.out.println("-move-exe");
-		time = Timer.getFPGATimestamp();
-		double out = pid.computePID(RobotMap.gyro.getAngle());
-		if (d) {
-			Robot.drivetrain.arcadeDrive(-0.85, out);
-		} else {
-			Robot.drivetrain.arcadeDrive(0.85, out);
-		}
-		if (endTime < time) {
+		double tout = tpid.computePID(RobotMap.gyro.getAngle());
+		double dout = tpid.computePID((RobotMap.rightdrive.getDistance() + RobotMap.leftdrive.getDistance()) / 2);
+		Robot.drivetrain.arcadeDrive(dout, tout);
+		if (dpid.onTarget()) {
 			finished = true;
 		}
 
@@ -61,7 +59,7 @@ public class Move extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-move-end");
-		if (d) {
+		if (dist > 0) {
 			Robot.drivetrain.stop(-0.2);
 		} else {
 			Robot.drivetrain.stop(0.2);

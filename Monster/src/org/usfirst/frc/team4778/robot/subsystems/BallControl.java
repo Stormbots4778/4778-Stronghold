@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BallControl extends Subsystem {
 
 	private static VictorSP roller = new VictorSP(6);
-	private static Solenoid arm1 = new Solenoid(3);
-	private static Solenoid arm2 = new Solenoid(4);
+	private static Solenoid up = new Solenoid(2);
+	private static Solenoid down = new Solenoid(3);
 
 	private boolean state;
 
@@ -23,8 +23,8 @@ public class BallControl extends Subsystem {
 
 	public void move(boolean on) {
 		System.out.println("#ball-movearm");
-		arm1.set(on);
-		arm2.set(on);
+		up.set(on);
+		down.set(!on);
 		state = on;
 	}
 
