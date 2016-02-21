@@ -2,6 +2,14 @@ package conversions;
 
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
+/*
+ * Defense Ramp Angle: 14.5 Degrees
+ * Defense Ramp Width: 12 in.
+ * Defense Ramp Length: 64 in.
+ */
+
+//TODO Add Anti-Tipping Mechanism
+
 public class AccToAngle {
 
 	Accelerometer acc;
@@ -11,17 +19,14 @@ public class AccToAngle {
 	}
 
 	public double getXRotation() {
-		double angX = Math.atan(acc.getX() / (Math.sqrt(Math.pow(acc.getY(), 2) + Math.pow(acc.getZ(), 2))));
-		return Math.toDegrees(angX);
+		return Math.toDegrees(Math.atan(acc.getX() / (Math.sqrt(Math.pow(acc.getY(), 2) + Math.pow(acc.getZ(), 2)))));
 	}
 
 	public double getYRotation() {
-		double angY = Math.atan(acc.getY() / (Math.sqrt(Math.pow(acc.getX(), 2) + Math.pow(acc.getZ(), 2))));
-		return Math.toDegrees(angY);
+		return Math.toDegrees(Math.atan(acc.getY() / (Math.sqrt(Math.pow(acc.getX(), 2) + Math.pow(acc.getZ(), 2)))));
 	}
 
 	public double getZRotation() {
-		double angZ = Math.atan(Math.sqrt(Math.pow(acc.getX(), 2) + Math.pow(acc.getY(), 2)) / acc.getZ());
-		return Math.toDegrees(angZ);
+		return Math.toDegrees(Math.atan(Math.sqrt(Math.pow(acc.getX(), 2) + Math.pow(acc.getY(), 2)) / acc.getZ()));
 	}
 }
