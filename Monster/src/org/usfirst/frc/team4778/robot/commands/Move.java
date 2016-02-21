@@ -18,11 +18,9 @@ public class Move extends Command {
 	private PIDController tpid;
 	private PIDController dpid;
 
-	public Move(double dis) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	public Move(double dist) {
 		requires(Robot.drivetrain);
-		dist = dis;
+		this.dist = dist;
 	}
 
 	// Called just before this Command runs the first time

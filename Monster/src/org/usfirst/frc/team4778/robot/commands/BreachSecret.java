@@ -11,36 +11,32 @@ import pid.PIDController;
 /**
  *
  */
-public class Breach extends Command {
+public class BreachSecret extends Command {
+
+	private PIDController pid;
 	int angleThreshold = 10;
-	double endtime = 0;
-	double time = Timer.getFPGATimestamp();
-	double countDownTimer = 0;
 	boolean isFinished = false;
 	boolean hasDrivenOnRamp = false;
 	boolean goingForwards;
-	boolean countDownTimerHasStarted = false;
-	private PIDController pid;
-
-	public Breach(boolean goingForwards) {
-		requires(Robot.drivetrain);
+	double endtime = 0;
+	double time = 0;
+	
+    public BreachSecret(boolean goingForwards) {
+    	requires(Robot.drivetrain);
 		this.goingForwards = goingForwards;
-	}
+    }
 
-	// Called just before this Command runs the first time
-	protected void initialize() {
-		System.out.println("-breach-init");
-		RobotMap.dir = true;
+    protected void initialize() {
+    	System.out.println("-breach-secret-init");
 		RobotMap.gyro.reset();
 		pid = new PIDController(0.05, 0.03, 0.2, 0);
 		pid.setOutputLimits(-1, 1);
 		pid.setOnTargetOffset(5);
 		endtime = Timer.getFPGATimestamp() + time;
-	}
-
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		System.out.println("-breach-exe");
+    }
+    
+    protected void execute() {
+    	System.out.println("-breach-secret-exe");
 		double output = pid.computePID(RobotMap.gyro.getAngle());
 		double angle = AccToAngle.getXRotation(RobotMap.acc);
 		time = Timer.getFPGATimestamp();
@@ -59,16 +55,7 @@ public class Breach extends Command {
 			
 			if (hasDrivenOnRamp) {
 				if (angle < 2) {
-					if (countDownTimerHasStarted) {
-						if (time == countDownTimer) {
-							isFinished = true;
-						} else {
-							countDownTimerHasStarted = false;
-						}
-					} else {
-						countDownTimerHasStarted = true;
-						countDownTimer = time + 0.5;
-					}
+					
 				}
 			} else {
 				if (angle > angleThreshold) {
@@ -76,27 +63,22 @@ public class Breach extends Command {
 				}
 			}
 		}
-	}
+    }
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
+    protected boolean isFinished() {
 		return isFinished;
-	}
+    }
 
-	// Called once after isFinished returns true
-	protected void end() {
-		System.out.println("-breach-end");
+    protected void end() {
+		System.out.println("-breach-secret-end");
 		if (goingForwards) {
 			Robot.drivetrain.stop(0.2);
 		} else {
 			Robot.drivetrain.stop(-0.2);
 		}
+    }
 
-	}
-
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
-	}
+    protected void interrupted() {
+    	
+    }
 }

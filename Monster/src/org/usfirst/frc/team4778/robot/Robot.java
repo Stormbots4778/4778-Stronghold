@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -85,14 +86,19 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		System.out.println("autoInit");
-		autonomousCommand = new Autonomous();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
+		String autoSelected = SmartDashboard.getString("Auto Selector", "Default"); 
+		switch(autoSelected) { 
+		case "Left Side": 
+			autonomousCommand = new Autonomous("left");
+			break;
+		case "Right Side":
+			autonomousCommand = new Autonomous("right");
+		case "Secret Passage": 
+			default:
+				autonomousCommand = new Autonomous("secret");
+				break;
+		}
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
