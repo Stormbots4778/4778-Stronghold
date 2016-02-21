@@ -14,7 +14,7 @@ import pid.PIDController;
 public class Breach extends Command {
 	int angleThreshold = 10;
 	double endtime = 0;
-	double time = Timer.getFPGATimestamp();
+	double time = 0;
 	double countDownTimer = 0;
 	boolean isFinished = false;
 	boolean hasDrivenOnRamp = false;
@@ -22,8 +22,9 @@ public class Breach extends Command {
 	boolean countDownTimerHasStarted = false;
 	private PIDController pid;
 
-	public Breach(boolean goingForwards) {
+	public Breach(boolean goingForwards, double time) {
 		requires(Robot.drivetrain);
+		this.time = time;
 		this.goingForwards = goingForwards;
 	}
 

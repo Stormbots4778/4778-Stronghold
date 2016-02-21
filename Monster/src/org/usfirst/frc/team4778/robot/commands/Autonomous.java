@@ -21,7 +21,8 @@ public class Autonomous extends CommandGroup {
 			addSequential(new TurnToAngle(-60));
 			addSequential(new Move(71)); // 5.92 ft
 		} else if (sideOfField == "secret") {
-			addSequential(new Move());
+			addSequential(new BreachSecret(true, 3));
+			//TODO finish this
 		}
 		addSequential(new ReleaseBall());
 		

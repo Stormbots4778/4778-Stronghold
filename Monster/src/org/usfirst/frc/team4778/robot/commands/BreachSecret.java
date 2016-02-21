@@ -21,9 +21,10 @@ public class BreachSecret extends Command {
 	double endtime = 0;
 	double time = 0;
 	
-    public BreachSecret(boolean goingForwards) {
+    public BreachSecret(boolean goingForwards, double time) {
     	requires(Robot.drivetrain);
 		this.goingForwards = goingForwards;
+		this.time = time;
     }
 
     protected void initialize() {
