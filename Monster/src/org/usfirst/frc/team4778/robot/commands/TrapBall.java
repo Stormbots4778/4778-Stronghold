@@ -4,9 +4,6 @@ import org.usfirst.frc.team4778.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class TrapBall extends Command {
 
 	public TrapBall() {

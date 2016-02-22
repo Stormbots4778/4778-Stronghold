@@ -1,4 +1,4 @@
-package time;
+package org.usfirst.frc.team4778.utils.time;
 
 import edu.wpi.first.wpilibj.Timer;
 

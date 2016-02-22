@@ -1,4 +1,4 @@
-package conversions;
+package org.usfirst.frc.team4778.utils.conversions;
 
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 

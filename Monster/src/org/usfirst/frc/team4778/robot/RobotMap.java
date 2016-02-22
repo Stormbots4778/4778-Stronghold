@@ -11,32 +11,22 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
 public class RobotMap {
-
-	public static AnalogGyro gyro = new AnalogGyro(0);
-	public static Accelerometer acc = new BuiltInAccelerometer();
-	public static Encoder leftdrive = new Encoder(0, 1);
-	public static Encoder rightdrive = new Encoder(2, 3);
-	public static CameraServer camserver = CameraServer.getInstance();
+	// Random variables ???
 	public static double error = 0;
 	public static boolean dir = true;
-	public static NetworkTable table;
+	
+	// Gyro/Accelermoter
+	public static AnalogGyro gyro = new AnalogGyro(0);
+	public static Accelerometer acc = new BuiltInAccelerometer();
+	
+	// Encoders
+	public static Encoder leftdrive = new Encoder(0, 1);
+	public static Encoder rightdrive = new Encoder(2, 3);
+	
+	// Camera Stuff (Not sure if still going to be used)
+	public static CameraServer camserver = CameraServer.getInstance();
 	public static Image camimage = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 	public static AxisCamera camera = new AxisCamera("10.47.78.11");
-
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
-
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
+	public static NetworkTable table;	
 }
