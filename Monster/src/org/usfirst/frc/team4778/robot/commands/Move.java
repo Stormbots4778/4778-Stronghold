@@ -2,9 +2,9 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
-import org.usfirst.frc.team4778.utils.pid.PIDController;
 
 import edu.wpi.first.wpilibj.command.Command;
+import pid.PIDController;
 
 /**
  *
@@ -18,14 +18,19 @@ public class Move extends Command {
 	private PIDController tpid;
 	private PIDController dpid;
 
-	public Move(double dist) {
+	public Move(double dis) {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
 		requires(Robot.drivetrain);
-		this.dist = dist;
+		dist = dis;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		System.out.println("-move-Int");
+		RobotMap.dir = true;
+		RobotMap.leftdrive.setDistancePerPulse(8.15);
+		RobotMap.rightdrive.setDistancePerPulse(8.15);
 		tpid = new PIDController(0.05, 0.03, 0.2, 0);
 		tpid.setOnTargetOffset(1);
 		tpid.setOutputLimits(-1, 1);

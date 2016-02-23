@@ -11,14 +11,19 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TankDrive extends Command {
 
 	public TankDrive() {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
 		requires(Robot.drivetrain);
 	}
 
+	// Called just before this Command runs the first time
 	protected void initialize() {
 		System.out.println("-td-init");
 		// RobotMap.table = NetworkTable.getTable("control");
 	}
 
+	// Called repeatedly when this Command is scheduled to run
+	// @SuppressWarnings("deprecation")
 	protected void execute() {
 		System.out.println("-td-exe");
 		// if (RobotMap.table.isConnected()) {
@@ -29,14 +34,18 @@ public class TankDrive extends Command {
 		// }
 	}
 
+	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		return false;
 	}
 
+	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-td-end");
 	}
 
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
 	}

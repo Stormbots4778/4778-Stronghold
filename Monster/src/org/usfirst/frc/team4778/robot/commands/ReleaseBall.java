@@ -4,6 +4,9 @@ import org.usfirst.frc.team4778.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ *
+ */
 public class ReleaseBall extends Command {
 
 	public ReleaseBall() {
@@ -25,6 +28,7 @@ public class ReleaseBall extends Command {
 
 	protected void end() {
 		System.out.println("-rball-end");
+		Robot.ball.setSpeed(0);
 
 	}
 

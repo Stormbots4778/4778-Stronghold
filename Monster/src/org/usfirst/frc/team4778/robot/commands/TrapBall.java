@@ -4,6 +4,9 @@ import org.usfirst.frc.team4778.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ *
+ */
 public class TrapBall extends Command {
 
 	public TrapBall() {
@@ -25,7 +28,7 @@ public class TrapBall extends Command {
 
 	protected void end() {
 		System.out.println("-tball-end");
-
+		Robot.ball.setSpeed(0);
 	}
 
 	protected void interrupted() {

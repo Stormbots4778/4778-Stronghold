@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4778.utils.conversions;
+package conversions;
 
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
@@ -14,16 +14,21 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 //TODO Add Anti-Tipping Mechanism
 
 public class AccToAngle {
+	Accelerometer acc;
 
-	public static double getXRotation(Accelerometer acc) {
+	public AccToAngle(Accelerometer a) {
+		acc = a;
+	}
+
+	public double getXRotation() {
 		return Math.toDegrees(Math.atan(acc.getX() / (Math.sqrt(Math.pow(acc.getY(), 2) + Math.pow(acc.getZ(), 2)))));
 	}
 
-	public static double getYRotation(Accelerometer acc) {
+	public double getYRotation() {
 		return Math.toDegrees(Math.atan(acc.getY() / (Math.sqrt(Math.pow(acc.getX(), 2) + Math.pow(acc.getZ(), 2)))));
 	}
 
-	public static double getZRotation(Accelerometer acc) {
+	public double getZRotation() {
 		return Math.toDegrees(Math.atan(Math.sqrt(Math.pow(acc.getX(), 2) + Math.pow(acc.getY(), 2)) / acc.getZ()));
 	}
 }
