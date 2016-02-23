@@ -3,7 +3,6 @@ package org.usfirst.frc.team4778.robot;
 import org.usfirst.frc.team4778.robot.commands.BallToggle;
 import org.usfirst.frc.team4778.robot.commands.LiftToggle;
 import org.usfirst.frc.team4778.robot.commands.ReleaseBall;
-import org.usfirst.frc.team4778.robot.commands.Reverse;
 import org.usfirst.frc.team4778.robot.commands.ShiftToggle;
 import org.usfirst.frc.team4778.robot.commands.TestPID;
 import org.usfirst.frc.team4778.robot.commands.TrapBall;
@@ -63,7 +62,7 @@ public class OI {
 		System.out.println("OI");
 		testpid.whileHeld(new TestPID(false));
 		calibrategyro.whileHeld(new TestPID(true));
-		swich.whenPressed(new Reverse());
+		// swich.whenPressed(new Reverse());
 		// l.whenPressed(new GimMove(0, -10));
 		// r.whenPressed(new GimMove(0, 10));
 		// u.whenPressed(new GimMove(-10, 0));
