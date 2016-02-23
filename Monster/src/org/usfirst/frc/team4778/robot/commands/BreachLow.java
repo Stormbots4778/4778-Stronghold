@@ -81,6 +81,6 @@ public class BreachLow extends Command {
     }
 
     protected void interrupted() {
-    	
+    	end();
     }
 }
