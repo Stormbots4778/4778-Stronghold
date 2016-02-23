@@ -20,9 +20,9 @@ public class Autonomous extends CommandGroup {
 			addSequential(new Move(139.5)); // 11.625 ft
 			addSequential(new TurnToAngle(-60));
 			addSequential(new Move(71)); // 5.92 ft
-		} else if (sideOfField == "secret") {
-			addSequential(new BreachSecret(true, 3));
-			//TODO finish this
+		} else if (sideOfField == "low") {
+			addSequential(new BreachLow(true, 3));
+			
 		}
 		addSequential(new ReleaseBall());
 		

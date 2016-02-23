@@ -14,13 +14,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static TankDrive tankdrive;
@@ -90,9 +83,9 @@ public class Robot extends IterativeRobot {
 			break;
 		case "Right Side":
 			autonomousCommand = new Autonomous("right");
-		case "Secret Passage": 
+		case "Low Bar": 
 			default:
-				autonomousCommand = new Autonomous("secret");
+				autonomousCommand = new Autonomous("low");
 				break;
 		}
 
