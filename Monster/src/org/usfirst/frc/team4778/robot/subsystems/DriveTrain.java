@@ -35,21 +35,21 @@ public class DriveTrain extends Subsystem {
 
 	private void dir() {
 		System.out.println("#drive-dir");
-		if (RobotMap.dir) {
-			left1.setInverted(false);
-			right1.setInverted(false);
-			left2.setInverted(true);
-			right2.setInverted(true);
-			left3.setInverted(true);
-			right3.setInverted(true);
-		} else {
-			left1.setInverted(true);
-			right1.setInverted(true);
-			left2.setInverted(false);
-			right2.setInverted(false);
-			left3.setInverted(false);
-			right3.setInverted(false);
-		}
+		left1.setInverted(true);
+		right1.setInverted(true);
+		left2.setInverted(true);
+		right2.setInverted(true);
+		left3.setInverted(true);
+		right3.setInverted(true);
+		/*
+		 * if (RobotMap.dir) { left1.setInverted(false);
+		 * right1.setInverted(false); left2.setInverted(true);
+		 * right2.setInverted(true); left3.setInverted(true);
+		 * right3.setInverted(true); } else { left1.setInverted(true);
+		 * right1.setInverted(true); left2.setInverted(false);
+		 * right2.setInverted(false); left3.setInverted(false);
+		 * right3.setInverted(false); }
+		 */
 	}
 
 	public void initDefaultCommand() {
