@@ -13,13 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static TankDrive tankdrive;
@@ -87,12 +80,27 @@ public class Robot extends IterativeRobot {
 		System.out.println("autoInit");
 		autonomousCommand = new Autonomous();
 
+<<<<<<< HEAD
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
+=======
+		String autoSelected = SmartDashboard.getString("Auto Selector", "Default"); 
+		switch(autoSelected) { 
+		case "Left Side": 
+			autonomousCommand = new Autonomous("left");
+			break;
+		case "Right Side":
+			autonomousCommand = new Autonomous("right");
+		case "Low Bar": 
+			default:
+				autonomousCommand = new Autonomous("low");
+				break;
+		}
+>>>>>>> Autonomous
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
