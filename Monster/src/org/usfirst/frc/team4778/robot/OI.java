@@ -44,6 +44,7 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public static Joystick joyleft = new Joystick(0);
 	public static Joystick joyright = new Joystick(1);
+	public static Joystick gamepad = new Joystick(2);
 	public static Button testpid = new JoystickButton(joyleft, 6);
 	public static Button calibrategyro = new JoystickButton(joyleft, 7);
 	public static Button l = new JoystickButton(joyleft, 4);
