@@ -6,7 +6,7 @@ import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -16,12 +16,18 @@ public class DriveTrain extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private static VictorSP left1 = new VictorSP(0);
-	private static VictorSP left2 = new VictorSP(1);
-	private static VictorSP left3 = new VictorSP(2);
-	private static VictorSP right1 = new VictorSP(3);
-	private static VictorSP right2 = new VictorSP(4);
-	private static VictorSP right3 = new VictorSP(5);
+	// private static VictorSP left1 = new VictorSP(0);
+	// private static VictorSP left2 = new VictorSP(1);
+	// private static VictorSP left3 = new VictorSP(2);
+	// private static VictorSP right1 = new VictorSP(3);
+	// private static VictorSP right2 = new VictorSP(4);
+	// private static VictorSP right3 = new VictorSP(5);
+	private static Victor left1 = new Victor(0);
+	private static Victor left2 = new Victor(1);
+	private static Victor left3 = new Victor(2);
+	private static Victor right1 = new Victor(3);
+	private static Victor right2 = new Victor(4);
+	private static Victor right3 = new Victor(5);
 	public static RobotDrive Drive1 = new RobotDrive(left1, right1);
 	public static RobotDrive Drive2 = new RobotDrive(left2, right2);
 	public static RobotDrive Drive3 = new RobotDrive(left3, right3);

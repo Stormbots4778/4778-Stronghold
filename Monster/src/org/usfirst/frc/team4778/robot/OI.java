@@ -1,9 +1,8 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.BallToggle;
-import org.usfirst.frc.team4778.robot.commands.LiftToggle;
 import org.usfirst.frc.team4778.robot.commands.ReleaseBall;
-import org.usfirst.frc.team4778.robot.commands.ShiftToggle;
+import org.usfirst.frc.team4778.robot.commands.SetBallArm;
+import org.usfirst.frc.team4778.robot.commands.SetShifting;
 import org.usfirst.frc.team4778.robot.commands.TestPID;
 import org.usfirst.frc.team4778.robot.commands.TrapBall;
 
@@ -57,6 +56,10 @@ public class OI {
 	public static Button ballarm = new JoystickButton(joyright, 2);
 	public static Button arm = new JoystickButton(joyright, 3);
 	public static Button swich = new JoystickButton(joyright, 5);
+	public static Button ballup = new JoystickButton(joyright, 3);
+	public static Button balldown = new JoystickButton(joyright, 2);
+	public static Button shiftout = new JoystickButton(joyright, 5);
+	public static Button shiftin = new JoystickButton(joyright, 4);
 
 	public OI() {
 		System.out.println("OI");
@@ -69,8 +72,12 @@ public class OI {
 		// d.whenPressed(new GimMove(10, 0));
 		release.whileHeld(new ReleaseBall());
 		trap.whileHeld(new TrapBall());
-		shift.whenPressed(new ShiftToggle());
-		arm.whenPressed(new LiftToggle());
-		ballarm.whenPressed(new BallToggle());
+		shiftin.whenPressed(new SetShifting(true));
+		shiftout.whenPressed(new SetShifting(false));
+		ballup.whenPressed(new SetBallArm(true));
+		ballup.whenPressed(new SetBallArm(false));
+		// shift.whenPressed(new ShiftToggle());
+		// arm.whenPressed(new LiftToggle());
+		// ballarm.whenPressed(new BallToggle());
 	}
 }

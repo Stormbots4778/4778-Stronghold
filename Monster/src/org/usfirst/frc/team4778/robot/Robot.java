@@ -49,6 +49,10 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		// SmartDashboard.putData("Auto mode", chooser);
 		// RobotMap.camserver.startAutomaticCapture("cam0");
+		RobotMap.auto.addObject("lowBar", RobotMap.path = 0);
+		RobotMap.auto.addObject("driving defence", RobotMap.path = 1);
+		RobotMap.auto.addObject("cheval", RobotMap.path = 2);
+		RobotMap.auto.addObject("portical", RobotMap.path = 3);
 	}
 
 	/**
@@ -63,6 +67,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		System.out.println("disabled");
 		Scheduler.getInstance().run();
+		autonomousCommand = new Autonomous(RobotMap.path);
 	}
 
 	/**
@@ -78,30 +83,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		System.out.println("autoInit");
-		autonomousCommand = new Autonomous();
-
-<<<<<<< HEAD
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-=======
-		String autoSelected = SmartDashboard.getString("Auto Selector", "Default"); 
-		switch(autoSelected) { 
-		case "Left Side": 
-			autonomousCommand = new Autonomous("left");
-			break;
-		case "Right Side":
-			autonomousCommand = new Autonomous("right");
-		case "Low Bar": 
-			default:
-				autonomousCommand = new Autonomous("low");
-				break;
-		}
->>>>>>> Autonomous
-
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();

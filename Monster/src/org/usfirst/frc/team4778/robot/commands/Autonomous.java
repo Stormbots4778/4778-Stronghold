@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Autonomous extends CommandGroup {
 
-	public Autonomous() {
+	public Autonomous(int path) {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
@@ -22,34 +22,28 @@ public class Autonomous extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 		System.out.println("-start auto");
-<<<<<<< HEAD
-		addSequential(new Breach(true));
-		System.out.println("-end auto");
-=======
-		
-		// All of these values are probs wrong
-		//									\/
-		
-		if (sideOfField == "right") {
-			addSequential(new Breach(true, 3));
-			addSequential(new Move(156)); // 13 ft
+		switch (path) {
+		case 0:
+			// low bar
+			addSequential(new Breach(true));
+			addSequential(new Move(100));
 			addSequential(new TurnToAngle(60));
-			addSequential(new Move(30)); // 2.5 ft
-		} else if (sideOfField == "left") {
-			addSequential(new Breach(true, 3));
-			addSequential(new Move(139.5)); // 11.625 ft
-			addSequential(new TurnToAngle(-60));
-			addSequential(new Move(71)); // 5.92 ft
-		} else if (sideOfField == "low") {
-			addSequential(new BreachLow(true, 3));
-			addSequential(new Move(115)); // 9.6 ft
-			addSequential(new TurnToAngle(-60));
-			addSequential(new Move(89.5)); // 7.5 ft
-			//TODO finish this
+			addSequential(new Move(100));
+			addSequential(new ReleaseBall(), 2000);
+			break;
+		case 1:
+			// driving defence
+			break;
+		case 2:
+			// cheval
+			break;
+		case 3:
+			// portical
+			break;
+		default:
+			System.out.println("error: invalid auto");
+			break;
 		}
-		addSequential(new ReleaseBall());
-		
-		System.out.println("-end auto"); // Done :)
->>>>>>> Autonomous
+		System.out.println("-end auto");
 	}
 }

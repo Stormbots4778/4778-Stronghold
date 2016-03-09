@@ -4,6 +4,7 @@ import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 
 import conversions.AccToAngle;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import pid.PIDController;
 
@@ -14,6 +15,8 @@ public class Breach extends Command {
 	boolean finished = false;
 	boolean direction = true;
 	boolean onDefence = false;
+	double start = 0;
+	double now = 0;
 	private PIDController pid;
 
 	private AccToAngle aa = new AccToAngle(RobotMap.acc);
@@ -45,11 +48,18 @@ public class Breach extends Command {
 		} else {
 			Robot.drivetrain.arcadeDrive(0.85, output);
 		}
+		now = Timer.getFPGATimestamp();
 		if (angle < 14.5 || angle > -14.5) {
 			if (onDefence == true) {
-				finished = true;
+				if (start == 0) {
+					start = Timer.getFPGATimestamp();
+				}
+				if (now > start + 0.25) {
+					finished = true;
+				}
 			}
 		} else {
+			start = 0;
 			onDefence = true;
 		}
 	}

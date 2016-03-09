@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 
 /**
@@ -26,7 +27,9 @@ public class RobotMap {
 	public static CameraServer camserver = CameraServer.getInstance();
 	public static double error = 0;
 	public static boolean dir = true;
+	public static int path = 0;
 	public static NetworkTable table;
+	public static SendableChooser auto = new SendableChooser();
 	public static Image camimage = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 	public static AxisCamera camera = new AxisCamera("10.47.78.11");
 
