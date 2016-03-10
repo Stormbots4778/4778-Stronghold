@@ -30,7 +30,12 @@ public class TankDrive extends Command {
 		// Robot.drivetrain.tankDrive(RobotMap.table.getNumber("leftY"),
 		// RobotMap.table.getNumber("rightY"));
 		// } else {
-		Robot.drivetrain.tankDrive(OI.joyleft, OI.joyright);
+		if (OI.joyleft.getRawAxis(1) != 0 && OI.joyright.getRawAxis(1) != 0) {
+			Robot.drivetrain.tankDrive(OI.joyleft, OI.joyright);
+		} else {
+			Robot.drivetrain.tankDrive(OI.gamepad.getRawAxis(1), OI.gamepad.getRawAxis(5));
+		}
+		// Robot.drivetrain.tankDrive(OI.joyleft, OI.joyright);
 		// }
 	}
 

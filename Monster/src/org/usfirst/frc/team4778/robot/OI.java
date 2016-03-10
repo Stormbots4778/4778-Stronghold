@@ -52,8 +52,8 @@ public class OI {
 	public static Button d = new JoystickButton(joyleft, 2);
 	public static Button u = new JoystickButton(joyleft, 3);
 	public static Button shift = new JoystickButton(joyright, 4);
-	public static Button release = new JoystickButton(joyright, 1);
-	public static Button trap = new JoystickButton(joyleft, 1);
+	public static Button release = new JoystickButton(joyleft, 3);
+	public static Button trap = new JoystickButton(joyleft, 2);
 	public static Button ballarm = new JoystickButton(joyright, 2);
 	public static Button arm = new JoystickButton(joyright, 3);
 	public static Button swich = new JoystickButton(joyright, 5);
@@ -61,6 +61,10 @@ public class OI {
 	public static Button balldown = new JoystickButton(joyright, 2);
 	public static Button shiftout = new JoystickButton(joyright, 5);
 	public static Button shiftin = new JoystickButton(joyright, 4);
+	public static Button up = new JoystickButton(gamepad, 6);
+	public static Button down = new JoystickButton(gamepad, 5);
+	public static Button in = new JoystickButton(gamepad, 1);
+	public static Button out = new JoystickButton(gamepad, 4);
 
 	public OI() {
 		System.out.println("OI");
@@ -77,6 +81,10 @@ public class OI {
 		shiftout.whenPressed(new SetShifting(false));
 		ballup.whenPressed(new SetBallArm(true));
 		ballup.whenPressed(new SetBallArm(false));
+		up.whileHeld(new SetBallArm(true));
+		down.whileHeld(new SetBallArm(false));
+		in.whileHeld(new TrapBall());
+		out.whileHeld(new ReleaseBall());
 		// shift.whenPressed(new ShiftToggle());
 		// arm.whenPressed(new LiftToggle());
 		// ballarm.whenPressed(new BallToggle());
