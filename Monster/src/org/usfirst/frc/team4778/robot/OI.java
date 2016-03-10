@@ -2,8 +2,6 @@ package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.ReleaseBall;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
-import org.usfirst.frc.team4778.robot.commands.SetShifting;
-import org.usfirst.frc.team4778.robot.commands.TestPID;
 import org.usfirst.frc.team4778.robot.commands.TrapBall;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -45,48 +43,20 @@ public class OI {
 	public static Joystick joyleft = new Joystick(0);
 	public static Joystick joyright = new Joystick(1);
 	public static Joystick gamepad = new Joystick(2);
-	public static Button testpid = new JoystickButton(joyleft, 6);
-	public static Button calibrategyro = new JoystickButton(joyleft, 7);
-	public static Button l = new JoystickButton(joyleft, 4);
-	public static Button r = new JoystickButton(joyleft, 5);
-	public static Button d = new JoystickButton(joyleft, 2);
-	public static Button u = new JoystickButton(joyleft, 3);
-	public static Button shift = new JoystickButton(joyright, 4);
-	public static Button release = new JoystickButton(joyleft, 3);
-	public static Button trap = new JoystickButton(joyleft, 2);
-	public static Button ballarm = new JoystickButton(joyright, 2);
-	public static Button arm = new JoystickButton(joyright, 3);
-	public static Button swich = new JoystickButton(joyright, 5);
-	public static Button ballup = new JoystickButton(joyright, 3);
-	public static Button balldown = new JoystickButton(joyright, 2);
-	public static Button shiftout = new JoystickButton(joyright, 5);
-	public static Button shiftin = new JoystickButton(joyright, 4);
-	public static Button up = new JoystickButton(gamepad, 6);
-	public static Button down = new JoystickButton(gamepad, 5);
-	public static Button in = new JoystickButton(gamepad, 1);
-	public static Button out = new JoystickButton(gamepad, 4);
+	public static Button release = new JoystickButton(gamepad, 1);
+	public static Button trap = new JoystickButton(gamepad, 4);
+	public static Button up = new JoystickButton(gamepad, 5);
+	public static Button down = new JoystickButton(gamepad, 6);
+	public static Button in = new JoystickButton(joyright, 4);
+	public static Button out = new JoystickButton(joyright, 5);
 
 	public OI() {
 		System.out.println("OI");
-		testpid.whileHeld(new TestPID(false));
-		calibrategyro.whileHeld(new TestPID(true));
-		// swich.whenPressed(new Reverse());
-		// l.whenPressed(new GimMove(0, -10));
-		// r.whenPressed(new GimMove(0, 10));
-		// u.whenPressed(new GimMove(-10, 0));
-		// d.whenPressed(new GimMove(10, 0));
 		release.whileHeld(new ReleaseBall());
 		trap.whileHeld(new TrapBall());
-		shiftin.whenPressed(new SetShifting(true));
-		shiftout.whenPressed(new SetShifting(false));
-		ballup.whenPressed(new SetBallArm(true));
-		ballup.whenPressed(new SetBallArm(false));
 		up.whileHeld(new SetBallArm(true));
 		down.whileHeld(new SetBallArm(false));
 		in.whileHeld(new TrapBall());
 		out.whileHeld(new ReleaseBall());
-		// shift.whenPressed(new ShiftToggle());
-		// arm.whenPressed(new LiftToggle());
-		// ballarm.whenPressed(new BallToggle());
 	}
 }
