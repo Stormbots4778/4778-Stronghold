@@ -2,6 +2,7 @@ package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.ReleaseBall;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
+import org.usfirst.frc.team4778.robot.commands.SetShifting;
 import org.usfirst.frc.team4778.robot.commands.TrapBall;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -54,9 +55,9 @@ public class OI {
 		System.out.println("OI");
 		release.whileHeld(new ReleaseBall());
 		trap.whileHeld(new TrapBall());
-		up.whileHeld(new SetBallArm(true));
-		down.whileHeld(new SetBallArm(false));
-		in.whileHeld(new TrapBall());
-		out.whileHeld(new ReleaseBall());
+		up.whenPressed(new SetBallArm(true));
+		down.whenPressed(new SetBallArm(false));
+		in.whenPressed(new SetShifting(true));
+		out.whenPressed(new SetShifting(false));
 	}
 }

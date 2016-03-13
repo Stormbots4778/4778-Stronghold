@@ -32,8 +32,7 @@ public class Breach extends Command {
 	protected void initialize() {
 		System.out.println("-breach-init");
 		RobotMap.dir = true;
-		RobotMap.gyro.reset();
-		pid = new PIDController(0.05, 0.03, 0.2, 0);
+		pid = new PIDController(0.05, 0.04, 0.2, RobotMap.h);
 		pid.setOutputLimits(-1, 1);
 		pid.setOnTargetOffset(2);
 	}

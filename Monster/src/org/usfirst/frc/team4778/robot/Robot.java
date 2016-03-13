@@ -8,10 +8,12 @@ import org.usfirst.frc.team4778.robot.subsystems.Gimbal;
 import org.usfirst.frc.team4778.robot.subsystems.Lifter;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
+import conversions.AccToAngle;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	public static OI oi;
@@ -39,7 +41,10 @@ public class Robot extends IterativeRobot {
 		ball = new BallControl();
 		lift = new Lifter();
 		oi = new OI();
+		RobotMap.gyro.reset();
 		RobotMap.camserver.startAutomaticCapture("cam1");
+		SmartDashboard.putNumber("auto defence", RobotMap.def);
+		SmartDashboard.putNumber("auto position", RobotMap.pos);
 		// RobotMap.cam.setFPS(1000);
 		// open the camera at the IP address assigned. This is the IP address
 		// that the camera
@@ -49,10 +54,22 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		// SmartDashboard.putData("Auto mode", chooser);
 		// RobotMap.camserver.startAutomaticCapture("cam0");
-		RobotMap.auto.addObject("lowBar", RobotMap.path = 0);
-		RobotMap.auto.addObject("driving defence", RobotMap.path = 1);
-		RobotMap.auto.addObject("cheval", RobotMap.path = 2);
-		RobotMap.auto.addObject("portical", RobotMap.path = 3);
+		// RobotMap.auto.addDefault("lowBar", new Autonomous(0, 0));
+		// RobotMap.auto.addObject("driving defence", new Autonomous(1, 0));
+		// RobotMap.auto.addObject("cheval", new Autonomous(2, 0));
+		// RobotMap.auto.addObject("portical ", new Autonomous(3, 0));
+	}
+
+	public void smartdash() {
+		AccToAngle aa = new AccToAngle(RobotMap.acc);
+		// SmartDashboard.putData("Auto Chooser", RobotMap.auto);
+		// SmartDashboard.putNumber("enter auto mode defence", RobotMap.path);
+		// SmartDashboard.putNumber("enter auto mode pos", RobotMap.defpos);
+		RobotMap.def = SmartDashboard.getNumber("auto defence");
+		RobotMap.pos = SmartDashboard.getNumber("auto position");
+		SmartDashboard.putNumber("gyro:", RobotMap.gyro.getAngle());
+		SmartDashboard.putNumber("pitch:", aa.getYRotation());
+		SmartDashboard.putNumber("roll:", aa.getXRotation());
 	}
 
 	/**
@@ -67,7 +84,9 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		System.out.println("disabled");
 		Scheduler.getInstance().run();
-		autonomousCommand = new Autonomous(RobotMap.path);
+		// autonomousCommand = (Command) RobotMap.auto.getSelected();
+		// autonomousCommand = new Autonomous(RobotMap.def, RobotMap.pos);
+		smartdash();
 	}
 
 	/**
@@ -84,6 +103,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		System.out.println("autoInit");
 		// schedule the autonomous command (example)
+		autonomousCommand = new Autonomous(RobotMap.def, RobotMap.pos);
+
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -94,6 +115,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		System.out.println("auto");
 		Scheduler.getInstance().run();
+		smartdash();
 		// RobotMap.camera.getImage(RobotMap.frame);
 		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
 		// RobotMap.camserver.setImage(RobotMap.frame);
@@ -116,6 +138,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		System.out.println("teleop");
 		Scheduler.getInstance().run();
+		smartdash();
 		// RobotMap.camera.getImage(RobotMap.frame);
 		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
 		// RobotMap.camserver.setImage(RobotMap.frame);
@@ -127,6 +150,7 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		System.out.println("test");
 		LiveWindow.run();
+		smartdash();
 		// RobotMap.camera.getImage(RobotMap.frame);
 		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
 		// RobotMap.camserver.setImage(RobotMap.frame);

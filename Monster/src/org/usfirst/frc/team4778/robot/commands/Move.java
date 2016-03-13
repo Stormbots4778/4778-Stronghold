@@ -31,13 +31,12 @@ public class Move extends Command {
 		RobotMap.dir = true;
 		RobotMap.leftdrive.setDistancePerPulse(8.15);
 		RobotMap.rightdrive.setDistancePerPulse(8.15);
-		tpid = new PIDController(0.05, 0.03, 0.2, 0);
+		tpid = new PIDController(0.05, 0.03, 0.2, RobotMap.h);
 		tpid.setOnTargetOffset(1);
 		tpid.setOutputLimits(-1, 1);
 		dpid = new PIDController(0.05, 0.03, 0.2, dist);
 		dpid.setOnTargetOffset(1);
 		dpid.setOutputLimits(-1, 1);
-		RobotMap.gyro.reset();
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
 	}

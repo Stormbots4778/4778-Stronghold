@@ -36,7 +36,6 @@ public class TurnToAngle extends Command {
 		// Robot.drivetrain.enable();
 		pid.setOnTargetOffset(2);
 		pid.setOutputLimits(-1, 1);
-		RobotMap.gyro.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -62,6 +61,7 @@ public class TurnToAngle extends Command {
 	protected void end() {
 		System.out.println("-turn-end");
 		// Robot.drivetrain.disable();
+		RobotMap.h = angle;
 	}
 
 	// Called when another command which requires one or more of the same
