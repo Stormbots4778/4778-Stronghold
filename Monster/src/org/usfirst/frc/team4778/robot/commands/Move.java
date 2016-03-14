@@ -29,8 +29,9 @@ public class Move extends Command {
 	protected void initialize() {
 		System.out.println("-move-Int");
 		RobotMap.dir = true;
-		RobotMap.leftdrive.setDistancePerPulse(8.15);
-		RobotMap.rightdrive.setDistancePerPulse(8.15);
+		// inches = 0.125488281
+		RobotMap.leftdrive.setDistancePerPulse(0.125488281);
+		RobotMap.rightdrive.setDistancePerPulse(0.125488281);
 		tpid = new PIDController(0.05, 0.03, 0.2, RobotMap.h);
 		tpid.setOnTargetOffset(1);
 		tpid.setOutputLimits(-1, 1);
