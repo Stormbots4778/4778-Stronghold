@@ -36,6 +36,7 @@ public class RobotMap {
 	public static Image camimage = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 	public static AxisCamera camera = new AxisCamera("10.47.78.11");
 	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
+	public static SendableChooser autopos = new SendableChooser();
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.

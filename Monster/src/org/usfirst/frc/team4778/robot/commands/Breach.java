@@ -15,8 +15,8 @@ public class Breach extends Command {
 	boolean finished = false;
 	boolean direction = true;
 	boolean onDefence = false;
-	double start = 0;
-	double now = 0;
+	double endtime = 0;
+	double time = 0;
 	private PIDController pid;
 
 	private AccToAngle aa = new AccToAngle(RobotMap.acc);
@@ -47,19 +47,19 @@ public class Breach extends Command {
 		} else {
 			Robot.drivetrain.arcadeDrive(0.85, output);
 		}
-		now = Timer.getFPGATimestamp();
-		if (angle < 14.5 || angle > -14.5) {
-			if (onDefence == true) {
-				if (start == 0) {
-					start = Timer.getFPGATimestamp();
-				}
-				if (now > start + 0.25) {
+		if (onDefence == true) {
+			if (angle < 10 || angle > -10) {
+				time = Timer.getFPGATimestamp();
+				if (time > endtime) {
 					finished = true;
 				}
+			} else {
+				endtime = Timer.getFPGATimestamp() + 200;
 			}
 		} else {
-			start = 0;
-			onDefence = true;
+			if (angle > 10 || angle < -10) {
+				onDefence = true;
+			}
 		}
 	}
 

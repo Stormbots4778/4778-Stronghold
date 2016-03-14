@@ -104,6 +104,8 @@ public class Autonomous extends CommandGroup {
 				break;
 			}
 			break;
+		case 4:
+			break;
 		default:
 			System.out.println("error: invalid auto");
 			break;

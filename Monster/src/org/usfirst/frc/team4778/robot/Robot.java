@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.Autonomous;
+import org.usfirst.frc.team4778.robot.commands.SelectDefence;
+import org.usfirst.frc.team4778.robot.commands.SelectPos;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.BallControl;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
@@ -43,29 +45,23 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		RobotMap.gyro.reset();
 		RobotMap.camserver.startAutomaticCapture("cam1");
-		SmartDashboard.putNumber("auto defence", RobotMap.def);
-		SmartDashboard.putNumber("auto position", RobotMap.pos);
-		// RobotMap.cam.setFPS(1000);
-		// open the camera at the IP address assigned. This is the IP address
-		// that the camera
-		// can be accessed through the web interface.
-		// chooser = new SendableChooser();
-		// chooser.addDefault("autonomous", new Move(1));
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		// SmartDashboard.putData("Auto mode", chooser);
-		// RobotMap.camserver.startAutomaticCapture("cam0");
-		// RobotMap.auto.addDefault("lowBar", new Autonomous(0, 0));
-		// RobotMap.auto.addObject("driving defence", new Autonomous(1, 0));
-		// RobotMap.auto.addObject("cheval", new Autonomous(2, 0));
-		// RobotMap.auto.addObject("portical ", new Autonomous(3, 0));
+		// SmartDashboard.putNumber("auto defence", RobotMap.def);
+		// SmartDashboard.putNumber("auto position", RobotMap.pos);
+		RobotMap.auto.addDefault("lowBar", new SelectDefence(0));
+		RobotMap.auto.addObject("driving defence", new SelectDefence(1));
+		RobotMap.auto.addObject("cheval", new SelectDefence(2));
+		RobotMap.auto.addObject("portical", new SelectDefence(3));
+		RobotMap.auto.addObject("no auto", new SelectDefence(4));
+		RobotMap.autopos.addDefault("| low | * | 0 | 0 | 0 |", new SelectPos(0));
+		RobotMap.autopos.addObject("| low | 0 | * | 0 | 0 |", new SelectPos(1));
+		RobotMap.autopos.addObject("| low | 0 | 0 | * | 0 |", new SelectPos(2));
+		RobotMap.autopos.addObject("| low | 0 | 0 | 0 | * |", new SelectPos(3));
 	}
 
 	public void smartdash() {
 		AccToAngle aa = new AccToAngle(RobotMap.acc);
-		// SmartDashboard.putData("Auto Chooser", RobotMap.auto);
-		// SmartDashboard.putNumber("enter auto mode defence", RobotMap.path);
-		// SmartDashboard.putNumber("enter auto mode pos", RobotMap.defpos);
-		RobotMap.def = SmartDashboard.getNumber("auto defence");
+		SmartDashboard.putData("Auto Defence Chooser", RobotMap.auto);
+		SmartDashboard.putData("Auto Location Chooser", RobotMap.autopos);
 		RobotMap.pos = SmartDashboard.getNumber("auto position");
 		SmartDashboard.putNumber("gyro:", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("pitch:", aa.getYRotation());
