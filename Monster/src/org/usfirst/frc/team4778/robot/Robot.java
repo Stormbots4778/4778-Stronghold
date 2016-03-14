@@ -6,7 +6,6 @@ import org.usfirst.frc.team4778.robot.commands.SelectPos;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.BallControl;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4778.robot.subsystems.Gimbal;
 import org.usfirst.frc.team4778.robot.subsystems.Lifter;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
@@ -21,32 +20,26 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static TankDrive tankdrive;
 	public static DriveTrain drivetrain;
-	public static Gimbal gimbal;
 	public static Shifters shift;
 	public static BallControl ball;
 	public static Lifter lift;
 	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
 	Command autonomousCommand;
-	// SendableChooser chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		// RobotMap.table = NetworkTable.getTable("control");
 		System.out.println("init");
 		drivetrain = new DriveTrain();
-		gimbal = new Gimbal();
 		shift = new Shifters();
 		ball = new BallControl();
 		lift = new Lifter();
 		oi = new OI();
 		RobotMap.gyro.reset();
 		RobotMap.camserver.startAutomaticCapture("cam1");
-		// SmartDashboard.putNumber("auto defence", RobotMap.def);
-		// SmartDashboard.putNumber("auto position", RobotMap.pos);
 		RobotMap.auto.addDefault("lowBar", new SelectDefence(0));
 		RobotMap.auto.addObject("driving defence", new SelectDefence(1));
 		RobotMap.auto.addObject("cheval", new SelectDefence(2));
@@ -62,7 +55,6 @@ public class Robot extends IterativeRobot {
 		AccToAngle aa = new AccToAngle(RobotMap.acc);
 		SmartDashboard.putData("Auto Defence Chooser", RobotMap.auto);
 		SmartDashboard.putData("Auto Location Chooser", RobotMap.autopos);
-		RobotMap.pos = SmartDashboard.getNumber("auto position");
 		SmartDashboard.putNumber("gyro:", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("pitch:", aa.getYRotation());
 		SmartDashboard.putNumber("roll:", aa.getXRotation());
@@ -80,8 +72,6 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		System.out.println("disabled");
 		Scheduler.getInstance().run();
-		// autonomousCommand = (Command) RobotMap.auto.getSelected();
-		// autonomousCommand = new Autonomous(RobotMap.def, RobotMap.pos);
 		smartdash();
 	}
 
@@ -100,7 +90,6 @@ public class Robot extends IterativeRobot {
 		System.out.println("autoInit");
 		// schedule the autonomous command (example)
 		autonomousCommand = new Autonomous(RobotMap.def, RobotMap.pos);
-
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -112,18 +101,10 @@ public class Robot extends IterativeRobot {
 		System.out.println("auto");
 		Scheduler.getInstance().run();
 		smartdash();
-		// RobotMap.camera.getImage(RobotMap.frame);
-		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
-		// RobotMap.camserver.setImage(RobotMap.frame);
 	}
 
 	public void teleopInit() {
 		System.out.println("teleopInit");
-		// Robot.drivetrain.resetGyro();
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
@@ -135,9 +116,6 @@ public class Robot extends IterativeRobot {
 		System.out.println("teleop");
 		Scheduler.getInstance().run();
 		smartdash();
-		// RobotMap.camera.getImage(RobotMap.frame);
-		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
-		// RobotMap.camserver.setImage(RobotMap.frame);
 	}
 
 	/**
@@ -147,8 +125,5 @@ public class Robot extends IterativeRobot {
 		System.out.println("test");
 		LiveWindow.run();
 		smartdash();
-		// RobotMap.camera.getImage(RobotMap.frame);
-		// NIVision.imaqSetImageSize(RobotMap.frame, 640, 480);
-		// RobotMap.camserver.setImage(RobotMap.frame);
 	}
 }
