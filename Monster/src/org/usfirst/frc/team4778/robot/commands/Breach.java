@@ -54,7 +54,7 @@ public class Breach extends Command {
 					finished = true;
 				}
 			} else {
-				endtime = Timer.getFPGATimestamp() + 200;
+				endtime = Timer.getFPGATimestamp() + 100;
 			}
 		} else {
 			if (angle > 10 || angle < -10) {
@@ -71,12 +71,7 @@ public class Breach extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-breach-end");
-		if (direction) {
-			Robot.drivetrain.stop(0.2);
-		} else {
-			Robot.drivetrain.stop(-0.2);
-		}
-
+		Robot.drivetrain.stop();
 	}
 
 	// Called when another command which requires one or more of the same

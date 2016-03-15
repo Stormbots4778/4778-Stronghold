@@ -73,11 +73,7 @@ public class BreachLow extends Command {
 
 	protected void end() {
 		System.out.println("-breach-low-end");
-		if (goingForwards) {
-			Robot.drivetrain.stop(0.2);
-		} else {
-			Robot.drivetrain.stop(-0.2);
-		}
+		Robot.drivetrain.stop();
 	}
 
 	protected void interrupted() {

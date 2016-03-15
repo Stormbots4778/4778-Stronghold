@@ -8,6 +8,8 @@ public class Autonomous extends CommandGroup {
 
 	public Autonomous(double path, double loc) {
 		RobotMap.gyro.reset();
+		RobotMap.leftdrive.reset();
+		RobotMap.rightdrive.reset();
 		System.out.println("-start auto");
 		switch ((int) path) {
 		case 0:

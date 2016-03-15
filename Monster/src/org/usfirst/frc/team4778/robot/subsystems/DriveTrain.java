@@ -5,9 +5,9 @@ import org.usfirst.frc.team4778.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import pid.PIDController;
 
 /**
  *
@@ -102,15 +102,17 @@ public class DriveTrain extends Subsystem {
 		Drive3.arcadeDrive(f, s);
 	}
 
-	public void stop(double stopingPower) {
+	public void stop() {
+		PIDController pid = new PIDController(0.05, 0.03, 0.2,
+				(RobotMap.leftdrive.getDistance() + RobotMap.rightdrive.getDistance()) / 2);
 		System.out.println("#drive-stop");
 		System.out.println("-stop");
-		Drive1.tankDrive(stopingPower, stopingPower);
-		Drive2.tankDrive(stopingPower, stopingPower);
-		Drive3.tankDrive(stopingPower, stopingPower);
-		endtime = Timer.getFPGATimestamp() + 1;
-		while (time < endtime) {
-			time = Timer.getFPGATimestamp();
+		while (!pid.onTarget()) {
+			System.out.println("stopping");
+			double pow = pid.computePID((RobotMap.leftdrive.getDistance() + RobotMap.rightdrive.getDistance()) / 2);
+			Drive1.tankDrive(pow, pow);
+			Drive2.tankDrive(pow, pow);
+			Drive3.tankDrive(pow, pow);
 		}
 		Drive1.tankDrive(0, 0);
 		Drive2.tankDrive(0, 0);

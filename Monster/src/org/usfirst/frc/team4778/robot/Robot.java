@@ -58,6 +58,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("gyro:", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("pitch:", aa.getYRotation());
 		SmartDashboard.putNumber("roll:", aa.getXRotation());
+		SmartDashboard.putNumber("accX", RobotMap.acc.getX());
+		SmartDashboard.putNumber("accY", RobotMap.acc.getY());
+		SmartDashboard.putNumber("accZ", RobotMap.acc.getZ());
 	}
 
 	/**
