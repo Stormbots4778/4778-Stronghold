@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
+import org.usfirst.frc.team4778.robot.commands.ManipulatorButton;
+
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,6 +15,7 @@ public class BallControl extends Subsystem {
 	private boolean state;
 
 	public void initDefaultCommand() {
+		setDefaultCommand(new ManipulatorButton());
 
 	}
 
