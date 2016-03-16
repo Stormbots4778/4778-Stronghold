@@ -43,11 +43,11 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	public static Joystick joyleft = new Joystick(0);
 	public static Joystick joyright = new Joystick(1);
-	public static Joystick gamepad = new Joystick(2);
-	public static Button release = new JoystickButton(gamepad, 1);
-	public static Button trap = new JoystickButton(gamepad, 4);
-	public static Button up = new JoystickButton(gamepad, 5);
-	public static Button down = new JoystickButton(gamepad, 6);
+	public static Joystick nip = new Joystick(2);
+	public static Button release = new JoystickButton(nip, 1);
+	public static Button trap = new JoystickButton(nip, 4);
+	public static Button up = new JoystickButton(nip, 5);
+	public static Button down = new JoystickButton(nip, 6);
 	public static Button in = new JoystickButton(joyright, 4);
 	public static Button out = new JoystickButton(joyright, 5);
 

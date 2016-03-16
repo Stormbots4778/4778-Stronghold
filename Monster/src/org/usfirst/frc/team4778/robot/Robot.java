@@ -1,8 +1,19 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.Autonomous;
-import org.usfirst.frc.team4778.robot.commands.SelectDefence;
-import org.usfirst.frc.team4778.robot.commands.SelectPos;
+import org.usfirst.frc.team4778.robot.commands.AutoCheval1;
+import org.usfirst.frc.team4778.robot.commands.AutoCheval2;
+import org.usfirst.frc.team4778.robot.commands.AutoCheval3;
+import org.usfirst.frc.team4778.robot.commands.AutoCheval4;
+import org.usfirst.frc.team4778.robot.commands.AutoDrive1;
+import org.usfirst.frc.team4778.robot.commands.AutoDrive2;
+import org.usfirst.frc.team4778.robot.commands.AutoDrive3;
+import org.usfirst.frc.team4778.robot.commands.AutoDrive4;
+import org.usfirst.frc.team4778.robot.commands.AutoLow;
+import org.usfirst.frc.team4778.robot.commands.AutoPortical1;
+import org.usfirst.frc.team4778.robot.commands.AutoPortical2;
+import org.usfirst.frc.team4778.robot.commands.AutoPortical3;
+import org.usfirst.frc.team4778.robot.commands.AutoPortical4;
+import org.usfirst.frc.team4778.robot.commands.NoAuto;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.BallControl;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
@@ -40,21 +51,25 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		RobotMap.gyro.reset();
 		RobotMap.camserver.startAutomaticCapture("cam1");
-		RobotMap.auto.addDefault("lowBar", new SelectDefence(0));
-		RobotMap.auto.addObject("driving defence", new SelectDefence(1));
-		RobotMap.auto.addObject("cheval", new SelectDefence(2));
-		RobotMap.auto.addObject("portical", new SelectDefence(3));
-		RobotMap.auto.addObject("no auto", new SelectDefence(4));
-		RobotMap.autopos.addDefault("| low | * | 0 | 0 | 0 |", new SelectPos(0));
-		RobotMap.autopos.addObject("| low | 0 | * | 0 | 0 |", new SelectPos(1));
-		RobotMap.autopos.addObject("| low | 0 | 0 | * | 0 |", new SelectPos(2));
-		RobotMap.autopos.addObject("| low | 0 | 0 | 0 | * |", new SelectPos(3));
+		RobotMap.auto.addDefault("lowBar", new AutoLow());
+		RobotMap.auto.addObject("driving defence | low | * | 0 | 0 | 0 | ", new AutoDrive1());
+		RobotMap.auto.addObject("driving defence | low | 0 | * | 0 | 0 | ", new AutoDrive2());
+		RobotMap.auto.addObject("driving defence | low | 0 | 0 | * | 0 | ", new AutoDrive3());
+		RobotMap.auto.addObject("driving defence | low | 0 | 0 | 0 | * | ", new AutoDrive4());
+		RobotMap.auto.addObject("cheval | low | * | 0 | 0 | 0 | ", new AutoCheval1());
+		RobotMap.auto.addObject("cheval | low | 0 | * | 0 | 0 | ", new AutoCheval2());
+		RobotMap.auto.addObject("cheval | low | 0 | 0 | * | 0 | ", new AutoCheval3());
+		RobotMap.auto.addObject("cheval | low | 0 | 0 | 0 | * | ", new AutoCheval4());
+		RobotMap.auto.addObject("portical | low | * | 0 | 0 | 0 | ", new AutoPortical1());
+		RobotMap.auto.addObject("portical | low | 0 | * | 0 | 0 | ", new AutoPortical2());
+		RobotMap.auto.addObject("portical | low | 0 | 0 | * | 0 | ", new AutoPortical3());
+		RobotMap.auto.addObject("portical | low | 0 | 0 | 0 | * | ", new AutoPortical4());
+		RobotMap.auto.addObject("no auto", new NoAuto());
 	}
 
 	public void smartdash() {
 		AccToAngle aa = new AccToAngle(RobotMap.acc);
-		SmartDashboard.putData("Auto Defence Chooser", RobotMap.auto);
-		SmartDashboard.putData("Auto Location Chooser", RobotMap.autopos);
+		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
 		SmartDashboard.putNumber("gyro:", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("pitch:", aa.getYRotation());
 		SmartDashboard.putNumber("roll:", aa.getXRotation());
@@ -92,7 +107,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		System.out.println("autoInit");
 		// schedule the autonomous command (example)
-		autonomousCommand = new Autonomous(RobotMap.def, RobotMap.pos);
+		autonomousCommand = (Command) RobotMap.auto.getSelected();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

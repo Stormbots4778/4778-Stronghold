@@ -22,8 +22,7 @@ public class RobotMap {
 	public static CameraServer camserver = CameraServer.getInstance();
 	public static boolean dir = true;
 	public static double h = 0;
-	public static double def = 0;
-	public static double pos = 0;
+	public static int def = 0;
+	public static int pos = 0;
 	public static SendableChooser auto = new SendableChooser();
-	public static SendableChooser autopos = new SendableChooser();
 }
