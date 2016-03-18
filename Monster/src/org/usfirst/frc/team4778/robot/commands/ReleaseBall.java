@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ReleaseBall extends Command {
 
 	public ReleaseBall() {
-		requires(Robot.ball);
+		requires(Robot.in);
 	}
 
 	protected void initialize() {
@@ -19,7 +19,7 @@ public class ReleaseBall extends Command {
 
 	protected void execute() {
 		System.out.println("-rball-exe");
-		Robot.ball.setSpeed(-1);
+		Robot.in.setSpeed(-1);
 	}
 
 	protected boolean isFinished() {
@@ -28,7 +28,7 @@ public class ReleaseBall extends Command {
 
 	protected void end() {
 		System.out.println("-rball-end");
-		Robot.ball.setSpeed(0);
+		Robot.in.setSpeed(0);
 
 	}
 

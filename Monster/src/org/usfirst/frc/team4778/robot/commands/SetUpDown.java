@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4778.robot.commands;
 
-import org.usfirst.frc.team4778.robot.OI;
 import org.usfirst.frc.team4778.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ManipulatorButton extends Command {
+public class SetUpDown extends Command {
 
-	public ManipulatorButton() {
+	public SetUpDown() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.ball);
@@ -22,7 +21,7 @@ public class ManipulatorButton extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.ball.move(OI.manip.get());
+		Robot.ball.move(true);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -32,10 +31,12 @@ public class ManipulatorButton extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.ball.move(false);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		end();
 	}
 }

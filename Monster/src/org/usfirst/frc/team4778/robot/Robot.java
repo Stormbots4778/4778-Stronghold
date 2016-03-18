@@ -15,12 +15,12 @@ import org.usfirst.frc.team4778.robot.commands.AutoPortical3;
 import org.usfirst.frc.team4778.robot.commands.AutoPortical4;
 import org.usfirst.frc.team4778.robot.commands.NoAuto;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
-import org.usfirst.frc.team4778.robot.subsystems.BallControl;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4778.robot.subsystems.Intake;
 import org.usfirst.frc.team4778.robot.subsystems.Lifter;
+import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
-import conversions.AccToAngle;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -32,8 +32,9 @@ public class Robot extends IterativeRobot {
 	public static TankDrive tankdrive;
 	public static DriveTrain drivetrain;
 	public static Shifters shift;
-	public static BallControl ball;
+	public static ManipulatorLift ball;
 	public static Lifter lift;
+	public static Intake in;
 	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
 	Command autonomousCommand;
@@ -44,12 +45,16 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		System.out.println("init");
+		RobotMap.gy2.reset();
+		RobotMap.gyro.reset();
+		RobotMap.h = RobotMap.gyro.getAngle();
+		RobotMap.f = RobotMap.gy2.getAngle();
 		drivetrain = new DriveTrain();
 		shift = new Shifters();
-		ball = new BallControl();
+		ball = new ManipulatorLift();
 		lift = new Lifter();
+		in = new Intake();
 		oi = new OI();
-		RobotMap.gyro.reset();
 		RobotMap.camserver.startAutomaticCapture("cam1");
 		RobotMap.auto.addDefault("lowBar", new AutoLow());
 		RobotMap.auto.addObject("driving defence | low | * | 0 | 0 | 0 | ", new AutoDrive1());
@@ -68,11 +73,11 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void smartdash() {
-		AccToAngle aa = new AccToAngle(RobotMap.acc);
 		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
-		SmartDashboard.putNumber("gyro:", RobotMap.gyro.getAngle());
-		SmartDashboard.putNumber("pitch:", aa.getYRotation());
-		SmartDashboard.putNumber("roll:", aa.getXRotation());
+		SmartDashboard.putNumber("yaw gyro:", RobotMap.gyro.getAngle());
+		SmartDashboard.putNumber("pitch gyro:", RobotMap.gy2.getAngle());
+		SmartDashboard.putNumber("heading", RobotMap.h);
+		SmartDashboard.putNumber("flat value", RobotMap.f);
 		SmartDashboard.putNumber("accX", RobotMap.acc.getX());
 		SmartDashboard.putNumber("accY", RobotMap.acc.getY());
 		SmartDashboard.putNumber("accZ", RobotMap.acc.getZ());
@@ -108,6 +113,7 @@ public class Robot extends IterativeRobot {
 		System.out.println("autoInit");
 		// schedule the autonomous command (example)
 		autonomousCommand = (Command) RobotMap.auto.getSelected();
+		// autonomousCommand = new AutoDrive1();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

@@ -3,8 +3,6 @@ package org.usfirst.frc.team4778.robot.commands;
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 
-import conversions.AccToAngle;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import pid.PIDController;
 
@@ -13,19 +11,17 @@ import pid.PIDController;
  */
 public class Breach extends Command {
 	boolean finished = false;
-	boolean direction = true;
-	boolean onDefence = false;
+	double power = 0;
+	boolean on = false;
 	double endtime = 0;
 	double time = 0;
 	private PIDController pid;
 
-	private AccToAngle aa = new AccToAngle(RobotMap.acc);
-
-	public Breach(boolean dir) {
+	public Breach(double pow) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
-		direction = dir;
+		power = pow;
 	}
 
 	// Called just before this Command runs the first time
@@ -41,24 +37,17 @@ public class Breach extends Command {
 	protected void execute() {
 		System.out.println("-breach-exe");
 		double output = pid.computePID(RobotMap.gyro.getAngle());
-		double angle = aa.getXRotation();
-		if (direction == true) {
-			Robot.drivetrain.arcadeDrive(-0.85, output);
-		} else {
-			Robot.drivetrain.arcadeDrive(0.85, output);
-		}
-		if (onDefence == true) {
-			if (angle < 10 || angle > -10) {
-				time = Timer.getFPGATimestamp();
-				if (time > endtime) {
-					finished = true;
-				}
-			} else {
-				endtime = Timer.getFPGATimestamp() + 100;
+		double angle = RobotMap.gy2.getAngle();
+		double anglel = RobotMap.f - 2;
+		double angleh = RobotMap.f + 2;
+		Robot.drivetrain.arcadeDrive(power, output);
+		if (on) {
+			if (angle > anglel && angle < angleh) {
+				finished = true;
 			}
 		} else {
-			if (angle > 10 || angle < -10) {
-				onDefence = true;
+			if (angle < anglel || angle > angleh) {
+				on = true;
 			}
 		}
 	}
@@ -71,7 +60,8 @@ public class Breach extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-breach-end");
-		Robot.drivetrain.stop();
+		// Robot.drivetrain.stop();
+		Robot.drivetrain.arcadeDrive(0, 0);
 	}
 
 	// Called when another command which requires one or more of the same

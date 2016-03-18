@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TrapBall extends Command {
 
 	public TrapBall() {
-		requires(Robot.ball);
+		requires(Robot.in);
 	}
 
 	protected void initialize() {
@@ -19,7 +19,7 @@ public class TrapBall extends Command {
 
 	protected void execute() {
 		System.out.println("-tball-exe");
-		Robot.ball.setSpeed(1);
+		Robot.in.setSpeed(1);
 	}
 
 	protected boolean isFinished() {
@@ -28,7 +28,7 @@ public class TrapBall extends Command {
 
 	protected void end() {
 		System.out.println("-tball-end");
-		Robot.ball.setSpeed(0);
+		Robot.in.setSpeed(0);
 	}
 
 	protected void interrupted() {
