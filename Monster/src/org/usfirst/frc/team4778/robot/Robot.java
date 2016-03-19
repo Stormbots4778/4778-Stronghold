@@ -13,6 +13,7 @@ import org.usfirst.frc.team4778.robot.commands.AutoPortical1;
 import org.usfirst.frc.team4778.robot.commands.AutoPortical2;
 import org.usfirst.frc.team4778.robot.commands.AutoPortical3;
 import org.usfirst.frc.team4778.robot.commands.AutoPortical4;
+import org.usfirst.frc.team4778.robot.commands.Move;
 import org.usfirst.frc.team4778.robot.commands.NoAuto;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
@@ -52,7 +53,6 @@ public class Robot extends IterativeRobot {
 		ball = new ManipulatorLift();
 		in = new Intake();
 		oi = new OI();
-		RobotMap.camserver.startAutomaticCapture("cam0");
 		RobotMap.auto.addDefault("lowBar", new AutoLow());
 		RobotMap.auto.addObject("driving defence | low | * | 0 | 0 | 0 | ", new AutoDrive1());
 		RobotMap.auto.addObject("driving defence | low | 0 | * | 0 | 0 | ", new AutoDrive2());
@@ -112,10 +112,10 @@ public class Robot extends IterativeRobot {
 		RobotMap.gyro.reset();
 		System.out.println("autoInit");
 		// schedule the autonomous command (example)
-		autonomousCommand = (Command) RobotMap.auto.getSelected();
+		// autonomousCommand = (Command) RobotMap.auto.getSelected();
 		// autonomousCommand = new AutoDrive1();
 		// autonomousCommand = new Breach(-0.8);
-		// autonomousCommand = new Move(36);
+		autonomousCommand = new Move(36);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
