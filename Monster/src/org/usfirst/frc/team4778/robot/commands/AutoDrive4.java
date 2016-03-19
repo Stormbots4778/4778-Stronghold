@@ -8,13 +8,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class AutoDrive4 extends CommandGroup {
-    
-    public  AutoDrive4() {
-    	RobotMap.gyro.reset();
+
+	public AutoDrive4() {
+		RobotMap.h = RobotMap.gyro.getAngle();
+		RobotMap.f = RobotMap.gy2.getAngle();
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
 		System.out.println("-start auto");
-		// code
+		addSequential(new Breach(-0.8));
+		addSequential(new Move(36));
 		System.out.println("-end auto");
-    }
+	}
 }

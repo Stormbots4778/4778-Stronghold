@@ -15,8 +15,8 @@ public class AutoDrive1 extends CommandGroup {
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
 		System.out.println("-start auto");
-		addSequential(new SetBallArm(true));
-		addSequential(new Breach(-0.8));
+		// addSequential(new Breach(-0.8));
+		addSequential(new Move(36));
 		System.out.println("-end auto");
 	}
 }

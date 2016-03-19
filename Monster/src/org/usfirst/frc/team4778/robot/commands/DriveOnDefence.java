@@ -9,53 +9,50 @@ import pid.PIDController;
 /**
  *
  */
-public class TestPID extends Command {
+public class DriveOnDefence extends Command {
 
-	double endtime = 0;
-	double time = 0;
-	boolean calib = true;
-	private PIDController pid;
+	double power;
+	boolean finished = false;
+	PIDController pid;
 
-	public TestPID(boolean cal) {
+	public DriveOnDefence(double pow) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
-		calib = cal;
-
+		power = pow;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		System.out.println("-TestPID-init");
-		RobotMap.dir = true;
-		pid = new PIDController(0.05, 0.05, 0.02, 0);
-		// Robot.drivetrain.resetGyro();
-		if (calib) {
-			RobotMap.gyro.reset();
-			// Robot.drivetrain.getPIDController().setPID(0.05, 0.03, 0.2);
-		} else {
-			pid.setOutputLimits(-1, 1);
-		}
-		// Robot.drivetrain.enable();
+		System.out.println("-DriveOn-init");
+		pid = new PIDController(0.05, 0.04, 0.2, RobotMap.h);
+		pid.setOutputLimits(-1, 1);
+		pid.setOnTargetOffset(2);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		System.out.println("-TestPID-exe");
+		System.out.println("-DriveOn-exe");
 		double output = pid.computePID(RobotMap.gyro.getAngle());
-		if (!calib) {
-			Robot.drivetrain.arcadeDrive(-0.85, output);
+		double angle = RobotMap.gy2.getAngle();
+		double anglel = RobotMap.f - 5;
+		double angleh = RobotMap.f + 5;
+		Robot.drivetrain.arcadeDrive(power, output);
+		if (angle < anglel ^ angle > angleh) {
+			finished = true;
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return finished;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		System.out.println("-TestPID-end");
+		System.out.println("-DriveOn-end");
+		Robot.drivetrain.arcadeDrive(0, 0);
+		RobotMap.gy2.reset();
 	}
 
 	// Called when another command which requires one or more of the same

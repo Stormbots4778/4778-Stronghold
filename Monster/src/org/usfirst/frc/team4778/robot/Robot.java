@@ -17,7 +17,6 @@ import org.usfirst.frc.team4778.robot.commands.NoAuto;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
-import org.usfirst.frc.team4778.robot.subsystems.Lifter;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
@@ -33,7 +32,6 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Shifters shift;
 	public static ManipulatorLift ball;
-	public static Lifter lift;
 	public static Intake in;
 	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
@@ -52,7 +50,6 @@ public class Robot extends IterativeRobot {
 		drivetrain = new DriveTrain();
 		shift = new Shifters();
 		ball = new ManipulatorLift();
-		lift = new Lifter();
 		in = new Intake();
 		oi = new OI();
 		RobotMap.camserver.startAutomaticCapture("cam1");
@@ -81,6 +78,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("accX", RobotMap.acc.getX());
 		SmartDashboard.putNumber("accY", RobotMap.acc.getY());
 		SmartDashboard.putNumber("accZ", RobotMap.acc.getZ());
+		SmartDashboard.putNumber("left encoder", RobotMap.leftdrive.getDistance());
+		SmartDashboard.putNumber("right encoder", RobotMap.rightdrive.getDistance());
 	}
 
 	/**
@@ -89,11 +88,10 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-		System.out.println("disabledInit");
+		System.out.println("disabled");
 	}
 
 	public void disabledPeriodic() {
-		System.out.println("disabled");
 		Scheduler.getInstance().run();
 		smartdash();
 	}
@@ -110,10 +108,14 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
+		RobotMap.gy2.reset();
+		RobotMap.gyro.reset();
 		System.out.println("autoInit");
 		// schedule the autonomous command (example)
 		autonomousCommand = (Command) RobotMap.auto.getSelected();
 		// autonomousCommand = new AutoDrive1();
+		// autonomousCommand = new Breach(-0.8);
+		// autonomousCommand = new Move(36);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

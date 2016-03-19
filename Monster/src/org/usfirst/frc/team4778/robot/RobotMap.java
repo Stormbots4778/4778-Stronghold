@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -19,8 +20,8 @@ public class RobotMap {
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	public static AnalogGyro gy2 = new AnalogGyro(0);
 	public static Accelerometer acc = new BuiltInAccelerometer();
-	public static Encoder leftdrive = new Encoder(0, 1);
-	public static Encoder rightdrive = new Encoder(2, 3);
+	public static Encoder leftdrive = new Encoder(0, 1, false, CounterBase.EncodingType.k4X);
+	public static Encoder rightdrive = new Encoder(2, 3, false, CounterBase.EncodingType.k4X);
 	public static CameraServer camserver = CameraServer.getInstance();
 	public static boolean dir = true;
 	public static double h = 0;

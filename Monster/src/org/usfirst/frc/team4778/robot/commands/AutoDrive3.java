@@ -10,11 +10,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoDrive3 extends CommandGroup {
     
     public  AutoDrive3() {
-    	RobotMap.gyro.reset();
+    	RobotMap.h = RobotMap.gyro.getAngle();
+		RobotMap.f = RobotMap.gy2.getAngle();
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
 		System.out.println("-start auto");
-		// code
+		addSequential(new Breach(-0.8));
+		addSequential(new Move(36));
 		System.out.println("-end auto");
     }
 }

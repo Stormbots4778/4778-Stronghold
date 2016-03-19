@@ -16,7 +16,8 @@ public class Move extends Command {
 	double endTime = 0;
 
 	private PIDController tpid;
-	private PIDController dpid;
+	private PIDController rpid;
+	private PIDController lpid;
 
 	public Move(double dis) {
 		// Use requires() here to declare subsystem dependencies
@@ -36,18 +37,22 @@ public class Move extends Command {
 		tpid = new PIDController(0.05, 0.03, 0.2, RobotMap.h);
 		tpid.setOnTargetOffset(1);
 		tpid.setOutputLimits(-1, 1);
-		dpid = new PIDController(0.05, 0.03, 0.2, dist);
-		dpid.setOnTargetOffset(1);
-		dpid.setOutputLimits(-1, 1);
+		// lpid = new PIDController(0.05, 0.03, 0.2, dist);
+		// lpid.setOnTargetOffset(1);
+		// lpid.setOutputLimits(-1, 1);
+		rpid = new PIDController(0.05, 0.03, 0.2, dist);
+		rpid.setOnTargetOffset(1);
+		rpid.setOutputLimits(-1, 1);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		System.out.println("-move-exe");
 		double tout = tpid.computePID(RobotMap.gyro.getAngle());
-		double dout = dpid.computePID((RobotMap.leftdrive.getDistance() + RobotMap.rightdrive.getDistance()) / 2);
-		Robot.drivetrain.arcadeDrive(dout, tout);
-		if (dpid.onTarget()) {
+		// double lout = lpid.computePID(RobotMap.leftdrive.getDistance());
+		double rout = rpid.computePID(RobotMap.rightdrive.getDistance());
+		Robot.drivetrain.arcadeDrive(rout, tout);
+		if (rpid.onTarget()) {
 			finished = true;
 		}
 
@@ -61,8 +66,6 @@ public class Move extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-move-end");
-		Robot.drivetrain.stop();
-
 	}
 
 	// Called when another command which requires one or more of the same

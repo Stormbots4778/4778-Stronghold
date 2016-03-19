@@ -13,8 +13,6 @@ public class Breach extends Command {
 	boolean finished = false;
 	double power = 0;
 	boolean on = false;
-	double endtime = 0;
-	double time = 0;
 	private PIDController pid;
 
 	public Breach(double pow) {
@@ -38,15 +36,15 @@ public class Breach extends Command {
 		System.out.println("-breach-exe");
 		double output = pid.computePID(RobotMap.gyro.getAngle());
 		double angle = RobotMap.gy2.getAngle();
-		double anglel = RobotMap.f - 2;
-		double angleh = RobotMap.f + 2;
+		double anglel = RobotMap.f - 5;
+		double angleh = RobotMap.f + 5;
 		Robot.drivetrain.arcadeDrive(power, output);
 		if (on) {
-			if (angle > anglel && angle < angleh) {
+			if (angle < -20) {
 				finished = true;
 			}
 		} else {
-			if (angle < anglel || angle > angleh) {
+			if (angle < anglel ^ angle > angleh) {
 				on = true;
 			}
 		}
@@ -62,6 +60,7 @@ public class Breach extends Command {
 		System.out.println("-breach-end");
 		// Robot.drivetrain.stop();
 		Robot.drivetrain.arcadeDrive(0, 0);
+		RobotMap.gy2.reset();
 	}
 
 	// Called when another command which requires one or more of the same
