@@ -14,8 +14,9 @@ public class PIDController {
 	private double outMax = 0;
 	private double outMin = 0;
 	private double Iop = 0;
-	private double offset = 0;
 	private double count = 0;
+	private double totalerror = 0;
+	private double tol = 1;
 
 	public PIDController(double p, double i, double d, double setpoint) {
 		kp = p;
@@ -38,21 +39,21 @@ public class PIDController {
 		outMin = min;
 	}
 
-	public void setOnTargetOffset(double value) {
-		offset = value;
+	public void setTolerence(double value) {
+		tol = value;
 	}
 
 	public boolean onTarget() {
-		if (setpoint + offset > output || setpoint - offset < output) {
-			count++;
-		} else {
-			count = 0;
-		}
-		if (count > 10) {
-			return true;
+		if (count != 0) {
+			if (Math.abs(totalerror) / count < tol) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}
+
 	}
 
 	public double computePID(double in) {
@@ -70,6 +71,8 @@ public class PIDController {
 		} else if (output < outMin) {
 			output = outMin;
 		}
+		count++;
+		totalerror += error;
 		return output;
 	}
 

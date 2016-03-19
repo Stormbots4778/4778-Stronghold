@@ -27,7 +27,7 @@ public class DriveOnDefence extends Command {
 		System.out.println("-DriveOn-init");
 		pid = new PIDController(0.05, 0.04, 0.2, RobotMap.h);
 		pid.setOutputLimits(-1, 1);
-		pid.setOnTargetOffset(2);
+		pid.setTolerence(1);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -17,14 +17,13 @@ public class Move extends Command {
 
 	private PIDController tpid;
 	private PIDController rpid;
-	private PIDController lpid;
+	// private PIDController lpid;
 
 	public Move(double dis) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
-		double curr = (RobotMap.leftdrive.getDistance() + RobotMap.rightdrive.getDistance()) / 2;
-		dist = curr + dis;
+		dist = RobotMap.rightdrive.getDistance() + dis;
 	}
 
 	// Called just before this Command runs the first time
@@ -35,13 +34,13 @@ public class Move extends Command {
 		RobotMap.leftdrive.setDistancePerPulse(0.125488281);
 		RobotMap.rightdrive.setDistancePerPulse(0.125488281);
 		tpid = new PIDController(0.05, 0.03, 0.2, RobotMap.h);
-		tpid.setOnTargetOffset(1);
+		tpid.setTolerence(1);
 		tpid.setOutputLimits(-1, 1);
 		// lpid = new PIDController(0.05, 0.03, 0.2, dist);
-		// lpid.setOnTargetOffset(1);
+		// lpid.setTolerence(1);
 		// lpid.setOutputLimits(-1, 1);
 		rpid = new PIDController(0.05, 0.03, 0.2, dist);
-		rpid.setOnTargetOffset(1);
+		rpid.setTolerence(1);
 		rpid.setOutputLimits(-1, 1);
 	}
 
@@ -51,7 +50,7 @@ public class Move extends Command {
 		double tout = tpid.computePID(RobotMap.gyro.getAngle());
 		// double lout = lpid.computePID(RobotMap.leftdrive.getDistance());
 		double rout = rpid.computePID(RobotMap.rightdrive.getDistance());
-		Robot.drivetrain.arcadeDrive(rout, tout);
+		Robot.drivetrain.arcadeDrive(-rout, tout);
 		if (rpid.onTarget()) {
 			finished = true;
 		}
@@ -66,6 +65,7 @@ public class Move extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-move-end");
+		// Robot.drivetrain.stop();
 	}
 
 	// Called when another command which requires one or more of the same

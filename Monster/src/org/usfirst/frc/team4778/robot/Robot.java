@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 		ball = new ManipulatorLift();
 		in = new Intake();
 		oi = new OI();
-		RobotMap.camserver.startAutomaticCapture("cam1");
+		RobotMap.camserver.startAutomaticCapture("cam0");
 		RobotMap.auto.addDefault("lowBar", new AutoLow());
 		RobotMap.auto.addObject("driving defence | low | * | 0 | 0 | 0 | ", new AutoDrive1());
 		RobotMap.auto.addObject("driving defence | low | 0 | * | 0 | 0 | ", new AutoDrive2());
