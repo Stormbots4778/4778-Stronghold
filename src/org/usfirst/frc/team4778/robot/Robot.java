@@ -1,25 +1,7 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.AutoCheval1;
-import org.usfirst.frc.team4778.robot.commands.AutoCheval2;
-import org.usfirst.frc.team4778.robot.commands.AutoCheval3;
-import org.usfirst.frc.team4778.robot.commands.AutoCheval4;
-import org.usfirst.frc.team4778.robot.commands.AutoDrive1;
-import org.usfirst.frc.team4778.robot.commands.AutoDrive2;
-import org.usfirst.frc.team4778.robot.commands.AutoDrive3;
-import org.usfirst.frc.team4778.robot.commands.AutoDrive4;
-import org.usfirst.frc.team4778.robot.commands.AutoLow;
-import org.usfirst.frc.team4778.robot.commands.AutoPortical1;
-import org.usfirst.frc.team4778.robot.commands.AutoPortical2;
-import org.usfirst.frc.team4778.robot.commands.AutoPortical3;
-import org.usfirst.frc.team4778.robot.commands.AutoPortical4;
-import org.usfirst.frc.team4778.robot.commands.Move;
-import org.usfirst.frc.team4778.robot.commands.NoAuto;
-import org.usfirst.frc.team4778.robot.commands.TankDrive;
-import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4778.robot.subsystems.Intake;
-import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
-import org.usfirst.frc.team4778.robot.subsystems.Shifters;
+import org.usfirst.frc.team4778.robot.commands.*;
+import org.usfirst.frc.team4778.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -66,7 +48,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.auto.addObject("portical | low | 0 | * | 0 | 0 | ", new AutoPortical2());
 		RobotMap.auto.addObject("portical | low | 0 | 0 | * | 0 | ", new AutoPortical3());
 		RobotMap.auto.addObject("portical | low | 0 | 0 | 0 | * | ", new AutoPortical4());
-		RobotMap.auto.addObject("no auto", new NoAuto());
+		RobotMap.auto.addObject("No Auto", new NoAuto());
 	}
 
 	public void smartdash() {
