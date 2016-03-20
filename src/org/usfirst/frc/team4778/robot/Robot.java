@@ -53,15 +53,15 @@ public class Robot extends IterativeRobot {
 
 	public void smartdash() {
 		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
-		SmartDashboard.putNumber("yaw gyro:", RobotMap.gyro.getAngle());
-		SmartDashboard.putNumber("pitch gyro:", RobotMap.gy2.getAngle());
-		SmartDashboard.putNumber("heading", RobotMap.h);
-		SmartDashboard.putNumber("flat value", RobotMap.f);
-		SmartDashboard.putNumber("accX", RobotMap.acc.getX());
-		SmartDashboard.putNumber("accY", RobotMap.acc.getY());
-		SmartDashboard.putNumber("accZ", RobotMap.acc.getZ());
-		SmartDashboard.putNumber("left encoder", RobotMap.leftdrive.getDistance());
-		SmartDashboard.putNumber("right encoder", RobotMap.rightdrive.getDistance());
+		SmartDashboard.putNumber("Yaw gyro: ", RobotMap.gyro.getAngle());
+		SmartDashboard.putNumber("Pitch gyro: ", RobotMap.gy2.getAngle());
+		SmartDashboard.putNumber("Heading ", RobotMap.h);
+		SmartDashboard.putNumber("Flat value ", RobotMap.f);
+		SmartDashboard.putNumber("accX: ", RobotMap.acc.getX());
+		SmartDashboard.putNumber("accY: ", RobotMap.acc.getY());
+		SmartDashboard.putNumber("accZ: ", RobotMap.acc.getZ());
+		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
+		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
 	}
 
 	/**
