@@ -12,7 +12,7 @@ import pid.PIDController;
 public class Breach extends Command {
 	boolean finished = false;
 	double power = 0;
-	boolean on = false;
+	boolean active = false;
 	private PIDController pid;
 
 	public Breach(double pow) {
@@ -39,13 +39,13 @@ public class Breach extends Command {
 		double anglel = RobotMap.f - 5;
 		double angleh = RobotMap.f + 5;
 		Robot.drivetrain.arcadeDrive(power, output);
-		if (on) {
+		if (active) {
 			if (angle < -20) {
 				finished = true;
 			}
 		} else {
 			if (angle < anglel ^ angle > angleh) {
-				on = true;
+				active = true;
 			}
 		}
 	}
