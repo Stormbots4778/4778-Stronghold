@@ -49,8 +49,7 @@ public class PIDController {
 	}
 
 	public boolean onTarget() {
-		return Math.abs(bufTotal / buf.size()) < tol;
-
+		return buf.size() != 0 && Math.abs(bufTotal / buf.size()) < tol;
 	}
 
 	public double computePID(double in) {
