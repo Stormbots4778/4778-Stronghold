@@ -19,8 +19,8 @@ public class TurnToAngle extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
-		angle = ang;
-		pid = new PIDController(0.05, 0.03, 0.2, angle);
+		RobotMap.h = ang;
+		pid = new PIDController(0.05, 0.03, 0.2, RobotMap.h);
 	}
 
 	// Called just before this Command runs the first time
