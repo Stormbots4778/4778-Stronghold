@@ -4,8 +4,8 @@ import org.usfirst.frc.team4778.robot.RobotMap;
 
 public class AutoPortical extends Auto {
     
-    public  AutoPortical(int defenseId) {
-    	super(defenseId);
+    public  AutoPortical(int defenseId, boolean shouldScore) {
+    	super(defenseId, shouldScore);
     }
     
     public void init() {

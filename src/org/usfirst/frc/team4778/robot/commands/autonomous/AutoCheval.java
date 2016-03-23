@@ -5,8 +5,8 @@ import org.usfirst.frc.team4778.robot.commands.BreachCheval;
 
 public class AutoCheval extends Auto {
 
-	public AutoCheval(int defenseId) {
-		super(defenseId);
+	public AutoCheval(int defenseId, boolean shouldScore) {
+		super(defenseId, shouldScore);
 	}
 	
 	public void init() {
@@ -16,12 +16,12 @@ public class AutoCheval extends Auto {
 		RobotMap.rightdrive.reset();
 	}
 	
-	public void runAuto() {
-		System.out.println("-start auto");
+	public void runBreach() {
+		System.out.println("-start breach");
 		
-		//TODO code cheval autonomous
+		//TODO code cheval breach
 		addSequential(new BreachCheval(-0.8));
 		
-		System.out.println("-end auto");
+		System.out.println("-end breach");
 	}
 }

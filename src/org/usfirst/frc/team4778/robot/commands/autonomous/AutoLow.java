@@ -7,14 +7,23 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoLow extends CommandGroup {
+public class AutoLow extends Auto {
 
-	public AutoLow() {
+	public AutoLow(int direction, boolean shouldScore) {
+		super(direction, shouldScore);
+	}
+	
+	public void init() {
 		RobotMap.gyro.reset();
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
-		System.out.println("-start auto");
-		// code
-		System.out.println("-end auto");
+	}
+	
+	public void runBreach() {
+		System.out.println("-start breach");
+		
+		//TODO Code low-bar breach
+		
+		System.out.println("-end breach");
 	}
 }

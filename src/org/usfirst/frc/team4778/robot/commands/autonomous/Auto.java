@@ -4,16 +4,23 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Auto extends CommandGroup {
 	
-    public  Auto(int defenseId) {
+    public  Auto(int defenseId, boolean shouldScore) {
     	init();
-    	runAuto();
+    	runBreach();
+    	if(shouldScore) {
+    		runScore(defenseId);
+    	}
     }
     
     public void init() {
     	
     }
     
-    public void runAuto() {
+    public void runBreach() {
     	
+    }
+    
+    public void runScore(int defenseId) {
+    	//TODO Will code this last
     }
 }

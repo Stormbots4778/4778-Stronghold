@@ -8,6 +8,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoNone extends CommandGroup {
 
 	public AutoNone() {
-		System.out.println("no Auto");
+		System.out.println("no Autonomous");
 	}
 }
