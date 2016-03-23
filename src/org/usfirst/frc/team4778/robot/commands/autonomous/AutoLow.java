@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4778.robot.commands;
+package org.usfirst.frc.team4778.robot.commands.autonomous;
 
 import org.usfirst.frc.team4778.robot.RobotMap;
 
@@ -7,11 +7,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoCheval4 extends CommandGroup {
+public class AutoLow extends CommandGroup {
 
-	public AutoCheval4() {
-		RobotMap.h = RobotMap.gyro.getAngle();
-		RobotMap.f = RobotMap.gy2.getAngle();
+	public AutoLow() {
+		RobotMap.gyro.reset();
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
 		System.out.println("-start auto");

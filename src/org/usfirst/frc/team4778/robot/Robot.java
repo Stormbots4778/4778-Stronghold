@@ -1,21 +1,12 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.AutoCheval1;
-import org.usfirst.frc.team4778.robot.commands.AutoCheval2;
-import org.usfirst.frc.team4778.robot.commands.AutoCheval3;
-import org.usfirst.frc.team4778.robot.commands.AutoCheval4;
-import org.usfirst.frc.team4778.robot.commands.AutoDrive1;
-import org.usfirst.frc.team4778.robot.commands.AutoDrive2;
-import org.usfirst.frc.team4778.robot.commands.AutoDrive3;
-import org.usfirst.frc.team4778.robot.commands.AutoDrive4;
-import org.usfirst.frc.team4778.robot.commands.AutoLow;
-import org.usfirst.frc.team4778.robot.commands.AutoPortical1;
-import org.usfirst.frc.team4778.robot.commands.AutoPortical2;
-import org.usfirst.frc.team4778.robot.commands.AutoPortical3;
-import org.usfirst.frc.team4778.robot.commands.AutoPortical4;
-import org.usfirst.frc.team4778.robot.commands.NoAuto;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.commands.TurnToAngle;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoDrive;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortical;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
@@ -54,19 +45,19 @@ public class Robot extends IterativeRobot {
 		in = new Intake();
 		oi = new OI();
 		RobotMap.auto.addDefault("lowBar", new AutoLow());
-		RobotMap.auto.addObject("driving defence | low | * | 0 | 0 | 0 | ", new AutoDrive1());
-		RobotMap.auto.addObject("driving defence | low | 0 | * | 0 | 0 | ", new AutoDrive2());
-		RobotMap.auto.addObject("driving defence | low | 0 | 0 | * | 0 | ", new AutoDrive3());
-		RobotMap.auto.addObject("driving defence | low | 0 | 0 | 0 | * | ", new AutoDrive4());
-		RobotMap.auto.addObject("cheval | low | * | 0 | 0 | 0 | ", new AutoCheval1());
-		RobotMap.auto.addObject("cheval | low | 0 | * | 0 | 0 | ", new AutoCheval2());
-		RobotMap.auto.addObject("cheval | low | 0 | 0 | * | 0 | ", new AutoCheval3());
-		RobotMap.auto.addObject("cheval | low | 0 | 0 | 0 | * | ", new AutoCheval4());
-		RobotMap.auto.addObject("portical | low | * | 0 | 0 | 0 | ", new AutoPortical1());
-		RobotMap.auto.addObject("portical | low | 0 | * | 0 | 0 | ", new AutoPortical2());
-		RobotMap.auto.addObject("portical | low | 0 | 0 | * | 0 | ", new AutoPortical3());
-		RobotMap.auto.addObject("portical | low | 0 | 0 | 0 | * | ", new AutoPortical4());
-		RobotMap.auto.addObject("No Auto", new NoAuto());
+		RobotMap.auto.addObject("driving defence | low | * | 0 | 0 | 0 | ", new AutoDrive(1));
+		RobotMap.auto.addObject("driving defence | low | 0 | * | 0 | 0 | ", new AutoDrive(2));
+		RobotMap.auto.addObject("driving defence | low | 0 | 0 | * | 0 | ", new AutoDrive(3));
+		RobotMap.auto.addObject("driving defence | low | 0 | 0 | 0 | * | ", new AutoDrive(4));
+		RobotMap.auto.addObject("cheval | low | * | 0 | 0 | 0 | ", new AutoCheval(1));
+		RobotMap.auto.addObject("cheval | low | 0 | * | 0 | 0 | ", new AutoCheval(2));
+		RobotMap.auto.addObject("cheval | low | 0 | 0 | * | 0 | ", new AutoCheval(3));
+		RobotMap.auto.addObject("cheval | low | 0 | 0 | 0 | * | ", new AutoCheval(4));
+		RobotMap.auto.addObject("portical | low | * | 0 | 0 | 0 | ", new AutoPortical(1));
+		RobotMap.auto.addObject("portical | low | 0 | * | 0 | 0 | ", new AutoPortical(2));
+		RobotMap.auto.addObject("portical | low | 0 | 0 | * | 0 | ", new AutoPortical(3));
+		RobotMap.auto.addObject("portical | low | 0 | 0 | 0 | * | ", new AutoPortical(4));
+		RobotMap.auto.addObject("No Auto", new AutoNone());
 	}
 
 	public void smartdash() {
