@@ -1,8 +1,6 @@
 package org.usfirst.frc.team4778.robot.commands.autonomous;
 
 import org.usfirst.frc.team4778.robot.RobotMap;
-import org.usfirst.frc.team4778.robot.commands.Breach;
-import org.usfirst.frc.team4778.robot.commands.Move;
 
 public class AutoGeneral extends Auto {
 
@@ -20,7 +18,7 @@ public class AutoGeneral extends Auto {
 	public void runBreach() {
 		System.out.println("-start general breach");
 		
-		addSequential(new Breach(-0.8)); // Runs at 80% power
+		//addSequential(new Breach()); // Runs at 80% power
 		
 		System.out.println("-end general breach");
 	}

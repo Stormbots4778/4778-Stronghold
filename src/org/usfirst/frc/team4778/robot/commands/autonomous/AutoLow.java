@@ -2,8 +2,6 @@ package org.usfirst.frc.team4778.robot.commands.autonomous;
 
 import org.usfirst.frc.team4778.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-
 public class AutoLow extends Auto {
 
 	public AutoLow(boolean shouldScore) {
@@ -11,7 +9,8 @@ public class AutoLow extends Auto {
 	}
 	
 	public void init() {
-		RobotMap.gyro.reset();
+		RobotMap.h = RobotMap.gyro.getAngle();
+		RobotMap.f = RobotMap.gy2.getAngle();
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
 	}
