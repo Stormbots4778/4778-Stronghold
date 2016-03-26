@@ -22,10 +22,11 @@ public class PIDController {
 	private double bufTotal = 0;
 	private Queue<Double> buf;
 
-	public PIDController(double p, double i, double d, double setpoint) {
+	public PIDController(double p, double i, double d, double s) {
 		kp = p;
 		ki = i;
 		kd = d;
+		setpoint = s;
 		buf = new ArrayDeque<Double>();
 	}
 
@@ -49,7 +50,7 @@ public class PIDController {
 	}
 
 	public boolean onTarget() {
-		return buf.size() != 0 && Math.abs(bufTotal / buf.size()) < tol;
+		return buf.size() > 0 && Math.abs(bufTotal / buf.size()) < tol;
 
 	}
 

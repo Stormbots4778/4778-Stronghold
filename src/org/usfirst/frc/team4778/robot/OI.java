@@ -19,13 +19,17 @@ public class OI {
 	public static Joystick joyright = new Joystick(1);
 	public static Joystick nip = new Joystick(3);
 	public static Joystick gamepad = new Joystick(2);
-	public static Button release = new JoystickButton(nip, 3);
-	public static Button trap = new JoystickButton(nip, 2);
+	public static Button grelease = new JoystickButton(gamepad, 3);
+	public static Button release = new JoystickButton(nip, 2);
+	public static Button trap = new JoystickButton(nip, 3);
+	public static Button gtrap = new JoystickButton(gamepad, 2);
 	public static Button up = new JoystickButton(nip, 5);
+	public static Button gup = new JoystickButton(gamepad, 6);
 	public static Button down = new JoystickButton(nip, 6);
+	public static Button gdown = new JoystickButton(gamepad, 7);
 	public static Button manip = new JoystickButton(nip, 1);
-	public static Button in = new JoystickButton(joyright, 4);
-	public static Button out = new JoystickButton(joyright, 5);
+	public static Button in = new JoystickButton(joyleft, 1);
+	public static Button out = new JoystickButton(joyright, 1);
 
 	public OI() {
 		System.out.println("OI");
@@ -36,5 +40,9 @@ public class OI {
 		in.whenPressed(new SetShifting(true));
 		out.whenPressed(new SetShifting(false));
 		manip.whileHeld(new OISwitch());
+		grelease.whileHeld(new ReleaseBall());
+		gtrap.whileHeld(new TrapBall());
+		gup.whenPressed(new SetBallArm(true));
+		gdown.whenPressed(new SetBallArm(false));
 	}
 }
