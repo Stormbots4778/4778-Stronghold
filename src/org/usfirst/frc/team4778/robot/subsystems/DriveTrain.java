@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import pid.PIDController;
 
 /**
  *
@@ -104,18 +103,6 @@ public class DriveTrain extends Subsystem {
 
 	public void stop() {
 		System.out.println("#drive-stop");
-		PIDController pidl = new PIDController(0.05, 0.03, 0.2, RobotMap.leftdrive.getDistance());
-		PIDController pidr = new PIDController(0.05, 0.03, 0.2, RobotMap.leftdrive.getDistance());
-		System.out.println("-stop");
-		while (!pidl.onTarget() || !pidr.onTarget()) {
-			System.out.println("stopping");
-			double powl = pidl.computePID(RobotMap.leftdrive.getDistance());
-			double powr = pidr.computePID(RobotMap.rightdrive.getDistance());
-			Drive1.tankDrive(powl, powr);
-			Drive2.tankDrive(powl, powr);
-			Drive3.tankDrive(powl, powr);
-		}
-		System.out.println("stopped");
 		Drive1.tankDrive(0, 0);
 		Drive2.tankDrive(0, 0);
 		Drive3.tankDrive(0, 0);

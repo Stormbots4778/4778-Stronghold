@@ -1,12 +1,11 @@
 package org.usfirst.frc.team4778.robot;
 
+import org.usfirst.frc.team4778.robot.commands.AutoCheval;
+import org.usfirst.frc.team4778.robot.commands.AutoDrive;
+import org.usfirst.frc.team4778.robot.commands.AutoLow;
+import org.usfirst.frc.team4778.robot.commands.AutoPortical;
+import org.usfirst.frc.team4778.robot.commands.NoAuto;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
-import org.usfirst.frc.team4778.robot.commands.TurnToAngle;
-import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
-import org.usfirst.frc.team4778.robot.commands.autonomous.AutoDrive;
-import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
-import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
-import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortical;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
@@ -57,7 +56,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.auto.addObject("portical | low | 0 | * | 0 | 0 | ", new AutoPortical(2));
 		RobotMap.auto.addObject("portical | low | 0 | 0 | * | 0 | ", new AutoPortical(3));
 		RobotMap.auto.addObject("portical | low | 0 | 0 | 0 | * | ", new AutoPortical(4));
-		RobotMap.auto.addObject("No Auto", new AutoNone());
+		RobotMap.auto.addObject("No Auto", new NoAuto());
 	}
 
 	public void smartdash() {
@@ -99,15 +98,13 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		RobotMap.gy2.reset();
-		RobotMap.gyro.reset();
 		System.out.println("autoInit");
 		// schedule the autonomous command (example)
-		// autonomousCommand = (Command) RobotMap.auto.getSelected();
+		autonomousCommand = (Command) RobotMap.auto.getSelected();
 		// autonomousCommand = new AutoDrive1();
 		// autonomousCommand = new Breach(-0.8);
 		// autonomousCommand = new Move(36);
-		autonomousCommand = new TurnToAngle(90);
+		// autonomousCommand = new TurnToAngle(90);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
