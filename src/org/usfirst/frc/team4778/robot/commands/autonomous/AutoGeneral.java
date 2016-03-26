@@ -4,9 +4,9 @@ import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.commands.Breach;
 import org.usfirst.frc.team4778.robot.commands.Move;
 
-public class AutoDrive extends Auto {
+public class AutoGeneral extends Auto {
 
-	public AutoDrive(int defenseId, boolean shouldScore) {
+	public AutoGeneral(int defenseId, boolean shouldScore) {
 		super(defenseId, shouldScore);
 	}
 	
@@ -18,12 +18,10 @@ public class AutoDrive extends Auto {
 	}
 	
 	public void runBreach() {
-		System.out.println("-start breach");
+		System.out.println("-start general breach");
 		
-		//TODO code drive breach
-		addSequential(new Breach(-0.8));
-		addSequential(new Move(36));
+		addSequential(new Breach(-0.8)); // Runs at 80% power
 		
-		System.out.println("-end breach");
+		System.out.println("-end general breach");
 	}
 }

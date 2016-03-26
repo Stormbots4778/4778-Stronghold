@@ -2,9 +2,6 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class BreachCheval extends CommandGroup {
 
 	public BreachCheval(double pow) {

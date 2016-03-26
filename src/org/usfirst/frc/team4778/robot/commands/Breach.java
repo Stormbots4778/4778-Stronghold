@@ -5,11 +5,8 @@ import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
-/**
- *
- */
 public class Breach extends PIDCommand {
-	boolean finished = false;
+	boolean isFinished = false;
 	double power = 0;
 	boolean active = false;
 	// private PIDController pid;
@@ -46,7 +43,7 @@ public class Breach extends PIDCommand {
 		// Robot.drivetrain.arcadeDrive(power, output);
 		if (active) {
 			if (angle < -20) {
-				finished = true;
+				isFinished = true;
 			}
 		} else {
 			if (angle < anglel ^ angle > angleh) {
@@ -55,35 +52,28 @@ public class Breach extends PIDCommand {
 		}
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return finished;
+		return isFinished;
 	}
 
-	// Called once after isFinished returns true
 	protected void end() {
 		System.out.println("-breach-end");
 		this.getPIDController().disable();
-		// Robot.drivetrain.stop();
 		Robot.drivetrain.arcadeDrive(0, 0);
 		RobotMap.gy2.reset();
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
 	}
 
 	@Override
 	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
 		return RobotMap.gyro.getAngle();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
 		Robot.drivetrain.arcadeDrive(power, output);
 	}
 }

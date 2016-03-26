@@ -3,10 +3,10 @@ package org.usfirst.frc.team4778.robot;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.commands.TurnToAngle;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
-import org.usfirst.frc.team4778.robot.commands.autonomous.AutoDrive;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoGeneral;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
-import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortical;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortcullis;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
@@ -44,20 +44,20 @@ public class Robot extends IterativeRobot {
 		ball = new ManipulatorLift();
 		in = new Intake();
 		oi = new OI();
-		RobotMap.auto.addDefault("lowBar", new AutoLow());
-		RobotMap.auto.addObject("driving defence | low | * | 0 | 0 | 0 | ", new AutoDrive(1));
-		RobotMap.auto.addObject("driving defence | low | 0 | * | 0 | 0 | ", new AutoDrive(2));
-		RobotMap.auto.addObject("driving defence | low | 0 | 0 | * | 0 | ", new AutoDrive(3));
-		RobotMap.auto.addObject("driving defence | low | 0 | 0 | 0 | * | ", new AutoDrive(4));
-		RobotMap.auto.addObject("cheval | low | * | 0 | 0 | 0 | ", new AutoCheval(1));
-		RobotMap.auto.addObject("cheval | low | 0 | * | 0 | 0 | ", new AutoCheval(2));
-		RobotMap.auto.addObject("cheval | low | 0 | 0 | * | 0 | ", new AutoCheval(3));
-		RobotMap.auto.addObject("cheval | low | 0 | 0 | 0 | * | ", new AutoCheval(4));
-		RobotMap.auto.addObject("portical | low | * | 0 | 0 | 0 | ", new AutoPortical(1));
-		RobotMap.auto.addObject("portical | low | 0 | * | 0 | 0 | ", new AutoPortical(2));
-		RobotMap.auto.addObject("portical | low | 0 | 0 | * | 0 | ", new AutoPortical(3));
-		RobotMap.auto.addObject("portical | low | 0 | 0 | 0 | * | ", new AutoPortical(4));
-		RobotMap.auto.addObject("No Auto", new AutoNone());
+		RobotMap.auto.addDefault("Low Bar"							, new AutoLow		(false	 ));
+		RobotMap.auto.addObject("Normal Defense  | * | 0 | 0 | 0 | ", new AutoGeneral	(1, false));
+		RobotMap.auto.addObject("Normal Defense  | 0 | * | 0 | 0 | ", new AutoGeneral	(2, false));
+		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | * | 0 | ", new AutoGeneral	(3, false));
+		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | 0 | * | ", new AutoGeneral	(4, false));
+		RobotMap.auto.addObject("Cheval De Frise | * | 0 | 0 | 0 | ", new AutoCheval	(1, false));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | * | 0 | 0 | ", new AutoCheval	(2, false));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | * | 0 | ", new AutoCheval	(3, false));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | 0 | * | ", new AutoCheval	(4, false));
+		RobotMap.auto.addObject("Portcullis      | * | 0 | 0 | 0 | ", new AutoPortcullis(1, false));
+		RobotMap.auto.addObject("Portcullis      | 0 | * | 0 | 0 | ", new AutoPortcullis(2, false));
+		RobotMap.auto.addObject("Portcullis      | 0 | 0 | * | 0 | ", new AutoPortcullis(3, false));
+		RobotMap.auto.addObject("Portcullis      | 0 | 0 | 0 | * | ", new AutoPortcullis(4, false));
+		RobotMap.auto.addObject("No Autonomous"						, new AutoNone		(		 ));
 	}
 
 	public void smartdash() {
@@ -102,12 +102,9 @@ public class Robot extends IterativeRobot {
 		RobotMap.gy2.reset();
 		RobotMap.gyro.reset();
 		System.out.println("autoInit");
-		// schedule the autonomous command (example)
-		// autonomousCommand = (Command) RobotMap.auto.getSelected();
-		// autonomousCommand = new AutoDrive1();
-		// autonomousCommand = new Breach(-0.8);
-		// autonomousCommand = new Move(36);
-		autonomousCommand = new TurnToAngle(90);
+		
+		autonomousCommand = new TurnToAngle(90); //Autonomous goes here
+		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

@@ -4,13 +4,10 @@ import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class AutoLow extends Auto {
 
-	public AutoLow(int direction, boolean shouldScore) {
-		super(direction, shouldScore);
+	public AutoLow(boolean shouldScore) {
+		super(0, shouldScore);
 	}
 	
 	public void init() {

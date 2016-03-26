@@ -2,9 +2,9 @@ package org.usfirst.frc.team4778.robot.commands.autonomous;
 
 import org.usfirst.frc.team4778.robot.RobotMap;
 
-public class AutoPortical extends Auto {
+public class AutoPortcullis extends Auto {
     
-    public  AutoPortical(int defenseId, boolean shouldScore) {
+    public  AutoPortcullis(int defenseId, boolean shouldScore) {
     	super(defenseId, shouldScore);
     }
     
@@ -17,7 +17,7 @@ public class AutoPortical extends Auto {
     public void runAuto() {
 		System.out.println("-start auto");
 		
-		//TODO code portical autonomous
+		//TODO code portcullis autonomous
 		
 		System.out.println("-end auto");
     }
