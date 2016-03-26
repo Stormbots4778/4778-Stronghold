@@ -19,19 +19,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	public static OI oi;
+	
 	public static TankDrive tankdrive;
 	public static DriveTrain drivetrain;
 	public static Shifters shift;
+	
 	public static ManipulatorLift ball;
 	public static Intake in;
-	// NIVision.Rect rect = new NIVision.Rect(10, 10, 200, 200);
 
 	Command autonomousCommand;
 
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
 	public void robotInit() {
 		System.out.println("init");
 		RobotMap.gy2.reset();

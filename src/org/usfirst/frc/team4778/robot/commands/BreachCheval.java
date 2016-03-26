@@ -4,11 +4,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class BreachCheval extends CommandGroup {
 
-	public BreachCheval(double pow) {
-		System.out.println("cheval");
-		addSequential(new DriveOnDefence(pow));
+	public BreachCheval(double power) {
+		System.out.println("-exe Cheval De Frise");
+		
+		addSequential(new DriveOnDefence(power));
 		addSequential(new SetBallArm(false));
-		addSequential(new ExitDefence(pow));
+		addSequential(new ExitDefence(power));
 		addParallel(new SetBallArm(true));
+		
+		System.out.println("-end-exe Cheval De Frise");
 	}
 }

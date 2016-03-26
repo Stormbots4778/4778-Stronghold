@@ -4,42 +4,37 @@ import org.usfirst.frc.team4778.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class SetShifting extends Command {
 
+	boolean isFinished = false;
 	boolean state = true;
-	boolean finished = false;
 
-	public SetShifting(boolean in) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	public SetShifting(boolean state) {
 		requires(Robot.shift);
-		state = in;
+		this.state = state;
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
+		System.out.println("-init SetShifting");
+		
+		// Nothing here...
+		
+		System.out.println("-end-init SetShifting");
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		System.out.println("-exe SetShifting");
+		
 		Robot.shift.shift(state);
-		finished = true;
+		isFinished = true;
+		
+		System.out.println("-end-exe SetShifting");
 	}
-
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		return finished;
-	}
-
-	// Called once after isFinished returns true
+	
 	protected void end() {
+		System.out.println("-end SetShifting");
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-	}
+	protected boolean isFinished() {return isFinished;}
+	protected void interrupted() {}
 }

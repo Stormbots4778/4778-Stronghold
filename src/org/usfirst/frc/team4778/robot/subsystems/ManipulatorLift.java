@@ -14,11 +14,14 @@ public class ManipulatorLift extends Subsystem {
 
 	}
 
-	public void move(boolean on) {
-		System.out.println("#ball-movearm");
-		up.set(on);
-		down.set(!on);
-		state = on;
+	public void move(boolean state) {
+		System.out.println("#exe ManipulatorLift move(state)");
+		
+		up.set(state);
+		down.set(!state);
+		this.state = state;
+		
+		System.out.println("#end-exe ManipulatorLift move(state)");
 	}
 
 	public boolean getstate() {

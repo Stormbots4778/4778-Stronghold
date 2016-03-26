@@ -2,62 +2,52 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
+import org.usfirst.frc.team4778.robot.pid.PIDController;
 
 import edu.wpi.first.wpilibj.command.Command;
-import pid.PIDController;
 
-/**
- *
- */
 public class ExitDefence extends Command {
 
-	boolean finished = false;
-	double power = 0;
 	private PIDController pid;
+	boolean isFinished = false;
+	double power = 0;
 
-	public ExitDefence(double pow) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	public ExitDefence(double power) {
 		requires(Robot.drivetrain);
-		power = pow;
+		this.power = power;
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
-		System.out.println("-exit-init");
-		RobotMap.dir = true;
+		System.out.println("-init ExitDefense");
+		
 		pid = new PIDController(0.05, 0.04, 0.2, RobotMap.h);
 		pid.setOutputLimits(-1, 1);
 		pid.setTolerence(1);
+		RobotMap.direction = 1;
+		
+		System.out.println("-end-init ExitDefense");
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		System.out.println("-exit-exe");
+		System.out.println("-exe ExitDefense");
+		
 		double output = pid.computePID(RobotMap.gyro.getAngle());
 		double angle = RobotMap.gy2.getAngle();
 		Robot.drivetrain.arcadeDrive(power, output);
 		if (angle < -20) {
-			finished = true;
+			isFinished = true;
 		}
+		
+		System.out.println("-end-exe ExitDefense");
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		return finished;
-	}
-
-	// Called once after isFinished returns true
 	protected void end() {
-		System.out.println("-exit-end");
-		// Robot.drivetrain.stop();
 		Robot.drivetrain.arcadeDrive(0, 0);
 		RobotMap.gy2.reset();
+
+		System.out.println("-end ExitDefense");
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
-	}
+	protected void interrupted() {end();}
+	protected boolean isFinished() {return isFinished;}
 }

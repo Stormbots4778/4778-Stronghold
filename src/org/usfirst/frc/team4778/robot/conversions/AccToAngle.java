@@ -1,4 +1,4 @@
-package conversions;
+package org.usfirst.frc.team4778.robot.conversions;
 
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
  * Robot Width: 35 in.
  * Robot Length: 36.5 in
  */
-
-//TODO Add Anti-Tipping Mechanism
 
 public class AccToAngle {
 	Accelerometer acc;

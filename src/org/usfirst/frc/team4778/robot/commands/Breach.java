@@ -2,89 +2,62 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
+import org.usfirst.frc.team4778.robot.pid.PIDController;
 
 import edu.wpi.first.wpilibj.command.Command;
-import pid.PIDController;
 
-<<<<<<< HEAD
-public class Breach extends PIDCommand {
-	boolean isFinished = false;
-=======
-/**
- *
- */
 public class Breach extends Command {
-	boolean finished = false;
->>>>>>> origin/pid
-	double power = 0;
-	boolean active = false;
 	private PIDController pid;
+	boolean isFinished = false;
+	boolean isActive = false;
+	double power = 0;
 
-	public Breach(double pow) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	public Breach(double power) {
 		requires(Robot.drivetrain);
-		power = pow;
+		this.power = power;
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
-		System.out.println("-breach-init");
+		System.out.println("-init Breach");
+		
 		RobotMap.gy2.reset();
-		RobotMap.dir = true;
-		pid = new PIDController(0.05, 0.04, 0.2, RobotMap.h);
+		RobotMap.direction = 1;
+		pid = new PIDController(0.125, 0, 0, RobotMap.h);
 		pid.setOutputLimits(-1, 1);
 		pid.setTolerence(1);
+		
+		System.out.println("-end-init Breach");
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		System.out.println("-breach-exe");
+		System.out.println("-exe Breach");
+		
 		double output = pid.computePID(RobotMap.gyro.getAngle());
 		double angle = RobotMap.gy2.getAngle();
 		double anglel = RobotMap.f - 5;
 		double angleh = RobotMap.f + 5;
+		
 		Robot.drivetrain.arcadeDrive(power, output);
-		if (active) {
+		
+		if (isActive) {
 			if (angle < -20) {
 				isFinished = true;
 			}
 		} else {
 			if (angle < anglel ^ angle > angleh) {
-				active = true;
+				isActive = true;
 			}
 		}
-	}
-
-	protected boolean isFinished() {
-		return isFinished;
+		
+		System.out.println("-end-exe Breach");
 	}
 
 	protected void end() {
-		System.out.println("-breach-end");
-<<<<<<< HEAD
-		this.getPIDController().disable();
-=======
-		// Robot.drivetrain.stop();
->>>>>>> origin/pid
 		Robot.drivetrain.arcadeDrive(0, 0);
 		RobotMap.gy2.reset();
+		
+		System.out.println("-end Breach");
 	}
-
-	protected void interrupted() {
-		end();
-	}
-<<<<<<< HEAD
-
-	@Override
-	protected double returnPIDInput() {
-		return RobotMap.gyro.getAngle();
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		Robot.drivetrain.arcadeDrive(power, output);
-	}
-=======
->>>>>>> origin/pid
+	protected boolean isFinished() {return isFinished;}
+	protected void interrupted() {end();}
 }

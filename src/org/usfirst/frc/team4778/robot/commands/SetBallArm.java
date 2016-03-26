@@ -4,43 +4,37 @@ import org.usfirst.frc.team4778.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class SetBallArm extends Command {
 
-	boolean finished = false;
+	boolean isFinished = false;
 	boolean state = true;
 
-	public SetBallArm(boolean in) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	public SetBallArm(boolean state) {
 		requires(Robot.ball);
-		state = in;
+		this.state = state;
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
+		System.out.println("-init SetBallArm");
+		
+		// Nothing here...
+		
+		System.out.println("-end-init SetBallArm");
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		System.out.println("-exe SetBallArm");
+		
 		Robot.ball.move(state);
-		finished = true;
+		isFinished = true;
+		
+		System.out.println("-end-exe SetBallArm");
 	}
-
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		return finished;
-	}
-
-	// Called once after isFinished returns true
+	
 	protected void end() {
+		System.out.println("-end SetBallArm");
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
-	}
+	protected boolean isFinished() {return isFinished;}
+	protected void interrupted() {end();}
 }

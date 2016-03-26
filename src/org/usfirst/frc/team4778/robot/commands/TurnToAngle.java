@@ -2,68 +2,60 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
+import org.usfirst.frc.team4778.robot.pid.PIDController;
 
 import edu.wpi.first.wpilibj.command.Command;
-import pid.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
 public class TurnToAngle extends Command {
 
-	private boolean finished = false;
-	private double angle;
 	private PIDController pid;
 	double p, i, d;
+	
+	private boolean isFinished = false;
+	private double angle;
 
-	public TurnToAngle(double ang) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	public TurnToAngle(double angle) {
 		requires(Robot.drivetrain);
-		angle = ang;
+		this.angle = angle;
 		pid = new PIDController(0.125, 0.0, 0.0, angle);
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
-		System.out.println("-turn-init");
+		System.out.println("-init TurnToAngle");
+		
 		pid.setTolerence(1);
 		pid.setOutputLimits(-1, 1);
+		
+		System.out.println("-end-init TurnToAngle");
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		System.out.println("-turn-exe");
+		System.out.println("-exe TurnToAngle");
+		
 		double out = pid.computePID(RobotMap.gyro.getAngle());
 		Robot.drivetrain.tankDrive(-out, out);
 		if (pid.onTarget()) {
-			finished = true;
+			isFinished = true;
 		}
-		// p = SmartDashboard.getNumber("p");
-		// i = SmartDashboard.getNumber("i");
-		// d = SmartDashboard.getNumber("d");
-		// pid.setTunings(p, i, d);
-		// SmartDashboard.putNumber("p", p);
-		// SmartDashboard.putNumber("i", i);
-		// SmartDashboard.putNumber("d", d);
+		p = SmartDashboard.getNumber("p");
+		i = SmartDashboard.getNumber("i");
+		d = SmartDashboard.getNumber("d");
+		pid.setTunings(p, i, d);
+		SmartDashboard.putNumber("p", p);
+		SmartDashboard.putNumber("i", i);
+		SmartDashboard.putNumber("d", d);
 
+		System.out.println("-end-exe TurnToAngle");
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		return finished;
-	}
-
-	// Called once after isFinished returns true
 	protected void end() {
-		System.out.println("-turn-end");
 		RobotMap.h = angle;
 		Robot.drivetrain.stop();
+		
+		System.out.println("-end TurnToAngle");
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
-	}
+	protected void interrupted() {end();}
+	protected boolean isFinished() {return isFinished;}
 }
