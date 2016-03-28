@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4778.robot;
 
+import org.usfirst.frc.team4778.robot.commands.Breach;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoGeneral;
@@ -19,13 +20,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	public static OI oi;
-	
+
 	public static TankDrive tankdrive;
 	public static DriveTrain drivetrain;
 	public static Shifters shift;
-	
+
 	public static ManipulatorLift ball;
 	public static Intake in;
+	public static boolean score;
 
 	Command autonomousCommand;
 
@@ -40,20 +42,33 @@ public class Robot extends IterativeRobot {
 		ball = new ManipulatorLift();
 		in = new Intake();
 		oi = new OI();
-		RobotMap.auto.addDefault("Low Bar"							, new AutoLow		(false	 ));
-		RobotMap.auto.addObject("Normal Defense  | * | 0 | 0 | 0 | ", new AutoGeneral	(1, false));
-		RobotMap.auto.addObject("Normal Defense  | 0 | * | 0 | 0 | ", new AutoGeneral	(2, false));
-		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | * | 0 | ", new AutoGeneral	(3, false));
-		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | 0 | * | ", new AutoGeneral	(4, false));
-		RobotMap.auto.addObject("Cheval De Frise | * | 0 | 0 | 0 | ", new AutoCheval	(1, false));
-		RobotMap.auto.addObject("Cheval De Frise | 0 | * | 0 | 0 | ", new AutoCheval	(2, false));
-		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | * | 0 | ", new AutoCheval	(3, false));
-		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | 0 | * | ", new AutoCheval	(4, false));
-		RobotMap.auto.addObject("Portcullis      | * | 0 | 0 | 0 | ", new AutoPortcullis(1, false));
-		RobotMap.auto.addObject("Portcullis      | 0 | * | 0 | 0 | ", new AutoPortcullis(2, false));
-		RobotMap.auto.addObject("Portcullis      | 0 | 0 | * | 0 | ", new AutoPortcullis(3, false));
-		RobotMap.auto.addObject("Portcullis      | 0 | 0 | 0 | * | ", new AutoPortcullis(4, false));
-		RobotMap.auto.addObject("No Autonomous"						, new AutoNone		(		 ));
+		smartdash();
+		RobotMap.auto.addDefault("Low Bar", new AutoLow(SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Normal Defense  | * | 0 | 0 | 0 | ",
+				new AutoGeneral(1, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Normal Defense  | 0 | * | 0 | 0 | ",
+				new AutoGeneral(2, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | * | 0 | ",
+				new AutoGeneral(3, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | 0 | * | ",
+				new AutoGeneral(4, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Cheval De Frise | * | 0 | 0 | 0 | ",
+				new AutoCheval(1, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | * | 0 | 0 | ",
+				new AutoCheval(2, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | * | 0 | ",
+				new AutoCheval(3, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | 0 | * | ",
+				new AutoCheval(4, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Portcullis      | * | 0 | 0 | 0 | ",
+				new AutoPortcullis(1, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Portcullis      | 0 | * | 0 | 0 | ",
+				new AutoPortcullis(2, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Portcullis      | 0 | 0 | * | 0 | ",
+				new AutoPortcullis(3, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("Portcullis      | 0 | 0 | 0 | * | ",
+				new AutoPortcullis(4, SmartDashboard.getBoolean("Score")));
+		RobotMap.auto.addObject("No Autonomous", new AutoNone());
 	}
 
 	public void smartdash() {
@@ -67,6 +82,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("accZ: ", RobotMap.acc.getZ());
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
+		SmartDashboard.putBoolean("Score", score);
 	}
 
 	/**
@@ -96,9 +112,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		System.out.println("autoInit");
-				
-		//autonomousCommand = (Command) RobotMap.auto.getSelected();
-		autonomousCommand = new TurnToAngle(90);
+		autonomousCommand = new Breach(-0.8);
+		// autonomousCommand = (Command) RobotMap.auto.getSelected();
+		// autonomousCommand = new TurnToAngle(90);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
