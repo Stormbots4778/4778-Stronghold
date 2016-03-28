@@ -33,8 +33,8 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		System.out.println("init");
-		RobotMap.gy2.reset();
-		RobotMap.gyro.reset();
+		RobotMap.gy2.calibrate();
+		RobotMap.gyro.calibrate();
 		RobotMap.h = RobotMap.gyro.getAngle();
 		RobotMap.f = RobotMap.gy2.getAngle();
 		drivetrain = new DriveTrain();
@@ -82,6 +82,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("accZ: ", RobotMap.acc.getZ());
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
+		score = SmartDashboard.getBoolean("Score");
 		SmartDashboard.putBoolean("Score", score);
 	}
 
