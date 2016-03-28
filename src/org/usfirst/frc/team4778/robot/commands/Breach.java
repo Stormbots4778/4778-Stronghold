@@ -34,19 +34,11 @@ public class Breach extends Command {
 
 		double output = pid.computePID(RobotMap.gyro.getAngle());
 		double angle = RobotMap.gy2.getAngle();
-		double anglel = RobotMap.f - 2;
-		double angleh = RobotMap.f + 2;
 
 		Robot.drivetrain.arcadeDrive(power, output);
 
-		if (isActive) {
-			if (angle > anglel && angle < angleh) {
-				isFinished = true;
-			}
-		} else {
-			if (angle < anglel ^ angle > angleh) {
-				isActive = true;
-			}
+		if (angle < -10) {
+			isFinished = true;
 		}
 
 		System.out.println("-end-exe Breach");
