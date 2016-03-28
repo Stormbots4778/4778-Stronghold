@@ -48,10 +48,10 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void tankDrive(Joystick joy1, Joystick joy2) {
-		System.out.println("#exe DriveTrain tankDrive");
+		System.out.println("#exe DriveTrain tankDrive(joy1, joy2)");
 		
 		dir();
-		if (RobotMap.direction == 1) {
+		if(RobotMap.direction == 1) {
 			Drive1.tankDrive(joy1, joy2);
 			Drive2.tankDrive(joy1, joy2);
 			Drive3.tankDrive(joy1, joy2);

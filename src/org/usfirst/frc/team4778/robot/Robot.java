@@ -97,7 +97,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		System.out.println("autoInit");
 				
-		autonomousCommand = (Command) RobotMap.auto.getSelected();
+		//autonomousCommand = (Command) RobotMap.auto.getSelected();
+		autonomousCommand = new TurnToAngle(90);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
