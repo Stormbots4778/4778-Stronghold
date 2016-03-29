@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("accX: ", a.getXRotation());
 		SmartDashboard.putNumber("accY: ", a.getYRotation());
 		SmartDashboard.putNumber("accZ: ", a.getZRotation());
-		SmartDashboard.putNumber("pitch", p.getavP());
+		SmartDashboard.putNumber("pitch", Math.floor(p.getP()));
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
 		score = SmartDashboard.getBoolean("Score");
@@ -112,8 +112,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		System.out.println("autoInit");
-		autonomousCommand = new Breach(-0.8);
-		// autonomousCommand = (Command) RobotMap.auto.getSelected();
+		//autonomousCommand = new Breach(-0.8);
+		autonomousCommand = (Command) RobotMap.auto.getSelected();
 		// autonomousCommand = new TurnToAngle(90);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
