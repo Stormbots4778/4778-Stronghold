@@ -7,6 +7,8 @@ import org.usfirst.frc.team4778.robot.commands.autonomous.AutoGeneral;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortcullis;
+import org.usfirst.frc.team4778.robot.conversions.AccToAngle;
+import org.usfirst.frc.team4778.robot.conversions.Pitch;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
@@ -42,44 +44,41 @@ public class Robot extends IterativeRobot {
 		ball = new ManipulatorLift();
 		in = new Intake();
 		oi = new OI();
+		smartdashInit();
 		smartdash();
-		RobotMap.auto.addDefault("Low Bar", new AutoLow(SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Normal Defense  | * | 0 | 0 | 0 | ",
-				new AutoGeneral(1, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Normal Defense  | 0 | * | 0 | 0 | ",
-				new AutoGeneral(2, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | * | 0 | ",
-				new AutoGeneral(3, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | 0 | * | ",
-				new AutoGeneral(4, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Cheval De Frise | * | 0 | 0 | 0 | ",
-				new AutoCheval(1, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Cheval De Frise | 0 | * | 0 | 0 | ",
-				new AutoCheval(2, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | * | 0 | ",
-				new AutoCheval(3, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | 0 | * | ",
-				new AutoCheval(4, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Portcullis      | * | 0 | 0 | 0 | ",
-				new AutoPortcullis(1, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Portcullis      | 0 | * | 0 | 0 | ",
-				new AutoPortcullis(2, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Portcullis      | 0 | 0 | * | 0 | ",
-				new AutoPortcullis(3, SmartDashboard.getBoolean("Score")));
-		RobotMap.auto.addObject("Portcullis      | 0 | 0 | 0 | * | ",
-				new AutoPortcullis(4, SmartDashboard.getBoolean("Score")));
+
+	}
+
+	public void smartdashInit() {
+		SmartDashboard.putBoolean("Score", score);
+		RobotMap.auto.addDefault("Low Bar", new AutoLow(score));
+		RobotMap.auto.addObject("Normal Defense  | * | 0 | 0 | 0 | ", new AutoGeneral(1, score));
+		RobotMap.auto.addObject("Normal Defense  | 0 | * | 0 | 0 | ", new AutoGeneral(2, score));
+		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | * | 0 | ", new AutoGeneral(3, score));
+		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | 0 | * | ", new AutoGeneral(4, score));
+		RobotMap.auto.addObject("Cheval De Frise | * | 0 | 0 | 0 | ", new AutoCheval(1, score));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | * | 0 | 0 | ", new AutoCheval(2, score));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | * | 0 | ", new AutoCheval(3, score));
+		RobotMap.auto.addObject("Cheval De Frise | 0 | 0 | 0 | * | ", new AutoCheval(4, score));
+		RobotMap.auto.addObject("Portcullis      | * | 0 | 0 | 0 | ", new AutoPortcullis(1, score));
+		RobotMap.auto.addObject("Portcullis      | 0 | * | 0 | 0 | ", new AutoPortcullis(2, score));
+		RobotMap.auto.addObject("Portcullis      | 0 | 0 | * | 0 | ", new AutoPortcullis(3, score));
+		RobotMap.auto.addObject("Portcullis      | 0 | 0 | 0 | * | ", new AutoPortcullis(4, score));
 		RobotMap.auto.addObject("No Autonomous", new AutoNone());
 	}
 
 	public void smartdash() {
+		AccToAngle a = new AccToAngle(RobotMap.acc);
+		Pitch p = new Pitch(RobotMap.acc);
 		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
 		SmartDashboard.putNumber("Yaw gyro: ", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("Pitch gyro: ", RobotMap.gy2.getAngle());
 		SmartDashboard.putNumber("Heading ", RobotMap.h);
 		SmartDashboard.putNumber("Flat value ", RobotMap.f);
-		SmartDashboard.putNumber("accX: ", RobotMap.acc.getX());
-		SmartDashboard.putNumber("accY: ", RobotMap.acc.getY());
-		SmartDashboard.putNumber("accZ: ", RobotMap.acc.getZ());
+		SmartDashboard.putNumber("accX: ", a.getXRotation());
+		SmartDashboard.putNumber("accY: ", a.getYRotation());
+		SmartDashboard.putNumber("accZ: ", a.getZRotation());
+		SmartDashboard.putNumber("pitch", p.getavP());
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
 		score = SmartDashboard.getBoolean("Score");

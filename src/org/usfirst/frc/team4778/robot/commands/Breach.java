@@ -2,12 +2,14 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
+import org.usfirst.frc.team4778.robot.conversions.AccTools;
 import org.usfirst.frc.team4778.robot.pid.PIDController;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Breach extends Command {
 	private PIDController pid;
+	AccTools a = new AccTools(RobotMap.acc);
 	boolean isFinished = false;
 	boolean isActive = false;
 	double power = 0;
@@ -33,21 +35,15 @@ public class Breach extends Command {
 		System.out.println("-exe Breach");
 
 		double output = pid.computePID(RobotMap.gyro.getAngle());
-		double angle = RobotMap.gy2.getAngle();
+		double angle = a.getZ();
 
 		Robot.drivetrain.arcadeDrive(power, output);
-
-		if (angle < -10) {
-			isFinished = true;
-		}
 
 		System.out.println("-end-exe Breach");
 	}
 
 	protected void end() {
 		Robot.drivetrain.arcadeDrive(0, 0);
-		RobotMap.gy2.reset();
-
 		System.out.println("-end Breach");
 	}
 
