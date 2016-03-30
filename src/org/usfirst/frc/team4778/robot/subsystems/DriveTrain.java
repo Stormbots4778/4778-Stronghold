@@ -1,13 +1,14 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
+import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends PIDSubsystem {
 
 	private static Victor left1 = new Victor(0);
 	private static Victor left2 = new Victor(1);
@@ -26,6 +27,7 @@ public class DriveTrain extends Subsystem {
 	double input = 0;
 
 	public DriveTrain() {
+		super("pid", 0.05, 0, 0);
 		dir();
 	}
 
@@ -48,7 +50,7 @@ public class DriveTrain extends Subsystem {
 
 	public void tankDrive(Joystick joy1, Joystick joy2) {
 		System.out.println("#exe DriveTrain tankDrive(joy1, joy2)");
-
+		this.getPIDController().disable();
 		dir();
 		Drive1.tankDrive(joy1, joy2);
 		Drive2.tankDrive(joy1, joy2);
@@ -59,7 +61,7 @@ public class DriveTrain extends Subsystem {
 
 	public void tankDrive(double left, double right) {
 		System.out.println("#exe DriveTrain tankDrive(left, right)");
-
+		this.getPIDController().disable();
 		dir();
 		Drive1.tankDrive(left, right);
 		Drive2.tankDrive(left, right);
@@ -70,7 +72,7 @@ public class DriveTrain extends Subsystem {
 
 	public void arcadeDrive(Joystick stick) {
 		System.out.println("#exe DriveTrain arcadeDrive(stick)");
-
+		this.getPIDController().disable();
 		dir();
 		Drive1.arcadeDrive(stick);
 		Drive2.arcadeDrive(stick);
@@ -81,7 +83,7 @@ public class DriveTrain extends Subsystem {
 
 	public void arcadeDrive(double f, double s) {
 		System.out.println("#exe DriveTrain arcadeDrive(f, s)");
-
+		this.getPIDController().disable();
 		dir();
 		Drive1.arcadeDrive(f, s);
 		Drive2.arcadeDrive(f, s);
@@ -92,11 +94,21 @@ public class DriveTrain extends Subsystem {
 
 	public void stop() {
 		System.out.println("#exe DriveTrain stop()");
-
-		Drive1.tankDrive(0, 0);
-		Drive2.tankDrive(0, 0);
-		Drive3.tankDrive(0, 0);
-
+		this.getPIDController().setSetpoint(0);
+		this.getPIDController().enable();
 		System.out.println("#end-exe DriveTrain stop()");
+	}
+
+	@Override
+	protected double returnPIDInput() {
+		// TODO Auto-generated method stub
+		return RobotMap.leftdrive.getRate();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		Drive1.tankDrive(output, output);
+		Drive2.tankDrive(output, output);
+		Drive3.tankDrive(output, output);
 	}
 }

@@ -1,13 +1,12 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.Breach;
+import org.usfirst.frc.team4778.robot.commands.SensorReset;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoGeneral;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortcullis;
-import org.usfirst.frc.team4778.robot.conversions.AccToAngle;
 import org.usfirst.frc.team4778.robot.conversions.Pitch;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
@@ -51,7 +50,7 @@ public class Robot extends IterativeRobot {
 
 	public void smartdashInit() {
 		SmartDashboard.putBoolean("Score", score);
-		RobotMap.auto.addDefault("Low Bar", new AutoLow(score));
+		RobotMap.auto.addDefault("Low Bar", new AutoLow(true));
 		RobotMap.auto.addObject("Normal Defense  | * | 0 | 0 | 0 | ", new AutoGeneral(1, score));
 		RobotMap.auto.addObject("Normal Defense  | 0 | * | 0 | 0 | ", new AutoGeneral(2, score));
 		RobotMap.auto.addObject("Normal Defense  | 0 | 0 | * | 0 | ", new AutoGeneral(3, score));
@@ -65,20 +64,16 @@ public class Robot extends IterativeRobot {
 		RobotMap.auto.addObject("Portcullis      | 0 | 0 | * | 0 | ", new AutoPortcullis(3, score));
 		RobotMap.auto.addObject("Portcullis      | 0 | 0 | 0 | * | ", new AutoPortcullis(4, score));
 		RobotMap.auto.addObject("No Autonomous", new AutoNone());
+		SmartDashboard.putData("Reset Sensors", new SensorReset());
 	}
 
 	public void smartdash() {
-		AccToAngle a = new AccToAngle(RobotMap.acc);
 		Pitch p = new Pitch(RobotMap.acc);
 		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
 		SmartDashboard.putNumber("Yaw gyro: ", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("Pitch gyro: ", RobotMap.gy2.getAngle());
 		SmartDashboard.putNumber("Heading ", RobotMap.h);
-		SmartDashboard.putNumber("Flat value ", RobotMap.f);
-		SmartDashboard.putNumber("accX: ", a.getXRotation());
-		SmartDashboard.putNumber("accY: ", a.getYRotation());
-		SmartDashboard.putNumber("accZ: ", a.getZRotation());
-		SmartDashboard.putNumber("pitch", Math.floor(p.getP()));
+		SmartDashboard.putNumber("AccPitch", Math.floor(p.getP()));
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
 		score = SmartDashboard.getBoolean("Score");
@@ -112,7 +107,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		System.out.println("autoInit");
-		//autonomousCommand = new Breach(-0.8);
+		// autonomousCommand = new Breach(-0.8);
 		autonomousCommand = (Command) RobotMap.auto.getSelected();
 		// autonomousCommand = new TurnToAngle(90);
 		if (autonomousCommand != null)

@@ -41,7 +41,7 @@ public class TurnToAngle extends Command {
 		p = SmartDashboard.getNumber("p");
 		i = SmartDashboard.getNumber("i");
 		d = SmartDashboard.getNumber("d");
-		pid.setTunings(p, i, d);
+		//pid.setTunings(p, i, d);
 		SmartDashboard.putNumber("p", p);
 		SmartDashboard.putNumber("i", i);
 		SmartDashboard.putNumber("d", d);
