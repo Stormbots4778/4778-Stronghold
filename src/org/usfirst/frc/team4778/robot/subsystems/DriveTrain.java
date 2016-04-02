@@ -58,6 +58,17 @@ public class DriveTrain extends PIDSubsystem {
 
 		System.out.println("#end-exe DriveTrain tankDrive(joy1, joy2)");
 	}
+	
+	public void tankDrive(Joystick xbox) {
+		System.out.println("#exe DriveTrain tankDrive(xbox1, xbox2)");
+		this.getPIDController().disable();
+		dir();
+		Drive1.tankDrive(xbox.getRawAxis(2), xbox.getRawAxis(5));
+		Drive2.tankDrive(xbox.getRawAxis(2), xbox.getRawAxis(5));
+		Drive3.tankDrive(xbox.getRawAxis(2), xbox.getRawAxis(5));
+
+		System.out.println("#end-exe DriveTrain tankDrive(joy1, joy2)");
+	}
 
 	public void tankDrive(double left, double right) {
 		System.out.println("#exe DriveTrain tankDrive(left, right)");
@@ -79,6 +90,17 @@ public class DriveTrain extends PIDSubsystem {
 		Drive3.arcadeDrive(stick);
 
 		System.out.println("#end-exe DriveTrain arcadeDrive(stick)");
+	}
+	
+	public void arcadeDrive(Joystick stick1, Joystick stick2) {
+		System.out.println("#exe DriveTrain arcadeDrive(stick1, stick2)");
+		this.getPIDController().disable();
+		dir();
+		Drive1.arcadeDrive(stick1, 1, stick2, 0);
+		Drive2.arcadeDrive(stick1, 1, stick2, 0);
+		Drive3.arcadeDrive(stick1, 1, stick2, 0);
+
+		System.out.println("#end-exe DriveTrain arcadeDrive(stick1,stick2)");
 	}
 
 	public void arcadeDrive(double f, double s) {

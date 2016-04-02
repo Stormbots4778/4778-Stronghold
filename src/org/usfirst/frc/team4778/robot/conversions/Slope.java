@@ -2,25 +2,26 @@ package org.usfirst.frc.team4778.robot.conversions;
 
 import java.util.LinkedList;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 public class Slope {
 	LinkedList<Double> buf;
 	LinkedList<Double> time;
 	double maxbuf = 1000;
 	double offset;
-	Pitch pitch;
+	AHRS ahrs;
 	
-	public Slope(Accelerometer a) {
+	public Slope(AHRS ahrs) {
 		buf = new LinkedList<Double>();
 		time = new LinkedList<Double>();
 		offset = Timer.getFPGATimestamp();
-		pitch = new Pitch(a);
+		this.ahrs = ahrs;
 	}
 	
 	public double getSlope() {
-		buf.add(pitch.getP());
+		buf.add((double)ahrs.getPitch());
 		time.add(Timer.getFPGATimestamp()-offset);
 		if (buf.size() > maxbuf) {
 			buf.remove();

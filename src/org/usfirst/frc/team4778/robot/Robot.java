@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4778.robot;
 
+import org.usfirst.frc.team4778.robot.commands.Breach;
 import org.usfirst.frc.team4778.robot.commands.SensorReset;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
@@ -14,7 +15,10 @@ import org.usfirst.frc.team4778.robot.subsystems.Intake;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -22,7 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	public static OI oi;
-
+	
 	public static TankDrive tankdrive;
 	public static DriveTrain drivetrain;
 	public static Shifters shift;
@@ -35,6 +39,7 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		System.out.println("init");
+				
 		//RobotMap.gy2.calibrate();
 		//RobotMap.gyro.calibrate();
 		//RobotMap.h = RobotMap.gyro.getAngle();
@@ -65,17 +70,20 @@ public class Robot extends IterativeRobot {
 		RobotMap.auto.addObject("Portcullis      | 0 | 0 | * | 0 | ", new AutoPortcullis(3, score));
 		RobotMap.auto.addObject("Portcullis      | 0 | 0 | 0 | * | ", new AutoPortcullis(4, score));
 		RobotMap.auto.addObject("No Autonomous", new AutoNone());
-		SmartDashboard.putData("Reset Sensors", new SensorReset());
+		//SmartDashboard.putData("Reset Sensors", new SensorReset());
 	}
 
 	public void smartdash() {
-		Pitch p = new Pitch(RobotMap.acc);
-		Slope s = new Slope(RobotMap.acc);
+		Slope s = new Slope(RobotMap.ahrs);
 		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
-		//SmartDashboard.putNumber("Yaw gyro: ", RobotMap.gyro.getAngle());
-		//SmartDashboard.putNumber("Pitch gyro: ", RobotMap.gy2.getAngle());
+		
+		SmartDashboard.putNumber("NavX Pitch", RobotMap.ahrs.getPitch());
+		SmartDashboard.putNumber("NavX Yaw", RobotMap.ahrs.getYaw());
+		SmartDashboard.putNumber("NavX Roll", RobotMap.ahrs.getRoll());
+				
+		SmartDashboard.putNumber("NavX Pitch Slope", Breach.s.getSlope());
+
 		SmartDashboard.putNumber("Heading ", RobotMap.h);
-		SmartDashboard.putNumber("AccPitch", Math.floor(p.getP()));
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
 		score = SmartDashboard.getBoolean("Score");
@@ -83,11 +91,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Slope", s.getSlope());
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
 	public void disabledInit() {
 		System.out.println("disabled");
 	}
@@ -97,29 +100,14 @@ public class Robot extends IterativeRobot {
 		smartdash();
 	}
 
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
-	 */
 	public void autonomousInit() {
 		System.out.println("autoInit");
-		// autonomousCommand = new Breach(-0.8);
-		autonomousCommand = (Command) RobotMap.auto.getSelected();
-		// autonomousCommand = new TurnToAngle(90);
+		//autonomousCommand = (Command) RobotMap.auto.getSelected();
+		autonomousCommand = new Breach(0.8);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
 
-	/**
-	 * This function is called periodically during autonomous
-	 */
 	public void autonomousPeriodic() {
 		System.out.println("auto");
 		Scheduler.getInstance().run();
@@ -132,18 +120,12 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 	}
 
-	/**
-	 * This function is called periodically during operator control
-	 */
 	public void teleopPeriodic() {
 		System.out.println("teleop");
 		Scheduler.getInstance().run();
 		smartdash();
 	}
 
-	/**
-	 * This function is called periodically during test mode
-	 */
 	public void testPeriodic() {
 		System.out.println("test");
 		LiveWindow.run();

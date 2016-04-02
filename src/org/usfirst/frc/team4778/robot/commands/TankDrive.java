@@ -22,7 +22,8 @@ public class TankDrive extends Command {
 	protected void execute() {
 		System.out.println("-exe TankDrive");
 		
-		Robot.drivetrain.tankDrive(OI.joyleft, OI.joyright);
+		Robot.drivetrain.tankDrive(OI.xbox);
+		Robot.drivetrain.arcadeDrive(OI.joyleft, OI.joyright);
 		
 		System.out.println("-end-exe TankDrive");
 	}

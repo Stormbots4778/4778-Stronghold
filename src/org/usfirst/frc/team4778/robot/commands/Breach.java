@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Breach extends Command {
 	private PIDController pid;
-	AccTools a = new AccTools(RobotMap.acc);
-	Slope s = new Slope(RobotMap.acc);
+	public static Slope s = new Slope(RobotMap.ahrs);
 	boolean isFinished = false;
 	double power = 0;
 
@@ -23,7 +22,6 @@ public class Breach extends Command {
 	protected void initialize() {
 		System.out.println("-init Breach");
 
-		//RobotMap.gy2.calibrate();
 		RobotMap.direction = 1;
 		pid = new PIDController(0.125, 0, 0, RobotMap.h);
 		pid.setOutputLimits(-1, 1);
@@ -37,8 +35,7 @@ public class Breach extends Command {
 		
 		boolean detectSlope = false;
 		double slope = s.getSlope();
-		//double output = pid.computePID(RobotMap.gyro.getAngle());
-		double angle = a.getZ();
+		double output = pid.computePID(RobotMap.ahrs.getYaw());
 		if(slope <= -0.2) {
 			detectSlope = true;
 		}
@@ -48,7 +45,7 @@ public class Breach extends Command {
 			}
 		}
 			
-		//Robot.drivetrain.arcadeDrive(power, output);
+		Robot.drivetrain.arcadeDrive(power, output);
 
 		System.out.println("-end-exe Breach");
 	}
