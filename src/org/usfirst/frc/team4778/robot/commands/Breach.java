@@ -22,7 +22,7 @@ public class Breach extends Command {
 	protected void initialize() {
 		System.out.println("-init Breach");
 
-		RobotMap.gy2.calibrate();
+		//RobotMap.gy2.calibrate();
 		RobotMap.direction = 1;
 		pid = new PIDController(0.125, 0, 0, RobotMap.h);
 		pid.setOutputLimits(-1, 1);
@@ -34,10 +34,10 @@ public class Breach extends Command {
 	protected void execute() {
 		System.out.println("-exe Breach");
 
-		double output = pid.computePID(RobotMap.gyro.getAngle());
+		//double output = pid.computePID(RobotMap.gyro.getAngle());
 		double angle = a.getZ();
 
-		Robot.drivetrain.arcadeDrive(power, output);
+		//Robot.drivetrain.arcadeDrive(power, output);
 
 		System.out.println("-end-exe Breach");
 	}

@@ -35,10 +35,10 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		System.out.println("init");
-		RobotMap.gy2.calibrate();
-		RobotMap.gyro.calibrate();
-		RobotMap.h = RobotMap.gyro.getAngle();
-		RobotMap.f = RobotMap.gy2.getAngle();
+		//RobotMap.gy2.calibrate();
+		//RobotMap.gyro.calibrate();
+		//RobotMap.h = RobotMap.gyro.getAngle();
+		//RobotMap.f = RobotMap.gy2.getAngle();
 		drivetrain = new DriveTrain();
 		shift = new Shifters();
 		ball = new ManipulatorLift();
@@ -72,8 +72,8 @@ public class Robot extends IterativeRobot {
 		Pitch p = new Pitch(RobotMap.acc);
 		Slope s = new Slope(RobotMap.acc);
 		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
-		SmartDashboard.putNumber("Yaw gyro: ", RobotMap.gyro.getAngle());
-		SmartDashboard.putNumber("Pitch gyro: ", RobotMap.gy2.getAngle());
+		//SmartDashboard.putNumber("Yaw gyro: ", RobotMap.gyro.getAngle());
+		//SmartDashboard.putNumber("Pitch gyro: ", RobotMap.gy2.getAngle());
 		SmartDashboard.putNumber("Heading ", RobotMap.h);
 		SmartDashboard.putNumber("AccPitch", Math.floor(p.getP()));
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());

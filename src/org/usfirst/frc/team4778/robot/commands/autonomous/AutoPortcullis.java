@@ -20,7 +20,7 @@ public class AutoPortcullis extends Auto {
 	}
 
 	public void init() {
-		RobotMap.gyro.reset();
+		//RobotMap.gyro.reset();
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
 	}

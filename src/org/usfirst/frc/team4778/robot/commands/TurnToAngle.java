@@ -33,8 +33,8 @@ public class TurnToAngle extends Command {
 	protected void execute() {
 		System.out.println("-exe TurnToAngle");
 		
-		double out = pid.computePID(RobotMap.gyro.getAngle());
-		Robot.drivetrain.tankDrive(-out, out);
+		//double out = pid.computePID(RobotMap.gyro.getAngle());
+		//Robot.drivetrain.tankDrive(-out, out);
 		if (pid.onTarget()) {
 			isFinished = true;
 		}

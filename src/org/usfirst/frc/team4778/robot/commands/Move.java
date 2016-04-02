@@ -50,9 +50,9 @@ public class Move extends Command {
 	protected void execute() {
 		System.out.println("-exe Move");
 
-		double tout = tpid.computePID(RobotMap.gyro.getAngle());
+		// double tout = tpid.computePID(RobotMap.gyro.getAngle());
 		double rout = rpid.computePID(RobotMap.leftdrive.getDistance());
-		Robot.drivetrain.arcadeDrive(-rout, tout);
+		// Robot.drivetrain.arcadeDrive(-rout, tout);
 		if (rpid.onTarget()) {
 			isFinished = true;
 		}

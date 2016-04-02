@@ -20,7 +20,7 @@ public class BreachLow extends Command {
 	protected void initialize() {
 		System.out.println("-init Breach");
 
-		RobotMap.gy2.reset();
+		//RobotMap.gy2.reset();
 		RobotMap.direction = 1;
 		pid = new PIDController(0.125, 0, 0, RobotMap.h);
 		pid.setOutputLimits(-1, 1);
@@ -32,12 +32,12 @@ public class BreachLow extends Command {
 	protected void execute() {
 		System.out.println("-exe Breach");
 
-		double output = pid.computePID(RobotMap.gyro.getAngle());
-		double angle = RobotMap.gy2.getAngle();
+		/*//double output = pid.computePID(RobotMap.gyro.getAngle());
+		//double angle = RobotMap.gy2.getAngle();
 		double anglel = RobotMap.f - 5;
 		double angleh = RobotMap.f + 5;
 
-		Robot.drivetrain.arcadeDrive(power, output);
+		//Robot.drivetrain.arcadeDrive(power, output);
 
 		if (isActive) {
 			if (angle < -20) {
@@ -47,14 +47,14 @@ public class BreachLow extends Command {
 			if (angle < anglel ^ angle > angleh) {
 				isActive = true;
 			}
-		}
+		}*/
 
 		System.out.println("-end-exe Breach");
 	}
 
 	protected void end() {
 		Robot.drivetrain.arcadeDrive(0, 0);
-		RobotMap.gy2.reset();
+		//RobotMap.gy2.reset();
 
 		System.out.println("-end Breach");
 	}

@@ -19,8 +19,8 @@ public class AutoLow extends Auto {
 	}
 
 	public void init() {
-		RobotMap.h = RobotMap.gyro.getAngle();
-		RobotMap.f = RobotMap.gy2.getAngle();
+		// RobotMap.h = RobotMap.gyro.getAngle();
+		// RobotMap.f = RobotMap.gy2.getAngle();
 		RobotMap.leftdrive.reset();
 		RobotMap.rightdrive.reset();
 	}

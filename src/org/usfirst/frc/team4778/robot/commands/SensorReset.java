@@ -16,8 +16,8 @@ public class SensorReset extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		RobotMap.gy2.calibrate();
-		RobotMap.gyro.calibrate();
+		//RobotMap.gy2.calibrate();
+		//RobotMap.gyro.calibrate();
 		RobotMap.rightdrive.reset();
 		RobotMap.leftdrive.reset();
 		RobotMap.h = 0;
