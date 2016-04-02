@@ -30,11 +30,10 @@ public class AutoLow extends Auto {
 
 		// TODO Code low-bar breach
 
-		// addSequential(new SetBallArm(false));
-		// addSequential(new BreachLow(-0.8));
+		addSequential(new SetBallArm(false));
+		addSequential(new Move(100));
 		if (score) {
 			addSequential(new SetBallArm(true));
-			addSequential(new Move(80));
 			addSequential(new TurnToAngle(59));
 			addSequential(new Move(135.5));
 			addSequential(new SetBallArm(false));

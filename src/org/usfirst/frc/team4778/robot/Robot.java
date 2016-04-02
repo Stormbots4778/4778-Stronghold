@@ -8,6 +8,7 @@ import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortcullis;
 import org.usfirst.frc.team4778.robot.conversions.Pitch;
+import org.usfirst.frc.team4778.robot.conversions.Slope;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
@@ -69,6 +70,7 @@ public class Robot extends IterativeRobot {
 
 	public void smartdash() {
 		Pitch p = new Pitch(RobotMap.acc);
+		Slope s = new Slope(RobotMap.acc);
 		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
 		SmartDashboard.putNumber("Yaw gyro: ", RobotMap.gyro.getAngle());
 		SmartDashboard.putNumber("Pitch gyro: ", RobotMap.gy2.getAngle());
@@ -78,6 +80,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
 		score = SmartDashboard.getBoolean("Score");
 		SmartDashboard.putBoolean("Score", score);
+		SmartDashboard.putNumber("Slope", s.getSlope());
 	}
 
 	/**
