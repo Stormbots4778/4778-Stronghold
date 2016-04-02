@@ -3,6 +3,7 @@ package org.usfirst.frc.team4778.robot.commands;
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.conversions.AccTools;
+import org.usfirst.frc.team4778.robot.conversions.Slope;
 import org.usfirst.frc.team4778.robot.pid.PIDController;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Breach extends Command {
 	private PIDController pid;
 	AccTools a = new AccTools(RobotMap.acc);
+	Slope s = new Slope(RobotMap.acc);
 	boolean isFinished = false;
-	boolean isActive = false;
 	double power = 0;
 
 	public Breach(double power) {
@@ -33,10 +34,20 @@ public class Breach extends Command {
 
 	protected void execute() {
 		System.out.println("-exe Breach");
-
+		
+		boolean detectSlope = false;
+		double slope = s.getSlope();
 		//double output = pid.computePID(RobotMap.gyro.getAngle());
 		double angle = a.getZ();
-
+		if(slope <= -0.2) {
+			detectSlope = true;
+		}
+		if(detectSlope == true) {
+			if(slope >= 0.1) {
+				isFinished = true;
+			}
+		}
+			
 		//Robot.drivetrain.arcadeDrive(power, output);
 
 		System.out.println("-end-exe Breach");
