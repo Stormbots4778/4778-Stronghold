@@ -33,18 +33,18 @@ public class TurnToAngle extends Command {
 	protected void execute() {
 		System.out.println("-exe TurnToAngle");
 		
-		//double out = pid.computePID(RobotMap.gyro.getAngle());
-		//Robot.drivetrain.tankDrive(-out, out);
+		double out = pid.computePID(RobotMap.ahrs.getYaw());
+		Robot.drivetrain.tankDrive(-out, out);
 		if (pid.onTarget()) {
 			isFinished = true;
 		}
-		p = SmartDashboard.getNumber("p");
-		i = SmartDashboard.getNumber("i");
-		d = SmartDashboard.getNumber("d");
-		//pid.setTunings(p, i, d);
-		SmartDashboard.putNumber("p", p);
-		SmartDashboard.putNumber("i", i);
-		SmartDashboard.putNumber("d", d);
+//		p = SmartDashboard.getNumber("p");
+//		i = SmartDashboard.getNumber("i");
+//		d = SmartDashboard.getNumber("d");
+//		//pid.setTunings(p, i, d);
+//		SmartDashboard.putNumber("p", p);
+//		SmartDashboard.putNumber("i", i);
+//		SmartDashboard.putNumber("d", d);
 
 		System.out.println("-end-exe TurnToAngle");
 	}

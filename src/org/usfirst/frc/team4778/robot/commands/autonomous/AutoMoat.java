@@ -3,9 +3,9 @@ package org.usfirst.frc.team4778.robot.commands.autonomous;
 import org.usfirst.frc.team4778.robot.commands.Breach;
 import org.usfirst.frc.team4778.robot.commands.TurnToAngle;
 
-public class AutoGeneral extends Auto {
+public class AutoMoat extends Auto {
 
-	public AutoGeneral(int defenseId, boolean shouldScore) {
+	public AutoMoat(int defenseId, boolean shouldScore) {
 		super(defenseId, shouldScore);
 	}
 
@@ -16,9 +16,9 @@ public class AutoGeneral extends Auto {
 	public void runBreach() {
 		System.out.println("-start general breach");
 
-		addSequential(new Breach(-0.99, 0, false));
+		addSequential(new Breach(-1, 0, true));
 		addSequential(new TurnToAngle(179));
-		addSequential(new Breach(-0.99, 0, false));
+		addSequential(new Breach(-1, 0, true));
 		addSequential(new TurnToAngle(179));
 
 		System.out.println("-end general breach");

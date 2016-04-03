@@ -30,9 +30,9 @@ public class Move extends Command {
 		RobotMap.rightdrive.setDistancePerPulse(0.125488281);
 		RobotMap.rightdrive.reset();
 		RobotMap.leftdrive.reset();
-		SmartDashboard.putNumber("p", p);
-		SmartDashboard.putNumber("i", i);
-		SmartDashboard.putNumber("d", d);
+//		SmartDashboard.putNumber("p", p);
+//		SmartDashboard.putNumber("i", i);
+//		SmartDashboard.putNumber("d", d);
 
 		RobotMap.direction = 1;
 
@@ -50,20 +50,20 @@ public class Move extends Command {
 	protected void execute() {
 		System.out.println("-exe Move");
 
-		// double tout = tpid.computePID(RobotMap.gyro.getAngle());
+		double tout = tpid.computePID(RobotMap.ahrs.getYaw());
 		double rout = rpid.computePID(RobotMap.leftdrive.getDistance());
-		// Robot.drivetrain.arcadeDrive(-rout, tout);
+		Robot.drivetrain.arcadeDrive(-rout, tout);
 		if (rpid.onTarget()) {
 			isFinished = true;
 		}
 
-		p = SmartDashboard.getNumber("p");
-		i = SmartDashboard.getNumber("i");
-		d = SmartDashboard.getNumber("d");
-		// rpid.setTunings(p, i, d);
-		SmartDashboard.putNumber("p", p);
-		SmartDashboard.putNumber("i", i);
-		SmartDashboard.putNumber("d", d);
+//		p = SmartDashboard.getNumber("p");
+//		i = SmartDashboard.getNumber("i");
+//		d = SmartDashboard.getNumber("d");
+//		// rpid.setTunings(p, i, d);
+//		SmartDashboard.putNumber("p", p);
+//		SmartDashboard.putNumber("i", i);
+//		SmartDashboard.putNumber("d", d);
 
 		System.out.println("-end-exe Move");
 	}

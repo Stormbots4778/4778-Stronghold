@@ -2,47 +2,76 @@ package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
-import org.usfirst.frc.team4778.robot.conversions.AccTools;
-import org.usfirst.frc.team4778.robot.conversions.Slope;
 import org.usfirst.frc.team4778.robot.pid.PIDController;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Breach extends Command {
 	private PIDController pid;
-	public static Slope s = new Slope(RobotMap.ahrs);
+	//public static Slope s = new Slope(RobotMap.ahrs);
 	boolean isFinished = false;
 	double power = 0;
-
-	public Breach(double power) {
+	private boolean wentUp = false;
+	private boolean wentUpAgain = false;
+	private double h = 0;
+	private boolean isMoat = false;
+	
+	public Breach(double power, double h, boolean isMoat) {
 		requires(Robot.drivetrain);
 		this.power = power;
+		this.h = h;
+		this.isMoat = isMoat;
 	}
 
 	protected void initialize() {
 		System.out.println("-init Breach");
 
 		RobotMap.direction = 1;
-		pid = new PIDController(0.125, 0, 0, RobotMap.h);
+		pid = new PIDController(0.125, 0, 0, h);
 		pid.setOutputLimits(-1, 1);
-		pid.setTolerence(1);
+		pid.setTolerence(3);
 
+		RobotMap.ahrs.reset();
+		
 		System.out.println("-end-init Breach");
 	}
 
 	protected void execute() {
 		System.out.println("-exe Breach");
 		
-		boolean detectSlope = false;
-		double slope = s.getSlope();
+		//boolean detectSlope = false;
+		//double slope = s.getSlope();
 		double output = pid.computePID(RobotMap.ahrs.getYaw());
-		if(slope <= -0.2) {
-			detectSlope = true;
+		//if(slope <= -0.2) {
+		//	detectSlope = true;
+		//}
+		//if(detectSlope == true) {
+		//	if(slope >= 0.1) {
+		//		isFinished = true;
+		//	}
+		//}
+		
+		double pitch = RobotMap.ahrs.getRoll();
+
+		if(pitch <= -5) {
+			if(wentUp) {
+				wentUpAgain = true;
+			}
+			wentUp = true;
 		}
-		if(detectSlope == true) {
-			if(slope >= 0.1) {
+		
+		if(isMoat) {
+			if(pitch > -1 && wentUpAgain) {
 				isFinished = true;
 			}
+		} else {
+			if(pitch > -1 && wentUp) {
+				isFinished = true;
+			}
+		}
+		
+		if(wentUpAgain && pitch > -1) {
+			isFinished = true;
 		}
 			
 		Robot.drivetrain.arcadeDrive(power, output);
@@ -52,6 +81,7 @@ public class Breach extends Command {
 
 	protected void end() {
 		Robot.drivetrain.arcadeDrive(0, 0);
+		Robot.drivetrain.stop();
 		System.out.println("-end Breach");
 	}
 

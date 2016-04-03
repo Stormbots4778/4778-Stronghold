@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4778.robot.commands;
 
-import org.usfirst.frc.team4778.robot.OI;
 import org.usfirst.frc.team4778.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,8 +21,8 @@ public class TankDrive extends Command {
 	protected void execute() {
 		System.out.println("-exe TankDrive");
 		
-		Robot.drivetrain.tankDrive(OI.xbox);
-		Robot.drivetrain.arcadeDrive(OI.joyleft, OI.joyright);
+		//Robot.drivetrain.arcadeDrive(OI.joyleft, OI.joyright);
+		Robot.drivetrain.tankDrive(Robot.oi.xbox.getRawAxis(1), Robot.oi.xbox.getRawAxis(5));
 		
 		System.out.println("-end-exe TankDrive");
 	}

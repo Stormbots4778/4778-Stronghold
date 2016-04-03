@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4778.robot.subsystems;
 
+import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 
@@ -34,8 +35,8 @@ public class DriveTrain extends PIDSubsystem {
 	private void dir() {
 		System.out.println("#exe DriveTrain dir");
 
-		left1.setInverted(true);
-		right1.setInverted(true);
+		left1.setInverted(true); // TODO Change these two later - false
+		right1.setInverted(true); // - false
 		left2.setInverted(true);
 		right2.setInverted(true);
 		left3.setInverted(true);
@@ -55,17 +56,6 @@ public class DriveTrain extends PIDSubsystem {
 		Drive1.tankDrive(joy1, joy2);
 		Drive2.tankDrive(joy1, joy2);
 		Drive3.tankDrive(joy1, joy2);
-
-		System.out.println("#end-exe DriveTrain tankDrive(joy1, joy2)");
-	}
-	
-	public void tankDrive(Joystick xbox) {
-		System.out.println("#exe DriveTrain tankDrive(xbox1, xbox2)");
-		this.getPIDController().disable();
-		dir();
-		Drive1.tankDrive(xbox.getRawAxis(2), xbox.getRawAxis(5));
-		Drive2.tankDrive(xbox.getRawAxis(2), xbox.getRawAxis(5));
-		Drive3.tankDrive(xbox.getRawAxis(2), xbox.getRawAxis(5));
 
 		System.out.println("#end-exe DriveTrain tankDrive(joy1, joy2)");
 	}
@@ -116,9 +106,13 @@ public class DriveTrain extends PIDSubsystem {
 
 	public void stop() {
 		System.out.println("#exe DriveTrain stop()");
-		this.getPIDController().setOutputRange(-1, 1);
-		this.getPIDController().setSetpoint(RobotMap.leftdrive.getDistance());
-		this.getPIDController().enable();
+		
+//		this.getPIDController().setOutputRange(-1, 1);
+//		this.getPIDController().setSetpoint(RobotMap.leftdrive.getDistance());
+//		this.getPIDController().enable();
+		
+		Robot.drivetrain.arcadeDrive(0.8, RobotMap.leftdrive.getRate());
+		
 		System.out.println("#end-exe DriveTrain stop()");
 	}
 

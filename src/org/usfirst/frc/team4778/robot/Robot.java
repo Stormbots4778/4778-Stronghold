@@ -1,24 +1,19 @@
 package org.usfirst.frc.team4778.robot;
 
-import org.usfirst.frc.team4778.robot.commands.Breach;
-import org.usfirst.frc.team4778.robot.commands.SensorReset;
 import org.usfirst.frc.team4778.robot.commands.TankDrive;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoGeneral;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoMoat;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortcullis;
-import org.usfirst.frc.team4778.robot.conversions.Pitch;
 import org.usfirst.frc.team4778.robot.conversions.Slope;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
-import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -78,10 +73,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto Chooser", RobotMap.auto);
 		
 		SmartDashboard.putNumber("NavX Pitch", RobotMap.ahrs.getPitch());
-		SmartDashboard.putNumber("NavX Yaw", RobotMap.ahrs.getYaw());
+		SmartDashboard.putNumber("NavX Yaw (Is real now)", RobotMap.ahrs.getYaw());
 		SmartDashboard.putNumber("NavX Roll", RobotMap.ahrs.getRoll());
 				
-		SmartDashboard.putNumber("NavX Pitch Slope", Breach.s.getSlope());
+		SmartDashboard.putNumber("Xbox Values", oi.xbox.getRawAxis(1));
+		
+		//SmartDashboard.putNumber("NavX Pitch Slope", Breach.s.getSlope());
 
 		SmartDashboard.putNumber("Heading ", RobotMap.h);
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
@@ -103,7 +100,9 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		System.out.println("autoInit");
 		//autonomousCommand = (Command) RobotMap.auto.getSelected();
-		autonomousCommand = new Breach(0.8);
+		//autonomousCommand = new AutoGeneral(2, true);
+		//autonomousCommand = new AutoGeneral(2, false);
+		autonomousCommand = new AutoMoat(2, false);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
