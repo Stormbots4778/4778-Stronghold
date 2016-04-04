@@ -5,8 +5,8 @@ public class AutoCheval extends Auto {
 	public int defenseId;
 	public boolean shouldScore;
 
-	public AutoCheval(int defenseId, boolean shouldScore) {
-		super(defenseId, shouldScore);
+	public AutoCheval(int defenseId, boolean shouldScore, boolean shouldCrossAgain) {
+		super(defenseId, shouldScore, shouldCrossAgain);
 		this.defenseId = defenseId;
 		this.shouldScore = shouldScore;
 	}
@@ -15,7 +15,7 @@ public class AutoCheval extends Auto {
 
 	}
 
-	public void runBreach() {
+	public void runBreach(boolean shouldCrossAgain) {
 		System.out.println("-start cheval breach");
 
 		//TODO code here

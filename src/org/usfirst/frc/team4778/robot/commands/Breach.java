@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Breach extends Command {
 	private PIDController pid;
-	//public static Slope s = new Slope(RobotMap.ahrs);
 	boolean isFinished = false;
 	double power = 0;
 	private boolean wentUp = false;
@@ -38,18 +37,8 @@ public class Breach extends Command {
 
 	protected void execute() {
 		System.out.println("-exe Breach");
-		
-		//boolean detectSlope = false;
-		//double slope = s.getSlope();
+
 		double output = pid.computePID(RobotMap.ahrs.getYaw());
-		//if(slope <= -0.2) {
-		//	detectSlope = true;
-		//}
-		//if(detectSlope == true) {
-		//	if(slope >= 0.1) {
-		//		isFinished = true;
-		//	}
-		//}
 		
 		double pitch = RobotMap.ahrs.getRoll();
 
@@ -81,7 +70,6 @@ public class Breach extends Command {
 
 	protected void end() {
 		Robot.drivetrain.arcadeDrive(0, 0);
-		Robot.drivetrain.stop();
 		System.out.println("-end Breach");
 	}
 
