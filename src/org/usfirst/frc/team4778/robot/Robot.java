@@ -53,8 +53,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.auto.addDefault("Low Bar", 					new AutoLow			(false, crossTwice));
 		RobotMap.auto.addDefault("Ramparts", 					new AutoRamparts	(1, 	false, crossTwice));
 		RobotMap.auto.addDefault("Rough Terrain | Rock Wall", 	new AutoGeneral		(1, 	false, crossTwice));
-		RobotMap.auto.addDefault("Portcullis", 					new AutoPortcullis	(1, 	false, crossTwice));
-		RobotMap.auto.addDefault("Portcullis", 					new AutoPortcullis	(1, 	false, crossTwice));
+	//	RobotMap.auto.addDefault("Portcullis", 					new AutoPortcullis	(1, 	false, crossTwice));
 		RobotMap.auto.addDefault("Cheval", 						new AutoCheval		(1, 	false, crossTwice));
 		RobotMap.auto.addObject("No Autonomous", 				new AutoNone		());
 		

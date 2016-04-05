@@ -9,16 +9,12 @@ public class AutoGeneral extends Auto {
 		super(defenseId, shouldScore, shouldCrossAgain);
 	}
 
-	public void init() {
-		
-	}
-
 	public void runBreach(boolean shouldCrossAgain) {
 		System.out.println("-start general breach");
 
 		addSequential(new Breach(-0.99, 0, false));
-		addSequential(new TurnToAngle(179));
 		if(shouldCrossAgain) {
+			addSequential(new TurnToAngle(179));
 			addSequential(new Breach(-0.99, 0, false));
 			addSequential(new TurnToAngle(179));
 		}

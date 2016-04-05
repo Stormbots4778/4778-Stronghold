@@ -18,8 +18,8 @@ public class AutoRamparts extends Auto {
 		System.out.println("-start ramparts breach");
 
 		addSequential(new Breach(-1, 0, true));
-		addSequential(new TurnToAngle(179));
 		if(shouldCrossAgain) {
+			addSequential(new TurnToAngle(179));
 			addSequential(new Breach(-1, 0, true));
 			addSequential(new Move(-1));
 			addSequential(new TurnToAngle(179));

@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4778.robot.commands.autonomous;
 
+import org.usfirst.frc.team4778.robot.commands.BreachCheval;
+
 public class AutoCheval extends Auto {
 
 	public int defenseId;
@@ -11,14 +13,10 @@ public class AutoCheval extends Auto {
 		this.shouldScore = shouldScore;
 	}
 
-	public void init() {
-
-	}
-
 	public void runBreach(boolean shouldCrossAgain) {
 		System.out.println("-start cheval breach");
 
-		//TODO code here
+		addSequential(new BreachCheval(-0.8));
 		
 		System.out.println("-end cheval breach");
 	}

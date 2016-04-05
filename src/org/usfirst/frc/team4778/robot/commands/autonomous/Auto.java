@@ -19,7 +19,7 @@ public class Auto extends CommandGroup {
     	}
     }
     
-    public void init() {
+    public void init() { // Initialization code goes here
     	System.out.println("-init Auto");
     	
 		RobotMap.ahrs.reset();
@@ -32,9 +32,13 @@ public class Auto extends CommandGroup {
     
     public void runBreach(boolean shouldCrossAgain) {
     	
+    	// Defense crossing code goes here
+    
     }
     
     public void runScore(int defenseId) {
+    	// Scoring code goes here
+    	
 		switch (defenseId) {
 		case 0:
 			addSequential(new SetBallArm(true));
