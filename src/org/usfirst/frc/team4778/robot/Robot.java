@@ -6,11 +6,10 @@ import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoGeneral;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
-import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortcullis;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoRamparts;
-import org.usfirst.frc.team4778.robot.conversions.Slope;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
+import org.usfirst.frc.team4778.robot.subsystems.LiftMechanism;
 import org.usfirst.frc.team4778.robot.subsystems.ManipulatorLift;
 import org.usfirst.frc.team4778.robot.subsystems.Shifters;
 
@@ -27,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Shifters shift;
 
+	public static LiftMechanism lift;
 	public static ManipulatorLift ball;
 	public static Intake in;
 	public static boolean crossTwice;
@@ -37,6 +37,7 @@ public class Robot extends IterativeRobot {
 		System.out.println("init");
 				
 		drivetrain = new DriveTrain();
+		lift = new LiftMechanism();
 		shift = new Shifters();
 		ball = new ManipulatorLift();
 		in = new Intake();
