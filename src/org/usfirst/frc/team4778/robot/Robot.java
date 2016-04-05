@@ -6,6 +6,7 @@ import org.usfirst.frc.team4778.robot.commands.autonomous.AutoCheval;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoGeneral;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoLow;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoNone;
+import org.usfirst.frc.team4778.robot.commands.autonomous.AutoPortcullis;
 import org.usfirst.frc.team4778.robot.commands.autonomous.AutoRamparts;
 import org.usfirst.frc.team4778.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4778.robot.subsystems.Intake;
@@ -54,7 +55,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.auto.addDefault("Low Bar", 					new AutoLow			(false, crossTwice));
 		RobotMap.auto.addDefault("Ramparts", 					new AutoRamparts	(1, 	false, crossTwice));
 		RobotMap.auto.addDefault("Rough Terrain | Rock Wall", 	new AutoGeneral		(1, 	false, crossTwice));
-	//	RobotMap.auto.addDefault("Portcullis", 					new AutoPortcullis	(1, 	false, crossTwice));
+		RobotMap.auto.addDefault("Portcullis", 					new AutoPortcullis	(1, 	false, crossTwice));
 		RobotMap.auto.addDefault("Cheval", 						new AutoCheval		(1, 	false, crossTwice));
 		RobotMap.auto.addObject("No Autonomous", 				new AutoNone		());
 		
