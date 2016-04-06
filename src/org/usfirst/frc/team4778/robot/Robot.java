@@ -53,10 +53,10 @@ public class Robot extends IterativeRobot {
 		
 		// 1 is the temporary defenseId
 		RobotMap.auto.addDefault("Low Bar", 					new AutoLow			(false, crossTwice));
-		RobotMap.auto.addDefault("Ramparts", 					new AutoRamparts	(1, 	false, crossTwice));
+		RobotMap.auto.addDefault("Ramparts | Moat", 			new AutoRamparts	(1, 	false, crossTwice));
 		RobotMap.auto.addDefault("Rough Terrain | Rock Wall", 	new AutoGeneral		(1, 	false, crossTwice));
-		RobotMap.auto.addDefault("Portcullis", 					new AutoPortcullis	(1, 	false, crossTwice));
-		RobotMap.auto.addDefault("Cheval", 						new AutoCheval		(1, 	false, crossTwice));
+		//RobotMap.auto.addDefault("Portcullis", 				new AutoPortcullis	(1, 	false, crossTwice));
+		RobotMap.auto.addDefault("Cheval De Frise", 			new AutoCheval		(1, 	false, crossTwice));
 		RobotMap.auto.addObject("No Autonomous", 				new AutoNone		());
 		
 		SmartDashboard.putBoolean("Cross Twice", crossTwice);

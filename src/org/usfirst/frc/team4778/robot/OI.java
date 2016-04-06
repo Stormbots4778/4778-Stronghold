@@ -21,8 +21,8 @@ public class OI {
 	public static Button down = new JoystickButton(nip, 6);
 	public static Button manip = new JoystickButton(nip, 1);
 	
-	public static Button extend = new JoystickButton(nip, 4); //TODO figure out port
-	public static Button retract = new JoystickButton(nip, 5); //TODO figure out port
+	public static Button extend = new JoystickButton(nip, 5); //TODO figure out port
+	public static Button retract = new JoystickButton(nip, 4); //TODO figure out port
 	
 	public static Button shift = new JoystickButton(xbox, 5);
 	//public static Button light = new JoystickButton(xbox, 4);

@@ -2,6 +2,7 @@ package org.usfirst.frc.team4778.robot.commands.autonomous;
 
 import org.usfirst.frc.team4778.robot.commands.BallRoller;
 import org.usfirst.frc.team4778.robot.commands.EnterDefense;
+import org.usfirst.frc.team4778.robot.commands.SetBallArm;
 
 public class AutoPortcullis extends Auto {
 	
@@ -12,6 +13,7 @@ public class AutoPortcullis extends Auto {
 	public void runBreach(boolean shouldCrossAgain) {
 		System.out.println("-start portcullis auto");
 		
+		addSequential(new SetBallArm(true));
 		addSequential(new BallRoller(-1));
 		addSequential(new EnterDefense(-0.8));
 		
