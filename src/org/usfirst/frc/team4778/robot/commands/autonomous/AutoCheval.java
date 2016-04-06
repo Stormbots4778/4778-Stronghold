@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4778.robot.commands.autonomous;
 
+import org.usfirst.frc.team4778.robot.commands.Delay;
 import org.usfirst.frc.team4778.robot.commands.EnterDefense;
 import org.usfirst.frc.team4778.robot.commands.ExitDefense;
 import org.usfirst.frc.team4778.robot.commands.Move;
@@ -19,9 +20,11 @@ public class AutoCheval extends Auto {
 	public void runBreach(boolean shouldCrossAgain) {
 		System.out.println("-start cheval breach");
 
-		addSequential(new EnterDefense(-0.8));
+		addSequential(new SetBallArm(true));
+		addSequential(new EnterDefense(-0.6, 20)); //TODO Find correct rate
 		addSequential(new SetBallArm(false));
-		addSequential(new ExitDefense(-0.8));
+		addSequential(new Delay(500));
+		addSequential(new ExitDefense(-0.95));
 		addSequential(new SetBallArm(true));
 		addSequential(new Move(-1));
 		

@@ -32,7 +32,7 @@ public class ExitDefense extends Command {
 		System.out.println("-exe ExitDefense");
 		
 		double pitch = RobotMap.ahrs.getRoll();
-		if(pitch > -1) {
+		if(pitch < 0) {
 			isFinished = true;
 		}
 		
