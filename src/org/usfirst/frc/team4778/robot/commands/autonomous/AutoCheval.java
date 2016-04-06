@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4778.robot.commands.autonomous;
 
-import org.usfirst.frc.team4778.robot.commands.EnterCheval;
-import org.usfirst.frc.team4778.robot.commands.ExitCheval;
+import org.usfirst.frc.team4778.robot.commands.EnterDefense;
+import org.usfirst.frc.team4778.robot.commands.ExitDefense;
 import org.usfirst.frc.team4778.robot.commands.Move;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
 
@@ -19,9 +19,9 @@ public class AutoCheval extends Auto {
 	public void runBreach(boolean shouldCrossAgain) {
 		System.out.println("-start cheval breach");
 
-		addSequential(new EnterCheval(-0.8));
+		addSequential(new EnterDefense(-0.8));
 		addSequential(new SetBallArm(false));
-		addSequential(new ExitCheval(-0.8));
+		addSequential(new ExitDefense(-0.8));
 		addSequential(new SetBallArm(true));
 		addSequential(new Move(-1));
 		
