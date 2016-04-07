@@ -11,13 +11,13 @@ public class AutoCheval extends Auto {
 	public int defenseId;
 	public boolean shouldScore;
 
-	public AutoCheval(int defenseId, boolean shouldScore, boolean shouldCrossAgain) {
-		super(defenseId, shouldScore, shouldCrossAgain);
+	public AutoCheval(int defenseId, boolean shouldScore) {
+		super(defenseId, shouldScore);
 		this.defenseId = defenseId;
 		this.shouldScore = shouldScore;
 	}
 
-	public void runBreach(boolean shouldCrossAgain) {
+	public void runBreach() {
 		System.out.println("-start cheval breach");
 
 		addSequential(new SetBallArm(true));

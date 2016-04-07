@@ -5,15 +5,11 @@ import org.usfirst.frc.team4778.robot.commands.SetBallArm;
 
 public class AutoLow extends Auto {
 
-	public AutoLow(boolean shouldScore, boolean shouldCrossAgain) {
-		super(0, shouldScore, shouldCrossAgain);
+	public AutoLow(boolean shouldScore) {
+		super(0, shouldScore);
 	}
-
-	public void init() {
-
-	}
-
-	public void runBreach(boolean shouldCrossAgain) {
+	
+	public void runBreach() {
 		System.out.println("-start low-bar breach");
 
 		addSequential(new SetBallArm(false));
