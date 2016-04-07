@@ -40,14 +40,11 @@ public class OI {
 	public OI() {
 		System.out.println("-init OI");	
 		
-<<<<<<< HEAD
 		shift.whileActive(new SetShifting(true));
 		shift.whenInactive(new SetShifting(false));
 		light.whenPressed(new Illuminate(!RobotMap.lightIsOn));
-=======
 		shift.whileActive(new SetShifting(true)); // Shifts to high gear when held
 		shift.whenInactive(new SetShifting(false)); // Reverts to low gear when inactive
->>>>>>> b23565843a991b81fb6b568dad46778d5320b41b
 		
 		release.whileHeld(new BallRoller(-1)); // Releases the trapped ball
 		releasex.whileHeld(new BallRoller(-1)); // Releases the trapped ball
@@ -68,8 +65,4 @@ public class OI {
 		
 		System.out.println("-end-init OI");
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b23565843a991b81fb6b568dad46778d5320b41b
