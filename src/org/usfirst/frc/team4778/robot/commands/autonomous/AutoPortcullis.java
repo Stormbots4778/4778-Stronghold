@@ -6,16 +6,16 @@ import org.usfirst.frc.team4778.robot.commands.SetBallArm;
 
 public class AutoPortcullis extends Auto {
 	
-	public AutoPortcullis(int defenseId, boolean shouldScore, boolean shouldCrossAgain) {
-		super(defenseId, shouldScore, shouldCrossAgain);
+	public AutoPortcullis(int defenseId, boolean shouldScore) {
+		super(defenseId, shouldScore);
 	}
 
-	public void runBreach(boolean shouldCrossAgain) {
+	public void runBreach() {
 		System.out.println("-start portcullis auto");
 		
 		addSequential(new SetBallArm(true));
 		addSequential(new BallRoller(-1));
-		addSequential(new EnterDefense(-0.8));
+		//addSequential(new EnterDefense(-0.8));
 		
 		System.out.println("-end portcullis auto");
 	}

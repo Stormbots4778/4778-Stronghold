@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Auto extends CommandGroup {
     
-    public  Auto(int defenseId, boolean shouldScore, boolean shouldCrossAgain) {
+    public  Auto(int defenseId, boolean shouldScore) {
     	init();
-    	runBreach(shouldCrossAgain);
+    	runBreach();
     	if(shouldScore) {
     		runScore(defenseId);
     	}
@@ -30,7 +30,7 @@ public class Auto extends CommandGroup {
     	System.out.println("-end-init Auto");
     }
     
-    public void runBreach(boolean shouldCrossAgain) {
+    public void runBreach() {
     	
     	// Defense crossing code goes here
     

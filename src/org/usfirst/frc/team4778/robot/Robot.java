@@ -52,14 +52,14 @@ public class Robot extends IterativeRobot {
 		System.out.println("+robot init-smartdashboard");
 		
 		// 1 is the temporary defenseId
-		RobotMap.auto.addDefault("Low Bar", 					new AutoLow			(false, crossTwice));
-		RobotMap.auto.addDefault("Ramparts | Moat", 			new AutoRamparts	(1, 	false, crossTwice));
-		RobotMap.auto.addDefault("Rough Terrain | Rock Wall", 	new AutoGeneral		(1, 	false, crossTwice));
-		//RobotMap.auto.addDefault("Portcullis", 				new AutoPortcullis	(1, 	false, crossTwice));
-		RobotMap.auto.addDefault("Cheval De Frise", 			new AutoCheval		(1, 	false, crossTwice));
+		RobotMap.auto.addDefault("Low Bar", 					new AutoLow			(false));
+		RobotMap.auto.addDefault("Ramparts | Moat", 			new AutoRamparts	(1, 	false));
+		RobotMap.auto.addDefault("Rough Terrain | Rock Wall", 	new AutoGeneral		(1, 	false));
+		//RobotMap.auto.addDefault("Portcullis", 				new AutoPortcullis	(1, 	false));
+		RobotMap.auto.addDefault("Cheval De Frise", 			new AutoCheval		(1, 	false));
 		RobotMap.auto.addObject("No Autonomous", 				new AutoNone		());
 		
-		SmartDashboard.putBoolean("Cross Twice", crossTwice);
+		//SmartDashboard.putBoolean("Cross Twice", crossTwice);
 		SmartDashboard.putData("Reset Sensors", new SensorReset());
 	}
 
@@ -75,9 +75,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Heading ", RobotMap.h);
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
-		
-		crossTwice = SmartDashboard.getBoolean("Cross Twice");
-		SmartDashboard.putBoolean("Cross Twice", crossTwice);
 	}
 
 	public void disabledInit() {
