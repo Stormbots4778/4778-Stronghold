@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SetShifting extends Command {
 
 	boolean isFinished = false;
-	boolean state = true;
-
-	public SetShifting(boolean state) {
+	boolean on = false;
+	
+	public SetShifting(boolean on){
 		requires(Robot.shift);
-		this.state = state;
+		this.on = on;
 	}
 
 	protected void initialize() {
@@ -25,13 +25,14 @@ public class SetShifting extends Command {
 	protected void execute() {
 		System.out.println("-exe SetShifting");
 		
-		Robot.shift.shift(state);
+		Robot.shift.shift(on);
 		isFinished = true;
 		
 		System.out.println("-end-exe SetShifting");
 	}
 	
 	protected void end() {
+		
 		System.out.println("-end SetShifting");
 	}
 

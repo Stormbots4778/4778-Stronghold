@@ -23,11 +23,11 @@ public class ShiftToggle extends Command {
 	protected void execute() {
 		System.out.println("-exe ShiftToggle");
 		
-		if (Robot.shift.getstate()) {
-			Robot.shift.shift(false);
-		} else {
-			Robot.shift.shift(true);
-		}
+//		if (Robot.shift.getstate()) {
+//			Robot.shift.shift(false);
+//		} else {
+//			Robot.shift.shift(true);
+//		}
 		isFinished = true;
 		
 		System.out.println("-end-exe ShiftToggle");

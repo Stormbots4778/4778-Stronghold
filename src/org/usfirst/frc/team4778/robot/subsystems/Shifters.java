@@ -5,26 +5,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shifters extends Subsystem {
 
-	private static Solenoid in = new Solenoid(0);
-	private static Solenoid out = new Solenoid(1);
-
-	private boolean state;
-
+	private static Solenoid sol = new Solenoid(0);
+	
 	public void initDefaultCommand() {
 		
 	}
 
-	public void shift(boolean state) {
+	public void shift(boolean on) {
 		System.out.println("#exe Shifters shift(state)");
 		
-		in.set(state);
-		out.set(!state);
-		this.state = state;
+		sol.set(on);
 		
 		System.out.println("#end-exe Shifters shift(state)");
-	}
-
-	public boolean getstate() {
-		return state;
 	}
 }

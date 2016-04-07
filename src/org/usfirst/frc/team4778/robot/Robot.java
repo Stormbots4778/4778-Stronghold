@@ -30,7 +30,6 @@ public class Robot extends IterativeRobot {
 	public static LiftMechanism lift;
 	public static ManipulatorLift ball;
 	public static Intake in;
-	public static boolean crossTwice;
 
 	Command autonomousCommand;
 
