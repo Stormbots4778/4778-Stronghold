@@ -3,7 +3,6 @@ package org.usfirst.frc.team4778.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Relay;
 
-
 public class Lights extends Subsystem {
 
 	private final Relay Headlights;

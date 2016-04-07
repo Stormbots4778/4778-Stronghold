@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.BallRoller;
+import org.usfirst.frc.team4778.robot.commands.Illuminate;
 import org.usfirst.frc.team4778.robot.commands.Lift;
 import org.usfirst.frc.team4778.robot.commands.OISwitch;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
@@ -25,13 +26,14 @@ public class OI {
 	public static Button retract = new JoystickButton(nip, 4); //TODO figure out port
 	
 	public static Button shift = new JoystickButton(xbox, 5);
-	//public static Button light = new JoystickButton(xbox, 4);
+	public static Button light = new JoystickButton(xbox, 4);
 	
 	public OI() {
 		System.out.println("-init OI");	
 		
 		shift.whileActive(new SetShifting(true));
 		shift.whenInactive(new SetShifting(false));
+		light.whenPressed(new Illuminate(!RobotMap.lightIsOn));
 		
 		release.whileHeld(new BallRoller(-1)); // Releases the trapped ball
 		trap.whileHeld(new BallRoller(1)); // Traps the ball
@@ -46,4 +48,3 @@ public class OI {
 		System.out.println("-end-init OI");
 	}
 }
-
