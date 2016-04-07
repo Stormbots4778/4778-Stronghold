@@ -29,4 +29,6 @@ public class RobotMap {
 	public static double f = 0;
 	public static int def = 0;
 	public static int pos = 0;
+	
+	public static boolean lightIsOn = false;
 }

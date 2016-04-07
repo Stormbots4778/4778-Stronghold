@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.BallRoller;
+import org.usfirst.frc.team4778.robot.commands.Illuminate;
 import org.usfirst.frc.team4778.robot.commands.Lift;
 import org.usfirst.frc.team4778.robot.commands.OISwitch;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
@@ -34,10 +35,16 @@ public class OI {
 	public static Button retractx = new JoystickButton(xbox2, 1); // A
 	
 	public static Button shift = new JoystickButton(xbox, 5);
-	//public static Button light = new JoystickButton(xbox, 4);
+	public static Button light = new JoystickButton(xbox, 4);
+	public static Button manualLight = new JoystickButton(xbox, 1); //A
 	
 	public OI() {
 		System.out.println("-init OI");	
+		
+		shift.whileActive(new SetShifting(true));
+		shift.whenInactive(new SetShifting(false));
+		light.whenPressed(new Illuminate(!RobotMap.lightIsOn, false));
+		manualLight.whenPressed(new Illuminate(!RobotMap.lightIsOn, true));
 		
 		shift.whileActive(new SetShifting(true)); // Shifts to high gear when held
 		shift.whenInactive(new SetShifting(false)); // Reverts to low gear when inactive
