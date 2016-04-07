@@ -8,10 +8,12 @@ public class Illuminate extends Command {
 	
 	boolean isFinished = false;
 	boolean isOn = false;
+	boolean manual = false;
 	
-    public Illuminate(boolean isOn) {
+    public Illuminate(boolean isOn, boolean manual) {
     	requires(Robot.light);
     	this.isOn = isOn;
+    	this.manual = manual;
     }
 
     protected void initialize() {
@@ -23,15 +25,27 @@ public class Illuminate extends Command {
     }
     
     protected void execute() {
+    	System.out.println("-exe Illuminate");
+    	
     	if(isOn) {
-    		Robot.light.on();
+    		if(manual) {
+        		Robot.light.on();
+    		} else {
+        		Robot.light.on();
+        		Robot.light.off();
+        		Robot.light.on();
+        		Robot.light.off();
+        		Robot.light.on();
+    		}
     	} else {
     		Robot.light.off();
     	}
+    	
+    	System.out.println("-end-exe Illuminate");
     }
 
     protected void end() {
-    	
+    	System.out.println("-end Illuminate");
     }
 
     protected void interrupted() {
