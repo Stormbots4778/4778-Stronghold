@@ -14,7 +14,7 @@ public class Intake extends Subsystem {
 	public void setSpeed(double power) {
 		System.out.println("#exe Intake setSpeed(power)");
 		
-		roller.set(power);
+		roller.set(-power);
 		
 		System.out.println("#end-exe Intake setSpeed(power)");
 	}

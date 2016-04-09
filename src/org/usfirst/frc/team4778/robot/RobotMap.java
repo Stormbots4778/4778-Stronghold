@@ -31,4 +31,9 @@ public class RobotMap {
 	public static int pos = 0;
 	
 	public static boolean lightIsOn = false;
+	public static boolean isTeleop = false;
+	
+	public static boolean switch1 = false;
+	public static boolean switch2 = false;
+	public static boolean switch3 = false;
 }

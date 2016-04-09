@@ -26,17 +26,23 @@ public class DriveTrain extends PIDSubsystem {
 	double endtime = 0;
 	double time = 0;
 	double input = 0;
-
+	
 	public DriveTrain() {
 		super("pid", 0.05, 0, 0);
 		dir();
+		left1.setSafetyEnabled(false);
+		left2.setSafetyEnabled(false);
+		left3.setSafetyEnabled(false);
+		right1.setSafetyEnabled(false);
+		right2.setSafetyEnabled(false);
+		right3.setSafetyEnabled(false);
 	}
 
 	private void dir() {
 		System.out.println("#exe DriveTrain dir");
 
-		left1.setInverted(true); // TODO Change these two later - false
-		right1.setInverted(true); // - false
+		left1.setInverted(false); // TODO Change these two later - false
+		right1.setInverted(false); // - false
 		left2.setInverted(true);
 		right2.setInverted(true);
 		left3.setInverted(true);

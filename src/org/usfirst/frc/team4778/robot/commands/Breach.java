@@ -4,6 +4,7 @@ import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.pid.PIDController;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Breach extends Command {
@@ -14,6 +15,7 @@ public class Breach extends Command {
 	private boolean wentUpAgain = false;
 	private double h = 0;
 	private boolean isMoat = false;
+	private long startTime; 
 	
 	public Breach(double power, double h, boolean isMoat) {
 		requires(Robot.drivetrain);
@@ -24,7 +26,6 @@ public class Breach extends Command {
 
 	protected void initialize() {
 		System.out.println("-init Breach");
-
 		RobotMap.direction = 1;
 		pid = new PIDController(0.125, 0, 0, h);
 		pid.setOutputLimits(-1, 1);
@@ -69,6 +70,12 @@ public class Breach extends Command {
 	}
 
 	protected void end() {
+		try {
+			wait(1500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Robot.drivetrain.arcadeDrive(0, 0);
 		System.out.println("-end Breach");
 	}

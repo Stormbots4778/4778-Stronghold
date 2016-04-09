@@ -8,7 +8,7 @@ public class Lights extends Subsystem {
 	private final Relay Headlights;
 	
 	public Lights() {
-		Headlights = new Relay(9);
+		Headlights = new Relay(0);
 	}
 
 	public void on() {

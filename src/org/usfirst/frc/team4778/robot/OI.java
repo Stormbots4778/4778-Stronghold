@@ -1,9 +1,10 @@
 package org.usfirst.frc.team4778.robot;
 
 import org.usfirst.frc.team4778.robot.commands.BallRoller;
-import org.usfirst.frc.team4778.robot.commands.Illuminate;
+//import org.usfirst.frc.team4778.robot.commands.Illuminate;
 import org.usfirst.frc.team4778.robot.commands.Lift;
 import org.usfirst.frc.team4778.robot.commands.OISwitch;
+//import org.usfirst.frc.team4778.robot.commands.OISwitch;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
 import org.usfirst.frc.team4778.robot.commands.SetShifting;
 
@@ -28,24 +29,25 @@ public class OI {
 	public static Button down = new JoystickButton(nip, 6);
 	public static Button downx = new JoystickButton(xbox2, 5); // Lb
 	public static Button manip = new JoystickButton(nip, 1);
+	//public static Button manip2 = new JoystickButton(nip, 1); // TODO Set port
 	
 	public static Button extend = new JoystickButton(nip, 5);
 	public static Button extendx = new JoystickButton(xbox2, 4); // Y
 	public static Button retract = new JoystickButton(nip, 4);
 	public static Button retractx = new JoystickButton(xbox2, 1); // A
 	
-	public static Button shift = new JoystickButton(xbox, 5);
-	public static Button light = new JoystickButton(xbox, 4);
-	public static Button manualLight = new JoystickButton(xbox, 1); //A
+	public static Button shift = new JoystickButton(xbox, 6);
+	
+	public static Button switch1 = new JoystickButton(nip, 6);
+	public static Button switch2 = new JoystickButton(nip, 7);
+	public static Button switch3 = new JoystickButton(nip, 8);
 	
 	public OI() {
 		System.out.println("-init OI");	
 		
 		shift.whileActive(new SetShifting(true));
 		shift.whenInactive(new SetShifting(false));
-		light.whenPressed(new Illuminate(!RobotMap.lightIsOn, false));
-		manualLight.whenPressed(new Illuminate(!RobotMap.lightIsOn, true));
-		
+
 		shift.whileActive(new SetShifting(true)); // Shifts to high gear when held
 		shift.whenInactive(new SetShifting(false)); // Reverts to low gear when inactive
 		
@@ -53,14 +55,15 @@ public class OI {
 		releasex.whileHeld(new BallRoller(-1)); // Releases the trapped ball
 		trap.whileHeld(new BallRoller(1)); // Traps the ball
 		trapx.whileHeld(new BallRoller(1)); // Traps the ball
-
 		
 		up.whenPressed(new SetBallArm(true)); // Lift the ball-arm
 		upx.whenPressed(new SetBallArm(true)); // Lift the ball-arm
 		down.whenPressed(new SetBallArm(false)); // Lower the ball-arm
 		downx.whenPressed(new SetBallArm(false)); // Lower the ball-arm
-		manip.whileHeld(new OISwitch()); // sets the arm for the switch on the
-		
+		manip.whileHeld(new OISwitch(true, 1, true)); // sets the arm for the switch on the
+		//manip2.whileHeld(new OISwitch(false, 2, true)); // sets the arm for the switch on the
+		//manip2.whenInactive(new OISwitch(false, 2, false));
+
 		extend.whileHeld(new Lift(1));
 		extendx.whileHeld(new Lift(1));
 		retract.whileHeld(new Lift(2));
