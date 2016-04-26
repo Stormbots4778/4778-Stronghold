@@ -26,7 +26,7 @@ public class DriveTrain extends PIDSubsystem {
 	double endtime = 0;
 	double time = 0;
 	double input = 0;
-	
+
 	public DriveTrain() {
 		super("pid", 0.05, 0, 0);
 		dir();
@@ -41,8 +41,8 @@ public class DriveTrain extends PIDSubsystem {
 	private void dir() {
 		System.out.println("#exe DriveTrain dir");
 
-		left1.setInverted(false); // TODO Change these two later - false
-		right1.setInverted(false); // - false
+		left1.setInverted(true); // TODO Change these two later - false
+		right1.setInverted(true); // - false
 		left2.setInverted(true);
 		right2.setInverted(true);
 		left3.setInverted(true);
@@ -87,7 +87,7 @@ public class DriveTrain extends PIDSubsystem {
 
 		System.out.println("#end-exe DriveTrain arcadeDrive(stick)");
 	}
-	
+
 	public void arcadeDrive(Joystick stick1, Joystick stick2) {
 		System.out.println("#exe DriveTrain arcadeDrive(stick1, stick2)");
 		this.getPIDController().disable();
@@ -112,13 +112,13 @@ public class DriveTrain extends PIDSubsystem {
 
 	public void stop() {
 		System.out.println("#exe DriveTrain stop()");
-		
-//		this.getPIDController().setOutputRange(-1, 1);
-//		this.getPIDController().setSetpoint(RobotMap.leftdrive.getDistance());
-//		this.getPIDController().enable();
-		
+
+		// this.getPIDController().setOutputRange(-1, 1);
+		// this.getPIDController().setSetpoint(RobotMap.leftdrive.getDistance());
+		// this.getPIDController().enable();
+
 		Robot.drivetrain.arcadeDrive(0.8, RobotMap.leftdrive.getRate());
-		
+
 		System.out.println("#end-exe DriveTrain stop()");
 	}
 
