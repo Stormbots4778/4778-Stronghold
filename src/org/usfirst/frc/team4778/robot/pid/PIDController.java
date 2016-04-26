@@ -3,8 +3,6 @@ package org.usfirst.frc.team4778.robot.pid;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-import org.usfirst.frc.team4778.robot.RobotMap;
-
 public class PIDController {
 
 	private double kp = 0;

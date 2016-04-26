@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4778.robot.commands.autonomous;
 
 import org.usfirst.frc.team4778.robot.commands.BallRoller;
-import org.usfirst.frc.team4778.robot.commands.EnterDefense;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
 
 public class AutoPortcullis extends Auto {

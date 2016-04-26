@@ -4,7 +4,6 @@ import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.pid.PIDController;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Breach extends Command {

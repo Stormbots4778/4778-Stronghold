@@ -1,9 +1,7 @@
 package org.usfirst.frc.team4778.robot.commands.autonomous;
 
 import org.usfirst.frc.team4778.robot.commands.Breach;
-import org.usfirst.frc.team4778.robot.commands.Move;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
-import org.usfirst.frc.team4778.robot.commands.TurnToAngle;
 
 public class AutoRamparts extends Auto {
 
