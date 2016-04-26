@@ -50,11 +50,12 @@ public class Robot extends IterativeRobot {
 	public void initSmartDashboard() {
 		System.out.println("+robot init-smartdashboard");
 		// 1 is the temporary defenseId
-		RobotMap.auto.addDefault("Low Bar", new AutoLow(false));
+		RobotMap.auto.addObject("Low Bar", new AutoLow(false));
 		RobotMap.auto.addObject("Ramparts | Moat", new AutoRamparts(1, false));
 		RobotMap.auto.addObject("Rough Terrain | Rock Wall", new AutoGeneral(1, false));
 		RobotMap.auto.addObject("Cheval De Frise", new AutoCheval(1, false));
 		RobotMap.auto.addObject("No Autonomous", new AutoNone());
+		RobotMap.auto.addDefault("switch", null);
 		// SmartDashboard.putBoolean("Cross Twice", crossTwice);
 		SmartDashboard.putData("Reset Sensors", new SensorReset());
 
@@ -92,24 +93,26 @@ public class Robot extends IterativeRobot {
 		final boolean state1 = OI.nip.getRawButton(6);
 		final boolean state2 = OI.nip.getRawButton(7);
 		final boolean state3 = OI.nip.getRawButton(8);
-
-		if (state1 == false && state2 == false && state3 == false) {
-			autonomousCommand = new AutoNone();
-		} else if (state1 == true && state2 == false && state3 == false) {
-			autonomousCommand = null;
-		} else if (state1 == true && state2 == true && state3 == false) {
-			Robot.ball.move(false);
-			autonomousCommand = new AutoLow(false);
-		} else if (state1 == true && state2 == true && state3 == true) {
-			autonomousCommand = new AutoRamparts(1, false);
-		} else if (state1 == false && state2 == true && state3 == true) {
-			autonomousCommand = new AutoGeneral(1, false);
-		} else if (state1 == true && state2 == false && state3 == true) {
-			// autonomousCommand = new Moat(1, false);
+		if (RobotMap.auto.getSelected() == null) {
+			if (state1 == false && state2 == false && state3 == false) {
+				autonomousCommand = new AutoNone();
+			} else if (state1 == true && state2 == false && state3 == false) {
+				autonomousCommand = null;
+			} else if (state1 == true && state2 == true && state3 == false) {
+				Robot.ball.move(false);
+				autonomousCommand = new AutoLow(false);
+			} else if (state1 == true && state2 == true && state3 == true) {
+				autonomousCommand = new AutoRamparts(1, false);
+			} else if (state1 == false && state2 == true && state3 == true) {
+				autonomousCommand = new AutoGeneral(1, false);
+			} else if (state1 == true && state2 == false && state3 == true) {
+				// autonomousCommand = new Moat(1, false);
+			} else {
+				autonomousCommand = null;
+			}
 		} else {
-			autonomousCommand = null;
+			autonomousCommand = (Command) RobotMap.auto.getSelected();
 		}
-		// autonomousCommand = new AutoRamparts(1, false);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
