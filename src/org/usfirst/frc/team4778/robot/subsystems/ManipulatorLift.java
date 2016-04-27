@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ManipulatorLift extends Subsystem {
 
-	private static Solenoid up = new Solenoid(2);
-	private static Solenoid down = new Solenoid(3);
+	private static Solenoid up = new Solenoid(6);
+	private static Solenoid down = new Solenoid(7);
 
 	private boolean state;
 

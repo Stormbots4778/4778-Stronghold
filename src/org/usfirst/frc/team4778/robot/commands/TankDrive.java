@@ -12,18 +12,20 @@ public class TankDrive extends Command {
 
 	protected void initialize() {
 		System.out.println("-init TankDrive");
-		
+
 		// Nothing here...
-		
+
 		System.out.println("-end-init TankDrive");
 	}
 
 	protected void execute() {
 		System.out.println("-exe TankDrive");
-		
-		//Robot.drivetrain.arcadeDrive(OI.joyleft, OI.joyright);
-		Robot.drivetrain.tankDrive(Robot.oi.xbox.getRawAxis(1), Robot.oi.xbox.getRawAxis(5));
-		
+
+		// Robot.drivetrain.arcadeDrive(OI.joyleft, OI.joyright);
+		// Robot.drivetrain.tankDrive(Robot.oi.xbox.getRawAxis(1),
+		// Robot.oi.xbox.getRawAxis(5));
+		Robot.drivetrain.tankDrive(Robot.oi.xbox2.getRawAxis(1), Robot.oi.xbox2.getRawAxis(5));
+
 		System.out.println("-end-exe TankDrive");
 	}
 
@@ -31,6 +33,11 @@ public class TankDrive extends Command {
 		System.out.println("-end TankDrive");
 	}
 
-	protected void interrupted() {end();}
-	protected boolean isFinished() {return false;}
+	protected void interrupted() {
+		end();
+	}
+
+	protected boolean isFinished() {
+		return false;
+	}
 }
