@@ -115,6 +115,7 @@ public class Robot extends IterativeRobot {
 		} else {
 			autonomousCommand = (Command) RobotMap.auto.getSelected();
 		}
+				
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

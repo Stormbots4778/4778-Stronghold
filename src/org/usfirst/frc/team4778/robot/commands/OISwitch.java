@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4778.robot.commands;
 
 import org.usfirst.frc.team4778.robot.Robot;
+import org.usfirst.frc.team4778.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,12 +18,16 @@ public class OISwitch extends Command {
 	}
 
 	protected void execute() {
-		Robot.ball.move(true);
+		if(RobotMap.isTeleop) {
+			Robot.ball.move(true);
+		}
 
 	}
 
 	protected void end() {
-		Robot.ball.move(false);
+		if(RobotMap.isTeleop) {
+			Robot.ball.move(false);
+		}
 	}
 
 	protected void initialize() {

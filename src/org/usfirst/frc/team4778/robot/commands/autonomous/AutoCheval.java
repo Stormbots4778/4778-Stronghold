@@ -23,7 +23,7 @@ public class AutoCheval extends Auto {
 		addSequential(new SetBallArm(true));
 		addSequential(new EnterDefense(-0.6, 20)); //TODO Find correct rate
 		addSequential(new SetBallArm(false));
-		addSequential(new Delay(500));
+		addSequential(new Delay(800)); // 500 for comp bot
 		addSequential(new ExitDefense(-0.95));
 		addSequential(new SetBallArm(true));
 		addSequential(new Move(-1));

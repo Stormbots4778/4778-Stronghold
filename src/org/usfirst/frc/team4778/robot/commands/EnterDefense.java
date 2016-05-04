@@ -16,9 +16,7 @@ public class EnterDefense extends Command {
 	double output = 0;
 	
 	double initPitch = 0;
-	double pitch[] = {};
-	double averagePitch = 0;
-	int index = 0;
+	double pitch = 0.0;
 	
 	public EnterDefense(double power, double rate) {
 		requires(Robot.drivetrain);
@@ -30,12 +28,11 @@ public class EnterDefense extends Command {
 		System.out.println("-init EnterDefense");
 
 		RobotMap.direction = 1;
-		pid = new PIDController(0.125, 0, 0, rate);
+		pid = new PIDController(0.125, 0, 0, 1);
 		pid.setOutputLimits(-1, 1);
 		pid.setTolerence(3);
 
 		initPitch = RobotMap.ahrs.getRoll();
-		averagePitch = initPitch;
 		
 		System.out.println("-end-init EnterDefense");
 	}
@@ -43,27 +40,16 @@ public class EnterDefense extends Command {
 	protected void execute() {
 		System.out.println("-exe EnterDefense");
 		
-		pitch[index] = RobotMap.ahrs.getRoll();
-		if(index == 8) {
-			double sum = 0;
-			for(int i=0; i<index; i++) {
-				sum += pitch[index];
-				pitch[index] = 0;
-			}
-			averagePitch = sum / index;
-			index = 0;
-		} else {
-			index++;
-		}
+		pitch = RobotMap.ahrs.getRoll();
 		
-		if(averagePitch > initPitch + 2) {
+		if(pitch > initPitch + 2) {
 			isFinished = true;
 		}
 		
 		// TODO velocity and stray values
 		
-		//double output = pid.computePID(RobotMap.ahrs.getYaw());
-		output += pid.computePID(RobotMap.leftdrive.getRate());
+		double output = pid.computePID(RobotMap.ahrs.getYaw());
+		//output += pid.computePID(RobotMap.leftdrive.getRate());
 		Robot.drivetrain.arcadeDrive(power, output);
 
 		System.out.println("-end-exe EnterDefense");

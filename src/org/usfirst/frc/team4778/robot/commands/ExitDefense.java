@@ -21,7 +21,7 @@ public class ExitDefense extends Command {
 		System.out.println("-init ExitDefense");
 
 		RobotMap.direction = 1;
-		pid = new PIDController(0.125, 0, 0, 0);
+		pid = new PIDController(0.125, 0, 0, 1);
 		pid.setOutputLimits(-1, 1);
 		pid.setTolerence(3);
 
@@ -32,7 +32,7 @@ public class ExitDefense extends Command {
 		System.out.println("-exe ExitDefense");
 		
 		double pitch = RobotMap.ahrs.getRoll();
-		if(pitch < 0) {
+		if(pitch < -1) {
 			isFinished = true;
 		}
 		
