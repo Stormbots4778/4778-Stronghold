@@ -75,6 +75,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Heading ", RobotMap.h);
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
+		
+		SmartDashboard.putNumber("Velocity X: ", RobotMap.ahrs.getVelocityX());
+		SmartDashboard.putNumber("Velocity Y: ", RobotMap.ahrs.getVelocityY());
+		SmartDashboard.putNumber("Velocity Z: ", RobotMap.ahrs.getVelocityZ());
+
 	}
 
 	public void disabledInit() {

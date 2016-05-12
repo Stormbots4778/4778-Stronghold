@@ -18,9 +18,9 @@ public class AutoRamparts extends Auto {
 		System.out.println("-start ramparts breach");
 
 		addSequential(new SetBallArm(true));
-		addSequential(new Breach(-1, 0, true));
+		addSequential(new Breach(-0.8, 0, true));
 		addSequential(new TurnToAngle(179));
-		addSequential(new Breach(-1, 0, true));
+		addSequential(new Breach(-0.8, 0, true));
 		addSequential(new TurnToAngle(179));
 
 		System.out.println("-end ramparts breach");

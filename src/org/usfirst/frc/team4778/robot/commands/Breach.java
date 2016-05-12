@@ -38,8 +38,7 @@ public class Breach extends Command {
 	protected void execute() {
 		System.out.println("-exe Breach");
 
-		double output = pid.computePID(RobotMap.ahrs.getYaw());
-		
+		double output = pid.computePID(RobotMap.ahrs.getYaw());		
 		double pitch = RobotMap.ahrs.getRoll();
 
 		if(pitch <= -5) {
@@ -63,7 +62,7 @@ public class Breach extends Command {
 			isFinished = true;
 		}
 			
-		Robot.drivetrain.arcadeDrive(power, output);
+		Robot.drivetrain.arcadeDrive(power, output); //TODO Add PID for power
 
 		System.out.println("-end-exe Breach");
 	}
