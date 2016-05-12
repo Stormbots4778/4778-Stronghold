@@ -11,9 +11,8 @@ public class AutoGeneral extends Auto {
 
 	public void runBreach() {
 		System.out.println("-start general breach");
-		addSequential(new SetBallArm(false));
-		addSequential(new Breach(-0.99, 0, false));
 		addSequential(new SetBallArm(true));
+		addSequential(new Breach(-0.99, 0, false));		
 
 		System.out.println("-end general breach");
 	}
