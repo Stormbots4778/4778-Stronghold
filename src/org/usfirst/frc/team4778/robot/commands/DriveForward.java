@@ -25,7 +25,7 @@ public class DriveForward extends Command {
 		pid.setTolerence(3);
 		
 		powerPID = new PIDController(0.125, 0, 0, power);
-		powerPID.setOutputLimits(-1, 1);
+		powerPID.setOutputLimits(-0.6, 0.6);
 		powerPID.setTolerence(3);
 		
 		RobotMap.ahrs.reset();
