@@ -14,6 +14,7 @@ public class AutoLow extends Auto {
 
 		addSequential(new SetBallArm(false));
 		addSequential(new BreachLow(-0.8));
+		addSequential(new BreachLow(0.8));
 		addSequential(new SetBallArm(true));
 		
 		System.out.println("-end low-bar breach");
