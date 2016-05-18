@@ -13,8 +13,7 @@ public class SensorReset extends Command {
 	protected void initialize() {
 		System.out.println("-init SensorReset");
 		
-		RobotMap.rightdrive.reset();
-		RobotMap.leftdrive.reset();
+		RobotMap.encoder.reset();
 		RobotMap.h = 0;
 		RobotMap.ahrs.reset();
 		

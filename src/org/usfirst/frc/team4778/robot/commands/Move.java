@@ -25,10 +25,10 @@ public class Move extends Command {
 	protected void initialize() {
 		System.out.println("-init Move");
 
-		RobotMap.leftdrive.setDistancePerPulse(0.125488281);
-		RobotMap.rightdrive.setDistancePerPulse(0.125488281);
-		RobotMap.rightdrive.reset();
-		RobotMap.leftdrive.reset();
+		RobotMap.encoder.setDistancePerPulse(0.125488281);
+		//RobotMap.rightdrive.setDistancePerPulse(0.125488281);
+		//RobotMap.rightdrive.reset();
+		RobotMap.encoder.reset();
 //		SmartDashboard.putNumber("p", p);
 //		SmartDashboard.putNumber("i", i);
 //		SmartDashboard.putNumber("d", d);
@@ -50,7 +50,7 @@ public class Move extends Command {
 		System.out.println("-exe Move");
 
 		double tout = tpid.computePID(RobotMap.ahrs.getYaw());
-		double rout = rpid.computePID(RobotMap.leftdrive.getDistance());
+		double rout = rpid.computePID(RobotMap.encoder.getDistance());
 		Robot.drivetrain.arcadeDrive(-rout, tout);
 		if (rpid.onTarget()) {
 			isFinished = true;

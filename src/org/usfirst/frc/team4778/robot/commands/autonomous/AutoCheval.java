@@ -26,7 +26,6 @@ public class AutoCheval extends Auto {
 		addSequential(new Delay(800)); // 500 for comp bot
 		addSequential(new ExitDefense(-0.95));
 		addSequential(new SetBallArm(true));
-		addSequential(new Move(-1));
 		
 		System.out.println("-end cheval breach");
 	}

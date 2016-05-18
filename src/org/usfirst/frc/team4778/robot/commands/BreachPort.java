@@ -40,12 +40,12 @@ public class BreachPort extends Command {
 		if (pitch > -1 && wentUp && lift) {
 			isFinished = true;
 		}
-		if (pre != 0) {
-			if (RobotMap.rightdrive.getDistance() - pre < 2) {
-				Robot.ball.move(false);// move up
-				lift = true;
-			}
-		}
+//		if (pre != 0) {
+//			if (RobotMap.rightdrive.getDistance() - pre < 2) {
+//				Robot.ball.move(false);// move up
+//				lift = true;
+//			}
+//		}
 		System.out.println("-end-exe Low-Breach");
 	}
 

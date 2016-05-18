@@ -17,8 +17,7 @@ public class RobotMap {
 
 	public static Accelerometer acc = new BuiltInAccelerometer();
 
-	public static Encoder leftdrive = new Encoder(0, 1, false, CounterBase.EncodingType.k4X);
-	public static Encoder rightdrive = new Encoder(2, 3, false, CounterBase.EncodingType.k4X);
+	public static Encoder encoder = new Encoder(0, 1, false, CounterBase.EncodingType.k4X);
 
     public static AHRS ahrs = new AHRS(SerialPort.Port.kMXP); /* Alternatives:  SPI.Port.kMXP, I2C.Port.kMXP or SerialPort.Port.kUSB */
 	

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4778.robot.commands.autonomous;
 
+import org.usfirst.frc.team4778.robot.commands.BallRoller;
 import org.usfirst.frc.team4778.robot.commands.Breach;
+import org.usfirst.frc.team4778.robot.commands.Delay;
 import org.usfirst.frc.team4778.robot.commands.SetBallArm;
 import org.usfirst.frc.team4778.robot.commands.TurnToAngle;
 
@@ -22,6 +24,9 @@ public class AutoRamparts extends Auto {
 		addSequential(new TurnToAngle(179));
 		addSequential(new Breach(-0.8, 0, true));
 		addSequential(new TurnToAngle(179));
+		addSequential(new BallRoller(-1));
+		addSequential(new Delay(500));
+		addSequential(new BallRoller(1));
 
 		System.out.println("-end ramparts breach");
 	}

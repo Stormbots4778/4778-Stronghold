@@ -117,7 +117,7 @@ public class DriveTrain extends PIDSubsystem {
 		// this.getPIDController().setSetpoint(RobotMap.leftdrive.getDistance());
 		// this.getPIDController().enable();
 
-		Robot.drivetrain.arcadeDrive(0.8, RobotMap.leftdrive.getRate());
+		Robot.drivetrain.arcadeDrive(0.8, RobotMap.encoder.getRate());
 
 		System.out.println("#end-exe DriveTrain stop()");
 	}
@@ -125,7 +125,7 @@ public class DriveTrain extends PIDSubsystem {
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return RobotMap.leftdrive.getDistance();
+		return RobotMap.encoder.getDistance();
 	}
 
 	@Override

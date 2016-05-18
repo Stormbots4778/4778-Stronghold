@@ -40,8 +40,8 @@ public class Delay extends Command {
 	protected void execute() {
 		System.out.println("-exe Delay");
 		
-		double out = pid.computePID(RobotMap.leftdrive.getDistance());
-		Robot.drivetrain.tankDrive(out, out);
+//		double out = pid.computePID(RobotMap.encoder.getDistance());
+//		Robot.drivetrain.tankDrive(out, out);
 		if (Timer.getFPGATimestamp() > endtime) {
 			finish = true;
 		}
