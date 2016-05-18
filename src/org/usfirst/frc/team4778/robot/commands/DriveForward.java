@@ -28,7 +28,6 @@ public class DriveForward extends Command {
 		powerPID.setOutputLimits(-1, 1);
 		
 		RobotMap.ahrs.reset();
-		
 		RobotMap.encoder.setDistancePerPulse(0.125488281);
 		
 		System.out.println("-end-init Breach");
@@ -39,6 +38,8 @@ public class DriveForward extends Command {
 
 		double output = pid.computePID(RobotMap.ahrs.getYaw());
 		double newPower = powerPID.computePID(RobotMap.encoder.getRate());
+		
+		//TODO Add fail safe - check if under 75% power after 100ms
 		
 		Robot.drivetrain.arcadeDrive(newPower, output);
 

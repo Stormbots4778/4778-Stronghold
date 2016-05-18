@@ -21,12 +21,12 @@ public class AutoRamparts extends Auto {
 
 		addSequential(new SetBallArm(true));
 		addSequential(new Breach(-0.8, 0, true));
+		addSequential(new BallRoller(-1));
+		addSequential(new Delay(0.5));
+		addSequential(new BallRoller(0));
 		addSequential(new TurnToAngle(179));
 		addSequential(new Breach(-0.8, 0, true));
 		addSequential(new TurnToAngle(179));
-		addSequential(new BallRoller(-1));
-		addSequential(new Delay(500));
-		addSequential(new BallRoller(1));
 
 		System.out.println("-end ramparts breach");
 	}
