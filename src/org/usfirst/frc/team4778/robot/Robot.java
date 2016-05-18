@@ -75,6 +75,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Heading ", RobotMap.h);
 		SmartDashboard.putNumber("Encoder L: ", RobotMap.leftdrive.getDistance());
 		SmartDashboard.putNumber("Encoder R: ", RobotMap.rightdrive.getDistance());
+		SmartDashboard.putNumber("Intake Current Draw: ", RobotMap.power.getCurrent(3));
 	}
 
 	public void disabledInit() {
@@ -115,7 +116,7 @@ public class Robot extends IterativeRobot {
 		} else {
 			autonomousCommand = (Command) RobotMap.auto.getSelected();
 		}
-				
+
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
