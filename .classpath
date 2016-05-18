@@ -4,6 +4,6 @@
 	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="build/jars/navx_frc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/navx-mxp/java/lib/navx_frc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -26,10 +26,10 @@ public class Delay extends Command {
 		System.out.println("-init Delay");
 		
 		endtime = Timer.getFPGATimestamp() + time;
-		RobotMap.leftdrive.setDistancePerPulse(0.125488281);
-		RobotMap.rightdrive.setDistancePerPulse(0.125488281);
-		RobotMap.rightdrive.reset();
-		RobotMap.leftdrive.reset();
+//		RobotMap.leftdrive.setDistancePerPulse(0.125488281);
+//		RobotMap.rightdrive.setDistancePerPulse(0.125488281);
+//		RobotMap.rightdrive.reset();
+//		RobotMap.leftdrive.reset();
 		pid = new PIDController(0.05, 0, 0, 0);
 		pid.setTolerence(1);
 		pid.setOutputLimits(-0.85, 0.85);

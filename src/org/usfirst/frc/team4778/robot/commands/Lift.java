@@ -29,7 +29,7 @@ public class Lift extends Command {
     		Robot.lift.setSpeed(-0.5, 0.0); //Makes arm go vroom vroom
     		break;
     	case 2:
-    		Robot.lift.setSpeed(0.25, -0.25); //Makes winch and arm go vroom vroom screeech
+    		Robot.lift.setSpeed(0.35, -1); //Makes winch and arm go vroom vroom screeech
     		break;
     	}
     	

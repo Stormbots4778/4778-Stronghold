@@ -24,11 +24,13 @@ public class DriveForward extends Command {
 		pid.setOutputLimits(-1, 1);
 		pid.setTolerence(3);
 		
-		powerPID = new PIDController(0.125, 0, 0, power);
-		powerPID.setOutputLimits(-0.6, 0.6);
-		powerPID.setTolerence(3);
+		powerPID = new PIDController(0.125, 0, 0, -12);
+		powerPID.setOutputLimits(-1, 1);
 		
 		RobotMap.ahrs.reset();
+		
+		RobotMap.leftdrive.setDistancePerPulse(0.125488281);
+		RobotMap.rightdrive.setDistancePerPulse(0.125488281);
 		
 		System.out.println("-end-init Breach");
 	}
@@ -37,9 +39,9 @@ public class DriveForward extends Command {
 		System.out.println("-exe Breach");
 
 		double output = pid.computePID(RobotMap.ahrs.getYaw());
-		double newPower = powerPID.computePID(RobotMap.ahrs.getVelocityX());
-			
-		Robot.drivetrain.arcadeDrive(newPower, output); //TODO Add PID for power
+		double newPower = powerPID.computePID(RobotMap.leftdrive.getRate());
+		
+		Robot.drivetrain.arcadeDrive(newPower, output);
 
 		System.out.println("-end-exe Breach");
 	}
