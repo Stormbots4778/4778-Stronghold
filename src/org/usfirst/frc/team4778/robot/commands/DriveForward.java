@@ -4,6 +4,7 @@ import org.usfirst.frc.team4778.robot.Robot;
 import org.usfirst.frc.team4778.robot.RobotMap;
 import org.usfirst.frc.team4778.robot.pid.PIDController;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveForward extends Command {
@@ -11,6 +12,8 @@ public class DriveForward extends Command {
 	private PIDController powerPID;
 	boolean isFinished = false;
 	double power = 0;
+	double failSafeEndTime;
+	double failSafeIgnoreTime;
 	
 	public DriveForward(double power) {
 		requires(Robot.drivetrain);
@@ -18,7 +21,7 @@ public class DriveForward extends Command {
 	}
 
 	protected void initialize() {
-		System.out.println("-init Breach");
+		System.out.println("-init DriveForward");
 		RobotMap.direction = 1;
 		pid = new PIDController(0.125, 0, 0, 0);
 		pid.setOutputLimits(-1, 1);
@@ -30,31 +33,32 @@ public class DriveForward extends Command {
 		RobotMap.ahrs.reset();
 		RobotMap.encoder.setDistancePerPulse(0.125488281);
 		
-		System.out.println("-end-init Breach");
+		failSafeEndTime = Timer.getFPGATimestamp() + 0.1;
+		failSafeIgnoreTime = Timer.getFPGATimestamp() + 0.2;
+		
+		System.out.println("-end-init DriveForward");
 	}
 
 	protected void execute() {
-		System.out.println("-exe Breach");
+		System.out.println("-exe DriveForward");
 
 		double output = pid.computePID(RobotMap.ahrs.getYaw());
 		double newPower = powerPID.computePID(RobotMap.encoder.getRate());
 		
 		//TODO Add fail safe - check if under 75% power after 100ms
+		if (Timer.getFPGATimestamp() > failSafeIgnoreTime) { 
+			if ((Timer.getFPGATimestamp() > failSafeEndTime) && newPower < 0.75) {
+				isFinished = true;
+			}
+		}
 		
 		Robot.drivetrain.arcadeDrive(newPower, output);
 
-		System.out.println("-end-exe Breach");
+		System.out.println("-end-exe DriveForward");
 	}
 
 	protected void end() {
-		try {
-			wait(1500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Robot.drivetrain.arcadeDrive(0, 0);
-		System.out.println("-end Breach");
+		System.out.println("-end DriveForward");
 	}
 
 	protected boolean isFinished() {
