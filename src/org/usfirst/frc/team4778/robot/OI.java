@@ -25,7 +25,7 @@ public class OI {
 	public static Button trap = new JoystickButton(nip, 3);
 	public static Button trapx = new JoystickButton(xbox2, 3); // X
 
-	public static Button up = new JoystickButton(nip, 5);
+	//public static Button up = new JoystickButton(nip, 5);
 	public static Button upx = new JoystickButton(xbox2, 6); // Rb
 	public static Button down = new JoystickButton(nip, 6);
 	public static Button downx = new JoystickButton(xbox2, 5); // Lb
@@ -60,7 +60,7 @@ public class OI {
 		trap.whileHeld(new BallRoller(1)); // Traps the ball
 		trapx.whileHeld(new BallRoller(1)); // Traps the ball
 
-		up.whenPressed(new SetBallArm(true)); // Lift the ball-arm
+		//up.whenPressed(new SetBallArm(true)); // Lift the ball-arm
 		upx.whenPressed(new SetBallArm(true)); // Lift the ball-arm
 		down.whenPressed(new SetBallArm(false)); // Lower the ball-arm
 		downx.whenPressed(new SetBallArm(false)); // Lower the ball-arm
