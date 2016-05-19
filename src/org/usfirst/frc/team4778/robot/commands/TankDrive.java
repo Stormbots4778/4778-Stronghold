@@ -24,7 +24,7 @@ public class TankDrive extends Command {
 		// Robot.drivetrain.arcadeDrive(OI.joyleft, OI.joyright);
 		// Robot.drivetrain.tankDrive(Robot.oi.xbox.getRawAxis(1),
 		// Robot.oi.xbox.getRawAxis(5));
-		Robot.drivetrain.tankDrive(Robot.oi.xbox2.getRawAxis(1), Robot.oi.xbox2.getRawAxis(5));
+		Robot.drivetrain.tankDrive(Robot.oi.xbox.getRawAxis(1), Robot.oi.xbox.getRawAxis(5));
 
 		System.out.println("-end-exe TankDrive");
 	}

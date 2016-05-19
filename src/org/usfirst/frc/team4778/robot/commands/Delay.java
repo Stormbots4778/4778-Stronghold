@@ -5,7 +5,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Delay extends Command {
 
-	double endtime, time;
+	double endtime;
+	double time;
 	boolean finish = false;
 
 	public Delay(double val) {

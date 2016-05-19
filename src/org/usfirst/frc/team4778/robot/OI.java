@@ -47,9 +47,6 @@ public class OI {
 	public OI() {
 		System.out.println("-init OI");
 
-		shift.whileActive(new SetShifting(true));
-		shift.whenInactive(new SetShifting(false));
-
 		shift.whileActive(new SetShifting(true)); // Shifts to high gear when
 													// held
 		shift.whenInactive(new SetShifting(false)); // Reverts to low gear when
