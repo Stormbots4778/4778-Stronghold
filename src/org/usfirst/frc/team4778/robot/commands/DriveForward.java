@@ -45,7 +45,6 @@ public class DriveForward extends Command {
 		double output = pid.computePID(RobotMap.ahrs.getYaw());
 		double newPower = powerPID.computePID(RobotMap.encoder.getRate());
 		
-		//TODO Add fail safe - check if under 75% power after 100ms
 		if (Timer.getFPGATimestamp() > failSafeIgnoreTime) { 
 			if ((Timer.getFPGATimestamp() > failSafeEndTime) && newPower < 0.75) {
 				isFinished = true;

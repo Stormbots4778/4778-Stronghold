@@ -41,8 +41,8 @@ public class DriveTrain extends PIDSubsystem {
 	private void dir() {
 		System.out.println("#exe DriveTrain dir");
 
-		left1.setInverted(true); // TODO Change these two later - false
-		right1.setInverted(true); // - false
+		left1.setInverted(false); // TODO Comp bot is false - Test bot is true
+		right1.setInverted(false); // false
 		left2.setInverted(true);
 		right2.setInverted(true);
 		left3.setInverted(true);
