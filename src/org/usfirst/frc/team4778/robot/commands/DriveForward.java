@@ -27,7 +27,7 @@ public class DriveForward extends Command {
 		pid.setOutputLimits(-1, 1);
 		pid.setTolerence(3);
 		
-		powerPID = new PIDController(0.125, 0, 0, -12);
+		powerPID = new PIDController(0.5, 0.001, 0, -power);
 		powerPID.setOutputLimits(-1, 1);
 		
 		RobotMap.ahrs.reset();
@@ -45,18 +45,19 @@ public class DriveForward extends Command {
 		double output = pid.computePID(RobotMap.ahrs.getYaw());
 		double newPower = powerPID.computePID(RobotMap.encoder.getRate());
 		
-		if (Timer.getFPGATimestamp() > failSafeIgnoreTime) { 
-			if ((Timer.getFPGATimestamp() > failSafeEndTime) && newPower < 0.75) {
-				isFinished = true;
-			}
-		}
-		
+//		if (Timer.getFPGATimestamp() > failSafeIgnoreTime) { 
+//			if ((Timer.getFPGATimestamp() > failSafeEndTime) && newPower < 0.75) {
+//				isFinished = true;
+//			}
+//		}
+//		
 		Robot.drivetrain.arcadeDrive(newPower, output);
 
 		System.out.println("-end-exe DriveForward");
 	}
 
 	protected void end() {
+		Robot.drivetrain.arcadeDrive(0, 0);
 		System.out.println("-end DriveForward");
 	}
 

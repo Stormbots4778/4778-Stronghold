@@ -12,13 +12,22 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class DriveTrain extends PIDSubsystem {
 
-	private static VictorSP left1 = new VictorSP(0);
-	private static VictorSP left2 = new VictorSP(1);
-	private static VictorSP left3 = new VictorSP(2);
+	private static Victor left1 = new Victor(0);
+	private static Victor left2 = new Victor(1);
+	private static Victor left3 = new Victor(2);
 
-	private static VictorSP right1 = new VictorSP(3);
-	private static VictorSP right2 = new VictorSP(4);
-	private static VictorSP right3 = new VictorSP(5);
+	private static Victor right1 = new Victor(3);
+	private static Victor right2 = new Victor(4);
+	private static Victor right3 = new Victor(5);
+	
+	// Comp Bot:
+//	private static VictorSP left1 = new VictorSP(0);
+//	private static VictorSP left2 = new VictorSP(1);
+//	private static VictorSP left3 = new VictorSP(2);
+//
+//	private static VictorSP right1 = new VictorSP(3);
+//	private static VictorSP right2 = new VictorSP(4);
+//	private static VictorSP right3 = new VictorSP(5);
 
 	public static RobotDrive Drive1 = new RobotDrive(left1, right1);
 	public static RobotDrive Drive2 = new RobotDrive(left2, right2);
@@ -42,8 +51,8 @@ public class DriveTrain extends PIDSubsystem {
 	private void dir() {
 		System.out.println("#exe DriveTrain dir");
 
-		left1.setInverted(false); // TODO Comp bot is false - Test bot is true
-		right1.setInverted(false); // false
+		left1.setInverted(true); // TODO Comp bot is false - Test bot is true
+		right1.setInverted(true); // false
 		left2.setInverted(true);
 		right2.setInverted(true);
 		left3.setInverted(true);

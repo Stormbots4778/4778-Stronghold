@@ -10,8 +10,9 @@ public class AutoNone extends CommandGroup {
 
 	public AutoNone() {
 		addSequential(new SetBallArm(true));
-		addSequential(new DriveForward(5));
-		addSequential(new Delay(500));
+		addSequential(new Delay(1000));
+		addSequential(new DriveForward(1));
+		addSequential(new Delay(1000));
 		addSequential(new DriveForward(0));
 		System.out.println("No Auto");
 	}
