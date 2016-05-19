@@ -16,7 +16,7 @@ public class Delay extends Command {
 	protected void initialize() {
 		System.out.println("-init Delay");
 		
-		endtime = Timer.getFPGATimestamp() + time;
+		endtime = Timer.getMatchTime() + time;
 		
 		System.out.println("-end-init Delay");
 	}
@@ -24,7 +24,7 @@ public class Delay extends Command {
 	protected void execute() {
 		System.out.println("-exe Delay");
 
-		if (Timer.getFPGATimestamp() > endtime) {
+		if (Timer.getMatchTime() > endtime) {
 			finish = true;
 		}
 		
